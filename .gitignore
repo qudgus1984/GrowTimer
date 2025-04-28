@@ -1,0 +1,28 @@
+# Xcode
+*.xcodeproj
+*.xcworkspace
+xcuserdata/
+DerivedData/
+
+# Tuist
+/Derived/
+.tuist-generated/
+
+# CocoaPods
+Pods/
+
+# Swift Package Manager
+.build/
+
+# 기타 일반적인 무시 항목
+.DS_Store
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.xccheckout
+*.moved-aside
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
