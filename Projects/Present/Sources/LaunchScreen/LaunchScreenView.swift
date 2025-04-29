@@ -6,7 +6,14 @@
 //  Copyright © 2025 Den. All rights reserved.
 //
 
+import UIKit
+import Utility
+
+public class LaunchScreenViewController: BaseViewController {
+    
+}
 import SwiftUI
+
 
 public struct LaunchScreenView: View {
     public var body: some View {

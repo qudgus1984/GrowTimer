@@ -17,6 +17,7 @@ let workspace = Workspace(
         "Projects/Utility",
         "Projects/DesignSystem",
         "Projects/FeatureInterface",
+        "Projects/FeatureImplement",
         "Projects/ThirdPartyLibrary"
         
     ]
