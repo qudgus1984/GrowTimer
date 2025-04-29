@@ -6,19 +6,22 @@
 //
 
 import UIKit
-import SwiftUI
-import Present
+
+import Utility
+import FeatureInterface
+
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+    
+    @Injected private var featureProvider: FeatureProvider
+
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        
-        let contentView = LaunchScreenView()
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = UIHostingController(rootView: contentView)
+        window.rootViewController = featureProvider.createLaunchScreen()
         window.backgroundColor = .white
         self.window = window
         window.makeKeyAndVisible()

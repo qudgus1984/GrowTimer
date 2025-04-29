@@ -23,4 +23,3 @@ open class BaseView: UIView {
     func configureUI() { }
     func configureLayout() { }
 }
-

@@ -8,10 +8,13 @@
 
 import Foundation
 
+import FeatureInterface
+import FeatureImplement
 import Utility
 
 extension AppDelegate {
     func registerDependencies() {
-        
+        DIContainer.register(FeatureProviderImplement(), type: FeatureProvider.self)
+
     }
 }

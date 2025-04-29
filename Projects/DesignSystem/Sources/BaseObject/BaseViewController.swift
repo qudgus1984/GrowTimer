@@ -11,7 +11,6 @@ import UIKit
 import RxSwift
 
 open class BaseViewController: UIViewController {
-    public let disposeBag = DisposeBag()
     
     public init() {
         super.init(nibName: nil, bundle: nil)

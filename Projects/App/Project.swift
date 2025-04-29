@@ -40,8 +40,9 @@ let project = Project(
             resources: ["Resources/**"],
             dependencies: [
                 .project(target: "Domain", path: "../Domain"),
-                .project(target: "Present", path: "../Present"),
                 .project(target: "Utility", path: "../Utility"),
+                .project(target: "FeatureInterface", path: "../FeatureInterface"),
+                .project(target: "FeatureImplement", path: "../FeatureImplement")
             ],
             settings: .settings(
                 base: [
