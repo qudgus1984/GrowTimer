@@ -42,6 +42,7 @@ let project = Project(
                 .project(target: "Domain", path: "../Domain"),
                 .project(target: "Utility", path: "../Utility"),
                 .project(target: "FeatureInterface", path: "../FeatureInterface"),
+                .project(target: "FeatureImplement", path: "../FeatureImplement")
             ],
             settings: .settings(
                 base: [

@@ -9,12 +9,13 @@
 import UIKit
 
 import FeatureInterface
+import Present
 
 public final class FeatureProviderImplement: FeatureProvider {
     
     public init() {  }
 
     public func createLaunchScreen() -> UIViewController {
-        <#code#>
+        return LaunchScreenViewController()
     }
 }

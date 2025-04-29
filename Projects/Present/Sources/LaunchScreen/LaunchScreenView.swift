@@ -7,24 +7,28 @@
 //
 
 import UIKit
-import Utility
+import DesignSystem
 
 public class LaunchScreenViewController: BaseViewController {
     
-}
-import SwiftUI
-
-
-public struct LaunchScreenView: View {
-    public var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-    
-    public init() {
-        
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = GT.Color.huntBeach
     }
 }
+//import SwiftUI
 
-#Preview {
-    LaunchScreenView()
-}
+
+//public struct LaunchScreenView: View {
+//    public var body: some View {
+//        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+//    }
+//    
+//    public init() {
+//        
+//    }
+//}
+//
+//#Preview {
+//    LaunchScreenView()
+//}
