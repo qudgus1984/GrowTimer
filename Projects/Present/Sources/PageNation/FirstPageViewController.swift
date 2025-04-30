@@ -35,8 +35,7 @@ final class FirstPageViewController: BaseViewController, View {
     override func viewDidLoad() {
         super.viewDidLoad()
         mainview.explainLabel.text = "정해진 시간을 완료하고, 나무를 성장시켜보세요!"
-//        mainview.imageView.image = UIImage(named: "apple-tree")
-        mainview.imageView.image = UIImage(systemName: "heart.fill")
+        mainview.imageView.image = .appleTree
 
         bind(reactor: FirstPageReactor())
     }
@@ -67,11 +66,9 @@ final class FirstPageView: BaseView {
     }()
     
 
-    
     let explainLabel: UILabel = {
        let label = UILabel()
         label.numberOfLines = 0
-//        label.font = FontChoice().Font36
         label.font = FontManager.shared.font36
         label.textColor = .white
         return label
