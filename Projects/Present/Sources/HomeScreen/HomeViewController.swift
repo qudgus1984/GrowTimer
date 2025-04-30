@@ -29,6 +29,13 @@ final class HomeViewController: BaseViewController {
         super.init()
         self.reactor = reactor
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+            self.transition(FinishPopupViewController(reactor: FinishPopupReactor()), transitionStyle: .presentFullNavigation)
+        }
+    }
 }
 
 extension HomeViewController: View {

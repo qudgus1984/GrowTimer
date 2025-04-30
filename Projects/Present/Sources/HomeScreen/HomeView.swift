@@ -127,7 +127,6 @@ final class HomeView: BaseView {
             make.height.equalToSuperview().multipliedBy(0.2)
         }
         
-        
         circularProgressBar.snp.makeConstraints { make in
             make.centerX.equalTo(bgView)
             make.top.equalTo(famousSayingLabel.snp.bottom).offset(4)
@@ -136,7 +135,6 @@ final class HomeView: BaseView {
             
         }
 
-        
         iconImageView.snp.makeConstraints { make in
             make.centerX.equalTo(bgView)
             make.top.equalTo(famousSayingLabel.snp.bottom).offset(4)
