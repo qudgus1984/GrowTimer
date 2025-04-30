@@ -9,7 +9,7 @@
 import UIKit
 
 open class BaseView: UIView {
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         configureUI()
         configureLayout()
@@ -20,6 +20,6 @@ open class BaseView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureUI() { }
-    func configureLayout() { }
+    open func configureUI() { }
+    open func configureLayout() { }
 }

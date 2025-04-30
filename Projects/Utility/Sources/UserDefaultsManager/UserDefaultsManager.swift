@@ -1,0 +1,37 @@
+//
+//  UserDefaultsManager.swift
+//  Utility
+//
+//  Created by Den on 4/29/25.
+//  Copyright © 2025 Den. All rights reserved.
+//
+
+import Foundation
+
+@propertyWrapper
+public struct UserDefault<Value> {
+    let key: String
+    let defaultValue: Value
+    private(set) var container: UserDefaults = .standard
+    
+    public var wrappedValue: Value {
+        get {
+            return self.container.object(forKey: self.key) as? Value ?? self.defaultValue
+        }
+        set {
+            print("UserDefault set '\(self.key) to \(newValue)")
+            self.container.set(newValue, forKey: self.key)
+        }
+    }
+}
+
+public struct UserDefaultManager {
+    
+    private enum UserDefaultsManagerKeys: String {
+        case thema
+    }
+
+    @UserDefault(key: UserDefaultsManagerKeys.thema.rawValue, defaultValue: 0)
+    public static var thema: Int
+}
+

@@ -8,27 +8,14 @@
 
 import UIKit
 import DesignSystem
+import ThirdPartyLibrary
 
 public class LaunchScreenViewController: BaseViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = GT.Color.huntBeach
+        
+        self.navigationController?.pushViewController(PageNationViewController(), animated: true)
     }
 }
-//import SwiftUI
-
-
-//public struct LaunchScreenView: View {
-//    public var body: some View {
-//        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-//    }
-//    
-//    public init() {
-//        
-//    }
-//}
-//
-//#Preview {
-//    LaunchScreenView()
-//}
