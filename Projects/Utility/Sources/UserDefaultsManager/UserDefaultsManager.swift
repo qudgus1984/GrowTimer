@@ -32,6 +32,9 @@ public struct UserDefaultManager {
         case font
         case bright
         case start
+        case timerRunning
+        case engagedTime
+        case stopCount
     }
 
     @UserDefault(key: UserDefaultsManagerKeys.thema.rawValue, defaultValue: 0)
@@ -46,5 +49,13 @@ public struct UserDefaultManager {
     @UserDefault(key: UserDefaultsManagerKeys.start.rawValue, defaultValue: false)
     public static var start: Bool
     
+    @UserDefault(key: UserDefaultsManagerKeys.engagedTime.rawValue, defaultValue: 900)
+    public static var engagedTime: Int
+    
+    @UserDefault(key: UserDefaultsManagerKeys.timerRunning.rawValue, defaultValue: false)
+    public static var timerRunning: Bool
+    
+    @UserDefault(key: UserDefaultsManagerKeys.stopCount.rawValue, defaultValue: 3)
+    public static var stopCount: Int
 }
 

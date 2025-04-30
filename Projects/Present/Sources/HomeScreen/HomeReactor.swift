@@ -17,32 +17,162 @@ import RxSwift
 final class HomeReactor: Reactor {
     
     var initialState = State()
+    private var timer: Disposable? // Rx의 Disposable로 타이머 정의
     
     enum Action {
         case viewDidLoadTrigger
+        case timerButtonTapped
+        case timerTick
+        case timerCompleted
     }
     
     enum Mutation {
-        case viewDidLoadTrigger(Void)
+        case setTimerButtonState(Bool)
+        case updateRemainingTime(Int)
+        case updateProgress(Float)
+        case setButtonTitle(String)
+        case resetTimer
+        case finishTimer
+        case showToast(String)
+        case stopChance(Int)
     }
     
     struct State {
-        var viewDidLoadTrigger: Void = ()
+        var remainingTime: Int = UserDefaultManager.engagedTime
+        var progress: Float = 0.0
+        var isTimerRunning: Bool = false
+        var buttonTitle: String = "시작"
+        var stopChances: Int = UserDefaultManager.stopCount
+        var firstStartButtonClicked: Bool = true
+        var showToast: Bool = false
+        var toastMessage: String = ""
+        // 전체 시간을 초기화에 저장하여 progress 계산에 사용
+        var totalTime: Int = UserDefaultManager.engagedTime
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .viewDidLoadTrigger:
-            return Observable.just((.viewDidLoadTrigger(())))
+            UserDefaultManager.stopCount = 3
+            return .empty()
+            
+        case .timerButtonTapped:
+            if currentState.isTimerRunning {
+                // 타이머 중지 로직
+                if UserDefaultManager.stopCount > 0 {
+                    // 중지 기회가 남아있음
+                    timer?.dispose()
+                    timer = nil
+                    
+                    let stopChance = UserDefaultManager.stopCount - 1
+                    UserDefaultManager.stopCount = stopChance
+                    UserDefaultManager.timerRunning = false
+
+                    return .concat([
+                        .just(.setTimerButtonState(false)),
+                        .just(.setButtonTitle("시작")),
+                        .just(.stopChance(stopChance))
+                    ])
+                } else {
+                    // 중지 기회가 없음 - 토스트 메시지
+                    return .just(.showToast("멈출 수 있는 기회를 다 써버렸어요 😣"))
+                }
+            } else {
+                // 타이머 시작 로직
+                if currentState.firstStartButtonClicked {
+                    // 필요한 경우 저장소 로직 추가
+                }
+                
+                UserDefaultManager.timerRunning = true
+                
+                // 타이머 Observable 생성 - 1초마다 업데이트
+                timer?.dispose() // 기존 타이머가 있다면 해제
+                
+                // 타이머 로직 수정 - Action을 직접 전달
+                timer = Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
+                    .subscribe(onNext: { [weak self] _ in
+                        guard let self = self else { return }
+                        
+                        if self.currentState.remainingTime > 0 {
+                            self.action.onNext(.timerTick)
+                        } else {
+                            self.action.onNext(.timerCompleted)
+                        }
+                    })
+                
+                return .concat([
+                    .just(.setTimerButtonState(true)),
+                    .just(.setButtonTitle("중지"))
+                ])
+            }
+            
+        case .timerTick:
+            let newRemainingTime = currentState.remainingTime - 1
+            let progress = Float(newRemainingTime) / Float(currentState.totalTime)
+            
+            return .concat([
+                .just(.updateRemainingTime(newRemainingTime)),
+                .just(.updateProgress(1.0 - progress))
+            ])
+            
+        case .timerCompleted:
+            timer?.dispose()
+            timer = nil
+            
+            UserDefaultManager.timerRunning = false
+            return .concat([
+                .just(.setTimerButtonState(false)),
+                .just(.setButtonTitle("완료")),
+                .just(.resetTimer)
+            ])
         }
     }
     
     func reduce(state: State, mutation: Mutation) -> State {
-        var state = state
+        var newState = state
+        
         switch mutation {
-        case .viewDidLoadTrigger(let event):
-            state.viewDidLoadTrigger = event
+        case .setTimerButtonState(let isRunning):
+            newState.isTimerRunning = isRunning
+            
+        case .updateRemainingTime(let time):
+            newState.remainingTime = time
+            
+            // 시간이 0이면 타이머 완료 처리
+            if time <= 0 {
+                newState.buttonTitle = "완료"
+                newState.isTimerRunning = false
+                newState.firstStartButtonClicked = true
+                
+                // 기본값으로 재설정
+                newState.remainingTime = newState.totalTime
+            }
+            
+        case .updateProgress(let progress):
+            newState.progress = progress
+            
+        case .setButtonTitle(let title):
+            newState.buttonTitle = title
+            
+        case .resetTimer:
+            newState.remainingTime = newState.totalTime
+            newState.progress = 0.0
+            
+        case .finishTimer:
+            newState.buttonTitle = "완료"
+            newState.isTimerRunning = false
+            newState.firstStartButtonClicked = true
+            
+            // 기본값으로 재설정
+            newState.remainingTime = newState.totalTime
+            
+        case .showToast(let message):
+            newState.showToast = true
+            newState.toastMessage = message
+        case .stopChance(let chance):
+            newState.stopChances = chance
         }
-        return state
+        
+        return newState
     }
 }

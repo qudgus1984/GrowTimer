@@ -13,9 +13,6 @@ import Utility
 import SnapKit
 
 final class HomeView: BaseView {
-    
-    var settingCount = UserDefaults.standard.integer(forKey: "engagedTime")
-    var stopCount = UserDefaults.standard.integer(forKey: "stop")
 
     let bgView: UIView = {
         let view = UIView()
@@ -196,5 +193,29 @@ final class HomeView: BaseView {
             make.leading.equalTo(coinImgView).offset(30)
             make.top.trailing.bottom.equalTo(insetCoinView)
         }
+    }
+    
+    override func draw(_ rect: CGRect) {
+        insetCoinView.clipsToBounds = true
+        insetCoinView.layer.cornerRadius = 10
+        
+        buttonIncludeView.clipsToBounds = true
+        buttonIncludeView.layer.cornerRadius = 12
+    }
+}
+
+extension HomeView {
+    func circularProgressBarConfigure(state: Bool) {
+        if state {
+            // 타이머 동작 중 상태에 맞는 UI 설정
+            startButton.setTitle("중지", for: .normal)
+        } else {
+            // 타이머 중지 상태에 맞는 UI 설정
+            startButton.setTitle("시작", for: .normal)
+        }
+    }
+    
+    func updateProgress(value: Float) {
+        circularProgressBar.setProgressWithAnimation(duration: 0.01, value: value)
     }
 }
