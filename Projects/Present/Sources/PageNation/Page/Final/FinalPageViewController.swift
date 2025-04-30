@@ -15,7 +15,7 @@ import DesignSystem
 import ReactorKit
 import RxCocoa
 
-final class FinalPageViewController: BaseViewController, View {
+final class FinalPageViewController: BaseViewController {
     
     private let mainview = PaginationFinalView()
     
@@ -23,15 +23,24 @@ final class FinalPageViewController: BaseViewController, View {
         super.view = mainview
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-
-        let reactor = FinalPageReactor()
+    init(reactor: FinalPageReactor) {
+        super.init()
         self.reactor = reactor
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
+}
+
+extension FinalPageViewController: View {
     func bind(reactor: FinalPageReactor) {
+        bindAction(reactor: reactor)
+        bindState(reactor: reactor)
+    }
+    
+    private func bindAction(reactor: FinalPageReactor) {
         mainview.finishButton.rx.tap
             .map { FinalPageReactor.Action.finishButtonTapped }
             .bind(to: reactor.action)
@@ -41,14 +50,14 @@ final class FinalPageViewController: BaseViewController, View {
             .map { Reactor.Action.viewDidLoadTrigger }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
-        
+    }
+    
+    private func bindState(reactor: FinalPageReactor) {
         reactor.state
-            .map { $0.viewDidLoadTrigger }
+            .map(\.viewDidLoadTrigger)
             .bind(with: self) { owner, _ in
-                owner.mainview.explainLabel.text = "보유한 코인으로 테마나 폰트를 구입할 수 있어요!\n(출석 시 + 10코인)"
-                owner.mainview.imageView.image = .dollor
+                owner.mainview.configureFinalPageVC()
             }
             .disposed(by: disposeBag)
     }
 }
-

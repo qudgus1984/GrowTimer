@@ -16,7 +16,7 @@ import SnapKit
 import ReactorKit
 import RxSwift
 
-final class FirstPageViewController: BaseViewController, View {
+final class FirstPageViewController: BaseViewController {
     
     private let mainview = PageView()
     
@@ -24,26 +24,35 @@ final class FirstPageViewController: BaseViewController, View {
         super.view = mainview
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        let reactor = FirstPageReactor()
+    init(reactor: FirstPageReactor) {
+        super.init()
         self.reactor = reactor
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+    }
+}
+
+extension FirstPageViewController: View {
     func bind(reactor: FirstPageReactor) {
+        bindAction(reactor: reactor)
+        bindState(reactor: reactor)
+    }
+    
+    private func bindAction(reactor: FirstPageReactor) {
         viewDidLoadEvent
             .map { Reactor.Action.viewDidLoadTrigger }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
-        
+    }
+    
+    private func bindState(reactor: FirstPageReactor) {
         reactor.state
-            .map { $0.themaNumber }
+            .map(\.themaNumber)
             .bind(with: self) { owner, num in
-                owner.mainview.imageView.backgroundColor = ThemaManager.shared.lightColor
-                owner.mainview.bgView.backgroundColor = ThemaManager.shared.mainColor
-                owner.mainview.explainLabel.text = "정해진 시간을 완료하고, 나무를 성장시켜보세요!"
-                owner.mainview.imageView.image = .appleTree
+                owner.mainview.configureFirstPage()
             }
             .disposed(by: disposeBag)
     }

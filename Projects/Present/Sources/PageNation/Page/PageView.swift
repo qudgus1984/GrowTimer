@@ -1,5 +1,5 @@
 //
-//  FinalPageView.swift
+//  PageView.swift
 //  Present
 //
 //  Created by Den on 4/30/25.
@@ -11,15 +11,15 @@ import UIKit
 import DesignSystem
 import Utility
 
-final class PaginationFinalView: BaseView {
-    
-    let bgView: UIView = {
+final class PageView: BaseView {
+
+    private let bgView: UIView = {
         let view = UIView()
         view.backgroundColor = ThemaManager.shared.mainColor
         return view
     }()
-    
-    let explainLabel: UILabel = {
+
+    private let explainLabel: UILabel = {
        let label = UILabel()
         label.numberOfLines = 0
         label.font = FontManager.shared.font36
@@ -28,30 +28,21 @@ final class PaginationFinalView: BaseView {
     }()
 
     
-    let imageView: UIImageView = {
+    private let imageView: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFit
         view.backgroundColor = ThemaManager.shared.lightColor
         return view
     }()
     
-    let finishButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("시작하기", for: .normal)
-        button.backgroundColor = ThemaManager.shared.lightColor
-        return button
-    }()
-    
     override func draw(_ rect: CGRect) {
         self.imageView.clipsToBounds = true
         self.imageView.layer.cornerRadius = self.imageView.frame.width / 2
-        
-        self.finishButton.clipsToBounds = true
-        self.finishButton.layer.cornerRadius = 12
     }
+    
 
     override func configureUI() {
-        [bgView, explainLabel, imageView, finishButton].forEach {
+        [bgView, explainLabel, imageView].forEach {
             self.addSubview($0)
         }
     }
@@ -75,12 +66,19 @@ final class PaginationFinalView: BaseView {
             make.width.equalToSuperview().multipliedBy(0.65)
             make.height.equalTo(imageView.snp.width)
         }
-        
-        finishButton.snp.makeConstraints { make in
-            make.top.equalTo(imageView.snp.bottom).offset(60)
-            make.height.equalTo(60)
-            make.leading.equalTo(safeAreaLayoutGuide).offset(60)
-            make.trailing.equalTo(safeAreaLayoutGuide).offset(-60)
-        }
+    }
+}
+
+extension PageView {
+    func configureFirstPage() {
+        imageView.backgroundColor = ThemaManager.shared.lightColor
+        bgView.backgroundColor = ThemaManager.shared.mainColor
+        explainLabel.text = "정해진 시간을 완료하고, 나무를 성장시켜보세요!"
+        imageView.image = .appleTree
+    }
+    
+    func configureSecondPage() {
+        explainLabel.text = "설정한 시간을 완료하지 않고 앱을 나가면 나무가 시들어요."
+        imageView.image = .appletreeDie
     }
 }

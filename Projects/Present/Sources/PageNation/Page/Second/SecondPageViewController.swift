@@ -23,8 +23,7 @@ final class SecondPageViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mainview.explainLabel.text = "설정한 시간을 완료하지 않고 앱을 나가면 나무가 시들어요."
-        mainview.imageView.image = .appletreeDie
+        mainview.configureSecondPage()
     }
 
 }

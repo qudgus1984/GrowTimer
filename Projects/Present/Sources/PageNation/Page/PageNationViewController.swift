@@ -16,7 +16,7 @@ import RxSwift
 import RxCocoa
 import ReactorKit
 
-final class PageNationViewController: UIPageViewController, View {
+final class PageNationViewController: UIPageViewController {
     
     var disposeBag = DisposeBag()
     
@@ -28,23 +28,17 @@ final class PageNationViewController: UIPageViewController, View {
     //뷰컨트롤러 배열
 
     lazy var vc1: UIViewController = {
-        let vc = FirstPageViewController()
-        vc.view.backgroundColor = .red
-
+        let vc = FirstPageViewController(reactor: FirstPageReactor())
         return vc
     }()
 
     lazy var vc2: UIViewController = {
         let vc = SecondPageViewController()
-        vc.view.backgroundColor = .green
-
         return vc
     }()
 
     lazy var vc3: UIViewController = {
-        let vc = FinalPageViewController()
-        vc.view.backgroundColor = .blue
-
+        let vc = FinalPageViewController(reactor: FinalPageReactor())
         return vc
     }()
     
@@ -67,9 +61,9 @@ final class PageNationViewController: UIPageViewController, View {
             pageViewController.setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
         }
         
-        
-        UserDefaults.standard.set(UIScreen.main.brightness, forKey: "bright")
-        print(UIScreen.main.brightness)
+//        
+//        UserDefaults.standard.set(UIScreen.main.brightness, forKey: "bright")
+//        print(UIScreen.main.brightness)
         
         configure()
         setupDelegate()
@@ -77,19 +71,6 @@ final class PageNationViewController: UIPageViewController, View {
 
     }
     
-    func bind(reactor: PageNationReactor) {
-        viewDidLoadEvent
-            .map { Reactor.Action.viewDidLoadTrigger }
-            .bind(to: reactor.action)
-            .disposed(by: disposeBag)
-        
-        reactor.state
-            .map { $0.themaNumber }
-            .bind(with: self) { owner, num in
-                owner.navigationView.backgroundColor = ThemaManager.shared.mainColor
-            }
-            .disposed(by: disposeBag)
-    }
     
     private func configure() {
         view.addSubview(navigationView)
@@ -138,5 +119,28 @@ extension PageNationViewController: UIPageViewControllerDataSource, UIPageViewCo
             return nil
         }
         return dataViewControllers[nextIndex]
+    }
+}
+
+extension PageNationViewController: View {
+    func bind(reactor: PageNationReactor) {
+        bindAction(reactor: reactor)
+        bindState(reactor: reactor)
+    }
+    
+    private func bindAction(reactor: PageNationReactor) {
+        viewDidLoadEvent
+            .map { Reactor.Action.viewDidLoadTrigger }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindState(reactor: PageNationReactor) {
+        reactor.state
+            .map(\.themaNumber)
+            .bind(with: self) { owner, num in
+                owner.navigationView.backgroundColor = ThemaManager.shared.mainColor
+            }
+            .disposed(by: disposeBag)
     }
 }
