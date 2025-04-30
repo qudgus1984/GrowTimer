@@ -35,14 +35,14 @@ final class PageNationViewController: UIPageViewController, View {
     }()
 
     lazy var vc2: UIViewController = {
-        let vc = FirstPageViewController()
+        let vc = SecondPageViewController()
         vc.view.backgroundColor = .green
 
         return vc
     }()
 
     lazy var vc3: UIViewController = {
-        let vc = FirstPageViewController()
+        let vc = FinalPageViewController()
         vc.view.backgroundColor = .blue
 
         return vc
