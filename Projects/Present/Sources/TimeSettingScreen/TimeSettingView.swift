@@ -35,6 +35,5 @@ final class TimeSettingView: BaseView {
             make.edges.equalTo(0)
         }
     }
-    
 }
 

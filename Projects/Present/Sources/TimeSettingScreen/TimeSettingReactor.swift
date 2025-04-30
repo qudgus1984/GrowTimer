@@ -23,7 +23,6 @@ final class TimeSettingReactor: Reactor {
     // 액션 정의
     enum Action {
         case selectTime(TimeSettingEnum)
-        case checkTimerRunning
     }
     
     // 변이 정의
@@ -51,17 +50,14 @@ final class TimeSettingReactor: Reactor {
         switch action {
         case .selectTime(let timeEnum):
             // 타이머 실행 중인지 확인
-//            if UserDefaults.standard.bool(forKey: "going") {
-//                return .just(.showToast("타이머가 가는 동안은 시간을 재설정 할 수 없어요!"))
-//            } else {
+            if UserDefaultManager.timerRunning {
+                return .just(.showToast("타이머가 가는 동안은 시간을 재설정 할 수 없어요!"))
+            } else {
             UserDefaultManager.engagedTime = timeEnum.timeSettingValue
                 return .concat([
                     .just(.navigateToRoot)
                 ])
-//            }
-            
-        case .checkTimerRunning:
-            return .empty()
+            }
         }
     }
     

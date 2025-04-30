@@ -91,8 +91,7 @@ extension TimeSettingViewController: View {
         reactor.state
             .map(\.timeSettingList)
             .bind(to: mainView.tableView.rx.items(cellIdentifier: "TimeSettingTableViewCell", cellType: TimeSettingTableViewCell.self)) { indexPath, item, cell in
-                cell.backgroundColor = ThemaManager.shared.lightColor
-                cell.explainLabel.text = item
+                cell.configure(with: item)
             }
             .disposed(by: disposeBag)
     }

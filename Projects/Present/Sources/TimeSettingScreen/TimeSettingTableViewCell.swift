@@ -14,14 +14,14 @@ import Utility
 import SnapKit
 
 final class TimeSettingTableViewCell: BaseTVCell {
-    let containView: UIView = {
+    private let containView: UIView = {
         let view = UIView()
         view.backgroundColor = ThemaManager.shared.mainColor
         view.layer.cornerRadius = 10
         return view
     }()
     
-    let explainLabel: UILabel = {
+    private let explainLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.font = FontManager.shared.font24
@@ -33,6 +33,8 @@ final class TimeSettingTableViewCell: BaseTVCell {
         [containView, explainLabel].forEach {
             contentView.addSubview($0)
         }
+        
+        self.backgroundColor = ThemaManager.shared.lightColor
     }
     
     override func configureLayout() {
@@ -46,3 +48,8 @@ final class TimeSettingTableViewCell: BaseTVCell {
     }
 }
 
+extension TimeSettingTableViewCell {
+    func configure(with text: String) {
+        explainLabel.text = text
+    }
+}
