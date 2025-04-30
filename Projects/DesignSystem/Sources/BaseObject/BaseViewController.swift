@@ -8,10 +8,14 @@
 
 import UIKit
 
+import ThirdPartyLibrary
+
 import RxSwift
 
 open class BaseViewController: UIViewController {
     
+    public var disposeBag = DisposeBag()
+
     public init() {
         super.init(nibName: nil, bundle: nil)
     }

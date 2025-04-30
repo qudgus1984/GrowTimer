@@ -11,6 +11,7 @@ import UIKit
 import Utility
 import ThirdPartyLibrary
 import DesignSystem
+
 import SnapKit
 import ReactorKit
 import RxSwift
@@ -19,8 +20,6 @@ final class FirstPageViewController: BaseViewController, View {
     
     let mainview = FirstPageView()
     
-    var disposeBag = DisposeBag()
-
     override func loadView() {
         super.view = mainview
     }
@@ -63,7 +62,7 @@ final class FirstPageView: BaseView {
 
     let bgView: UIView = {
         let view = UIView()
-//        view.backgroundColor = themaChoice().mainColor
+        view.backgroundColor = ThemaManager.shared.mainColor
         return view
     }()
     
@@ -73,6 +72,7 @@ final class FirstPageView: BaseView {
        let label = UILabel()
         label.numberOfLines = 0
 //        label.font = FontChoice().Font36
+        label.font = FontManager.shared.font36
         label.textColor = .white
         return label
     }()
@@ -81,7 +81,7 @@ final class FirstPageView: BaseView {
     let imageView: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFit
-//        view.backgroundColor = themaChoice().lightColor
+        view.backgroundColor = ThemaManager.shared.lightColor
         return view
     }()
     

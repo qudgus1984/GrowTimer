@@ -29,9 +29,13 @@ public struct UserDefaultManager {
     
     private enum UserDefaultsManagerKeys: String {
         case thema
+        case font
     }
 
     @UserDefault(key: UserDefaultsManagerKeys.thema.rawValue, defaultValue: 0)
     public static var thema: Int
+    
+    @UserDefault(key: UserDefaultsManagerKeys.font.rawValue, defaultValue: 0)
+    public static var font: Int
 }
 

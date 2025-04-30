@@ -22,7 +22,6 @@ final class PageNationViewController: UIPageViewController, View {
     
     lazy var navigationView: UIView = {
         let view = UIView()
-//        view.backgroundColor = themaChoice().mainColor
         return view
     }()
 

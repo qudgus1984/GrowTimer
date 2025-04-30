@@ -11,10 +11,11 @@ import Foundation
 import FeatureInterface
 import FeatureImplement
 import Utility
+import DesignSystem
 
 extension AppDelegate {
     func registerDependencies() {
         DIContainer.register(FeatureProviderImplement(), type: FeatureProvider.self)
-
+        FontRegistration.registerFonts()
     }
 }
