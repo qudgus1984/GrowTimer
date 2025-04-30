@@ -42,13 +42,15 @@ let project = Project(
                 .project(target: "Domain", path: "../Domain"),
                 .project(target: "Utility", path: "../Utility"),
                 .project(target: "FeatureInterface", path: "../FeatureInterface"),
-                .project(target: "FeatureImplement", path: "../FeatureImplement")
+                .project(target: "FeatureImplement", path: "../FeatureImplement"),
+                .project(target: "ThirdPartyLibrary", path: "../ThirdPartyLibrary"),
+
             ],
-            settings: .settings(
-                base: [
-                    "BUILD_LIBRARY_FOR_DISTRIBUTION": "YES"
-                ]
-            )
+//            settings: .settings(
+//                base: [
+//                    "BUILD_LIBRARY_FOR_DISTRIBUTION": "YES"
+//                ]
+//            )
         ),
         Target.target(
             name: "AppTests",

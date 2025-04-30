@@ -11,7 +11,9 @@ let project = Project(
     name: "ThirdPartyLibrary",
     organizationName: "Den",
     packages: [
-        .remote(url: "https://github.com/ReactorKit/ReactorKit.git", requirement: .upToNextMajor(from: "3.2.0"))
+        .remote(url: "https://github.com/ReactorKit/ReactorKit.git", requirement: .upToNextMajor(from: "3.2.0")),
+        .remote(url: "https://github.com/ReactiveX/RxSwift.git", requirement: .upToNextMajor(from: "6.9.0")),
+        .remote(url: "https://github.com/SnapKit/SnapKit.git", requirement: .upToNextMajor(from: "5.7.1"))
 
     ],
     targets: [
@@ -26,6 +28,9 @@ let project = Project(
             resources: ["Resources/**"],
             dependencies: [
                 .package(product: "ReactorKit", type: .runtime),
+                .package(product: "RxCocoa", type: .runtime),
+                .package(product: "RxSwift", type: .runtime),
+                .package(product: "SnapKit", type: .runtime),
             ]
         ),
         Target.target(
