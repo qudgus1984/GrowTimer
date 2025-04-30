@@ -7,15 +7,22 @@
 //
 
 import UIKit
+
 import DesignSystem
 import ThirdPartyLibrary
+import Utility
 
 public class LaunchScreenViewController: BaseViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = GT.Color.huntBeach
-        
-        self.navigationController?.pushViewController(PageNationViewController(), animated: true)
+        let appearence = UINavigationBarAppearance()
+        appearence.backgroundColor = ThemaManager.shared.lightColor
+        appearence.shadowColor = .clear
+
+
+        navigationItem.standardAppearance = appearence
+        navigationItem.scrollEdgeAppearance = appearence
+        self.transition(PageNationViewController(), transitionStyle: .rootViewControllerChange)
     }
 }
