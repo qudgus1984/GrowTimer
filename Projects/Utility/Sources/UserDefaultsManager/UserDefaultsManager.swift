@@ -30,6 +30,8 @@ public struct UserDefaultManager {
     private enum UserDefaultsManagerKeys: String {
         case thema
         case font
+        case bright
+        case start
     }
 
     @UserDefault(key: UserDefaultsManagerKeys.thema.rawValue, defaultValue: 0)
@@ -37,5 +39,12 @@ public struct UserDefaultManager {
     
     @UserDefault(key: UserDefaultsManagerKeys.font.rawValue, defaultValue: 0)
     public static var font: Int
+    
+    @UserDefault(key: UserDefaultsManagerKeys.bright.rawValue, defaultValue: 0)
+    public static var bright: CGFloat
+    
+    @UserDefault(key: UserDefaultsManagerKeys.start.rawValue, defaultValue: false)
+    public static var start: Bool
+    
 }
 

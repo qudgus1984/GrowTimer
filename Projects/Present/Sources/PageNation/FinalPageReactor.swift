@@ -1,8 +1,8 @@
 //
-//  FirstPageReactor.swift
+//  FinalPageReactor.swift
 //  Present
 //
-//  Created by Den on 4/29/25.
+//  Created by Den on 4/30/25.
 //  Copyright © 2025 Den. All rights reserved.
 //
 
@@ -14,42 +14,40 @@ import ThirdPartyLibrary
 import ReactorKit
 import RxSwift
 
-final class FirstPageReactor: Reactor {
+final class FinalPageReactor: Reactor {
     
     var initialState = State()
     
     enum Action {
         case viewDidLoadTrigger
+        case finishButtonTapped
     }
     
     enum Mutation {
-        case themaVale(Int)
         case viewDidLoadTrigger(Void)
+        case firstStartCheck(Bool)
     }
     
     struct State {
-        var themaNumber: Int = 0
         var viewDidLoadTrigger: Void = ()
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .viewDidLoadTrigger:
-            return Observable.concat([
-                Observable.just(.viewDidLoadTrigger(())),
-                Observable.just(.themaVale(UserDefaultManager.thema))
-                
-            ])
+            return Observable.just(.viewDidLoadTrigger(()))
+        case .finishButtonTapped:
+            return Observable.just(.firstStartCheck(true))
         }
     }
     
     func reduce(state: State, mutation: Mutation) -> State {
         var state = state
         switch mutation {
-        case .themaVale(let themaNumber):
-            state.themaNumber = themaNumber
         case .viewDidLoadTrigger(let event):
             state.viewDidLoadTrigger = event
+        case .firstStartCheck(let bool):
+            UserDefaultManager.start = bool
         }
         return state
     }

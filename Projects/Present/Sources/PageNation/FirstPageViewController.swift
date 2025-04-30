@@ -26,10 +26,9 @@ final class FirstPageViewController: BaseViewController, View {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        mainview.explainLabel.text = "정해진 시간을 완료하고, 나무를 성장시켜보세요!"
-        mainview.imageView.image = .appleTree
 
-        bind(reactor: FirstPageReactor())
+        let reactor = FirstPageReactor()
+        self.reactor = reactor
     }
     
     func bind(reactor: FirstPageReactor) {
@@ -43,6 +42,8 @@ final class FirstPageViewController: BaseViewController, View {
             .bind(with: self) { owner, num in
                 owner.mainview.imageView.backgroundColor = ThemaManager.shared.lightColor
                 owner.mainview.bgView.backgroundColor = ThemaManager.shared.mainColor
+                owner.mainview.explainLabel.text = "정해진 시간을 완료하고, 나무를 성장시켜보세요!"
+                owner.mainview.imageView.image = .appleTree
             }
             .disposed(by: disposeBag)
     }
