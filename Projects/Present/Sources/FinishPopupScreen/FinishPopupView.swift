@@ -44,7 +44,7 @@ final class FinishPopupView: BaseView {
 지정한 시간을 완료하셨네요 :)
 의지력이 강한 당신 칭찬해!
 더 열심히 하다보면 당신의 사과나무가 변할지도...?
-+ \(UserDefaults.standard.integer(forKey: "engagedTime")/60)분!
++ 15분!
 """
 
         return label
@@ -86,5 +86,17 @@ final class FinishPopupView: BaseView {
             make.top.equalTo(textLabel.snp.bottom).offset(4)
             make.leading.trailing.bottom.equalTo(settingView).inset(16)
         }
+    }
+}
+
+extension FinishPopupView {
+    func configure(engagedTime: Int) {
+        textLabel.text =
+        """
+        지정한 시간을 완료하셨네요 :)
+        의지력이 강한 당신 칭찬해!
+        더 열심히 하다보면 당신의 사과나무가 변할지도...?
+        + \(engagedTime/60)분!
+        """
     }
 }

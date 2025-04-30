@@ -26,11 +26,6 @@ final class FinishPopupViewController: BaseViewController {
         super.init()
         self.reactor = reactor
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-    }
 }
 
 extension FinishPopupViewController: View {
@@ -58,6 +53,14 @@ extension FinishPopupViewController: View {
             .map(\.okButtonTapped)
             .bind(with: self) { owner, _ in
                 owner.dismiss(animated: true)
+            }
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map(\.settingTime)
+            .bind(with: self) { owner, settingTime in
+                print(settingTime)
+                owner.mainview.configure(engagedTime: settingTime)
             }
             .disposed(by: disposeBag)
     }

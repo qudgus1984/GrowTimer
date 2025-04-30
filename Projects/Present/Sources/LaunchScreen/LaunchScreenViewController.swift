@@ -23,6 +23,7 @@ public class LaunchScreenViewController: BaseViewController {
 
         navigationItem.standardAppearance = appearence
         navigationItem.scrollEdgeAppearance = appearence
+        UserDefaultManager.timerRunning = false
         self.transition(PageNationViewController(), transitionStyle: .rootViewControllerChange)
     }
 }

@@ -31,6 +31,7 @@ final class FinishPopupReactor: Reactor {
     struct State {
         var viewDidLoadTrigger: Void = ()
         var okButtonTapped: Void = ()
+        var settingTime: Int = UserDefaultManager.engagedTime
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
