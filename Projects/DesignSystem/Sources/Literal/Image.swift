@@ -39,7 +39,7 @@ public extension UIImage {
     }
     
     static var seeds: UIImage {
-        UIImage(named: ImageNameSpace.seeds, in: .module, compatibleWith: nil)!
+        UIImage(named: ImageNameSpace.seeds, in: .module, compatibleWith: nil) ?? UIImage(systemName: "heart.fill")!
     }
     
     static var sprout: UIImage {

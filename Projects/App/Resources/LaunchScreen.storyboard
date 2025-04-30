@@ -16,8 +16,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="apple-tree" translatesAutoresizingMaskIntoConstraints="NO" id="Q8f-FF-Uot">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="folder.fill.badge.plus" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Q8f-FF-Uot">
+                                <rect key="frame" x="0.0" y="0.33333333333331439" width="395.33333333333331" height="850.33333333333348"/>
                                 <color key="backgroundColor" red="0.49803921568627452" green="0.71764705882352942" blue="0.49411764705882355" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                         </subviews>
@@ -37,6 +37,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="apple-tree" width="820" height="820"/>
+        <image name="folder.fill.badge.plus" catalog="system" width="128" height="93"/>
     </resources>
 </document>
