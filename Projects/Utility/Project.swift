@@ -24,6 +24,7 @@ let project = Project(
             sources: ["Sources/**"],
             resources: ["Resources/**"],
             dependencies: [
+                .project(target: "DesignSystem", path: "../DesignSystem"),
                 .project(target: "ThirdPartyLibrary", path: "../ThirdPartyLibrary"),
             ],
         ),
