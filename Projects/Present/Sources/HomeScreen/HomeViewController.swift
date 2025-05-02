@@ -47,8 +47,12 @@ extension HomeViewController: View {
     
     private func bindAction(reactor: HomeReactor) {
         // ViewDidLoad 이벤트 발생시키기
+        
+        let defaultBrightness = BehaviorRelay<CGFloat>(value: UIScreen.main.brightness)
+
         viewDidLoadEvent
-            .map { Reactor.Action.viewDidLoadTrigger }
+            .withLatestFrom(defaultBrightness)
+            .map { brightness in Reactor.Action.viewDidLoadTrigger(brightness) }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
@@ -56,6 +60,7 @@ extension HomeViewController: View {
             .map { Reactor.Action.timerButtonTapped }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
+        
     }
     
     private func bindState(reactor: HomeReactor) {
@@ -144,12 +149,12 @@ extension HomeViewController: View {
         
         // 전구 토글
         reactor.state
-            .map(\.shouldToggleBulb)
-            .filter { $0 }
+            .map(\.screenBrightness)
             .distinctUntilChanged()
-            .bind(with: self) { owner, _ in
+            .bind(with: self) { owner, brightness in
                 // 전구 토글 로직 (예: 화면 밝기 변경)
                 // 불 껐다 켰다 하는 로직이나 다른 기능 구현
+                UIScreen.main.brightness = brightness
             }
             .disposed(by: disposeBag)
         

@@ -20,7 +20,7 @@ final class HomeReactor: Reactor {
     private var timer: Disposable? // Rx의 Disposable로 타이머 정의
     
     enum Action {
-        case viewDidLoadTrigger
+        case viewDidLoadTrigger(CGFloat)
         case timerButtonTapped
         case timerTick
         case timerCompleted
@@ -64,12 +64,14 @@ final class HomeReactor: Reactor {
         var shouldNavigateToSetting: Bool = false
         var shouldToggleBulb: Bool = false
         var shouldNavigateToTimeLine: Bool = false
+        var screenBrightness: CGFloat = 0.0
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-        case .viewDidLoadTrigger:
+        case .viewDidLoadTrigger(let brightNess):
             UserDefaultManager.stopCount = 3
+            UserDefaultManager.bright = brightNess
             return .empty()
             
         case .timerButtonTapped:
@@ -207,7 +209,12 @@ final class HomeReactor: Reactor {
             return newState
             
         case .toggleBulb:
-            newState.shouldToggleBulb = true
+            newState.shouldToggleBulb.toggle()
+            if newState.shouldToggleBulb {
+                newState.screenBrightness = 0
+            } else {
+                newState.screenBrightness = UserDefaultManager.bright
+            }
             return newState
             
         case .navigateToTimeLine:
