@@ -45,4 +45,20 @@ public extension UIImage {
     static var sprout: UIImage {
         UIImage(named: ImageNameSpace.sprout, in: .module, compatibleWith: nil)!
     }
+    
+    static var calendar: UIImage {
+        UIImage(systemName: "calendar")!
+    }
+    
+    static var lightBulb: UIImage {
+        UIImage(systemName: "lightbulb")!
+    }
+    
+    static var setting: UIImage {
+        UIImage(systemName: "gearshape.fill")!
+    }
+    
+    static var clock: UIImage {
+        UIImage(systemName: "clock.fill")!
+    }
 }
