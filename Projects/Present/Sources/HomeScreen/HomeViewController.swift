@@ -32,6 +32,7 @@ final class HomeViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureNavigationBar()
         DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
             self.transition(FinishPopupViewController(reactor: FinishPopupReactor()), transitionStyle: .presentFullNavigation)
         }
@@ -119,6 +120,47 @@ extension HomeViewController: View {
                 owner.finishPopupVCAppear()
             }
             .disposed(by: disposeBag)
+        
+        reactor.state
+            .map(\.shouldNavigateToCalendar)
+            .filter { $0 }
+            .distinctUntilChanged()
+            .bind(with: self) { owner, _ in
+                // 캘린더 화면으로 이동하는 로직
+                print("calenderButtonTapped")
+            }
+            .disposed(by: disposeBag)
+        
+        // 설정 화면 이동
+        reactor.state
+            .map(\.shouldNavigateToSetting)
+            .filter { $0 }
+            .distinctUntilChanged()
+            .bind(with: self) { owner, _ in
+                // 설정 화면으로 이동하는 로직
+                print("calenderButtonTapped")
+            }
+            .disposed(by: disposeBag)
+        
+        // 전구 토글
+        reactor.state
+            .map(\.shouldToggleBulb)
+            .filter { $0 }
+            .distinctUntilChanged()
+            .bind(with: self) { owner, _ in
+                // 전구 토글 로직 (예: 화면 밝기 변경)
+                // 불 껐다 켰다 하는 로직이나 다른 기능 구현
+            }
+            .disposed(by: disposeBag)
+        
+        // 타임라인 화면 이동
+        reactor.state
+            .map(\.shouldNavigateToTimeLine)
+            .filter { $0 }
+            .distinctUntilChanged()
+            .bind(with: self) { owner, _ in
+            }
+            .disposed(by: disposeBag)
     }
     
     // 타이머 완료시 팝업 표시 메서드
@@ -127,5 +169,78 @@ extension HomeViewController: View {
         // 예시:
         // let finishPopupVC = FinishPopupViewController()
         // present(finishPopupVC, animated: true)
+    }
+}
+
+extension HomeViewController {
+    func configureNavigationBar() {
+        // 네비게이션 바 외관 설정
+        let appearence = UINavigationBarAppearance()
+        appearence.backgroundColor = ThemaManager.shared.mainColor
+        appearence.shadowColor = .clear
+        
+        navigationItem.standardAppearance = appearence
+        navigationItem.scrollEdgeAppearance = appearence
+        navigationController?.navigationBar.tintColor = ThemaManager.shared.mainColor
+        
+        let backBarButtonItem = UIBarButtonItem(title: "뒤로", style: .plain, target: self, action: nil)
+        navigationItem.backBarButtonItem = backBarButtonItem
+        
+        // 버튼 생성 - action 메서드 연결 대신 후에 Rx로 바인딩
+        let calenderButton = UIBarButtonItem(image: .calendar, style: .plain, target: nil, action: nil)
+        calenderButton.tintColor = .white
+        
+        let settingButton = UIBarButtonItem(image: .lightBulb, style: .plain, target: nil, action: nil)
+        settingButton.tintColor = .white
+        
+        let bulbButton = UIBarButtonItem(image: .setting, style: .plain, target: nil, action: nil)
+        bulbButton.tintColor = .white
+        
+        let timeLineButton = UIBarButtonItem(image: .clock, style: .plain, target: nil, action: nil)
+        timeLineButton.tintColor = .white
+        
+        navigationItem.leftBarButtonItems = [calenderButton]
+        navigationItem.rightBarButtonItems = [bulbButton, settingButton, timeLineButton]
+        
+        // 버튼 이벤트를 Rx로 바인딩
+        bindNavigationButtons(
+            calenderButton: calenderButton,
+            settingButton: settingButton,
+            bulbButton: bulbButton,
+            timeLineButton: timeLineButton
+        )
+    }
+    
+    private func bindNavigationButtons(
+        calenderButton: UIBarButtonItem,
+        settingButton: UIBarButtonItem,
+        bulbButton: UIBarButtonItem,
+        timeLineButton: UIBarButtonItem
+    ) {
+        guard let reactor = self.reactor as? HomeReactor else { return }
+
+        // 캘린더 버튼 바인딩
+        calenderButton.rx.tap
+            .map { Reactor.Action.calendarButtonTapped }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        // 설정 버튼 바인딩
+        settingButton.rx.tap
+            .map { Reactor.Action.settingButtonTapped }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        // 전구 버튼 바인딩
+        bulbButton.rx.tap
+            .map { Reactor.Action.bulbButtonTapped }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        // 타임라인 버튼 바인딩
+        timeLineButton.rx.tap
+            .map { Reactor.Action.timeLineButtonTapped }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
     }
 }

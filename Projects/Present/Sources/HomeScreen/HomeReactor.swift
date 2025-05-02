@@ -24,6 +24,11 @@ final class HomeReactor: Reactor {
         case timerButtonTapped
         case timerTick
         case timerCompleted
+        // Navigation 관련 Event
+        case calendarButtonTapped
+        case settingButtonTapped
+        case bulbButtonTapped
+        case timeLineButtonTapped
     }
     
     enum Mutation {
@@ -35,6 +40,11 @@ final class HomeReactor: Reactor {
         case finishTimer
         case showToast(String)
         case stopChance(Int)
+        
+        case navigateToCalendar
+        case navigateToSetting
+        case toggleBulb
+        case navigateToTimeLine
     }
     
     struct State {
@@ -48,6 +58,12 @@ final class HomeReactor: Reactor {
         var toastMessage: String = ""
         // 전체 시간을 초기화에 저장하여 progress 계산에 사용
         var totalTime: Int = UserDefaultManager.engagedTime
+        
+        // 필요하다면 네비게이션 관련 상태 추가
+        var shouldNavigateToCalendar: Bool = false
+        var shouldNavigateToSetting: Bool = false
+        var shouldToggleBulb: Bool = false
+        var shouldNavigateToTimeLine: Bool = false
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -125,6 +141,17 @@ final class HomeReactor: Reactor {
                 .just(.setButtonTitle("완료")),
                 .just(.resetTimer)
             ])
+        case .calendarButtonTapped:
+            return .just(.navigateToCalendar)
+            
+        case .settingButtonTapped:
+            return .just(.navigateToSetting)
+            
+        case .bulbButtonTapped:
+            return .just(.toggleBulb)
+            
+        case .timeLineButtonTapped:
+            return .just(.navigateToTimeLine)
         }
     }
     
@@ -171,6 +198,21 @@ final class HomeReactor: Reactor {
             newState.toastMessage = message
         case .stopChance(let chance):
             newState.stopChances = chance
+        case .navigateToCalendar:
+            newState.shouldNavigateToCalendar = true
+            return newState
+            
+        case .navigateToSetting:
+            newState.shouldNavigateToSetting = true
+            return newState
+            
+        case .toggleBulb:
+            newState.shouldToggleBulb = true
+            return newState
+            
+        case .navigateToTimeLine:
+            newState.shouldNavigateToTimeLine = true
+            return newState
         }
         
         return newState
