@@ -64,7 +64,7 @@ final class HomeReactor: Reactor {
         var shouldNavigateToSetting: Bool = false
         var shouldToggleBulb: Bool = false
         var shouldNavigateToTimeLine: Bool = false
-        var screenBrightness: CGFloat = 0.0
+        var screenBrightness: CGFloat = UserDefaultManager.bright
     }
     
     func mutate(action: Action) -> Observable<Mutation> {

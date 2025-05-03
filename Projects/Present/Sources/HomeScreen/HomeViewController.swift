@@ -195,17 +195,17 @@ extension HomeViewController {
         let calenderButton = UIBarButtonItem(image: .calendar, style: .plain, target: nil, action: nil)
         calenderButton.tintColor = .white
         
-        let settingButton = UIBarButtonItem(image: .lightBulb, style: .plain, target: nil, action: nil)
+        let settingButton = UIBarButtonItem(image: .setting, style: .plain, target: nil, action: nil)
         settingButton.tintColor = .white
         
-        let bulbButton = UIBarButtonItem(image: .setting, style: .plain, target: nil, action: nil)
+        let bulbButton = UIBarButtonItem(image: .lightBulb, style: .plain, target: nil, action: nil)
         bulbButton.tintColor = .white
         
         let timeLineButton = UIBarButtonItem(image: .clock, style: .plain, target: nil, action: nil)
         timeLineButton.tintColor = .white
         
         navigationItem.leftBarButtonItems = [calenderButton]
-        navigationItem.rightBarButtonItems = [bulbButton, settingButton, timeLineButton]
+        navigationItem.rightBarButtonItems = [settingButton, bulbButton, timeLineButton]
         
         // 버튼 이벤트를 Rx로 바인딩
         bindNavigationButtons(
