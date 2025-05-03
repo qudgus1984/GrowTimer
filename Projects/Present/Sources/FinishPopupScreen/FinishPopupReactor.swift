@@ -25,12 +25,12 @@ final class FinishPopupReactor: Reactor {
     
     enum Mutation {
         case viewDidLoadTrigger(Void)
-        case okButtonTapped(Void)
+        case navigateToRoot(Bool)
     }
     
     struct State {
         var viewDidLoadTrigger: Void = ()
-        var okButtonTapped: Void = ()
+        var shouldNavigateToRoot: Bool = false
         var settingTime: Int = UserDefaultManager.engagedTime
     }
     
@@ -39,7 +39,10 @@ final class FinishPopupReactor: Reactor {
         case .viewDidLoadTrigger:
             return Observable.just(.viewDidLoadTrigger(()))
         case .okButtonTapped:
-            return Observable.just(.okButtonTapped(()))
+            return .concat([
+                .just(.navigateToRoot(true)),
+                .just(.navigateToRoot(false)).delay(.milliseconds(100), scheduler: MainScheduler.instance)
+            ])
         }
     }
     
@@ -48,10 +51,10 @@ final class FinishPopupReactor: Reactor {
         switch mutation {
         case .viewDidLoadTrigger(let event):
             state.viewDidLoadTrigger = event
-        case .okButtonTapped(let event):
+        case .navigateToRoot(let navigate):
             UserDefaultManager.stopCount = 3
             UserDefaultManager.timerRunning = false
-            state.okButtonTapped = event
+            state.shouldNavigateToRoot = navigate
         }
         return state
     }

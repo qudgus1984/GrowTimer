@@ -82,6 +82,7 @@ extension TimeSettingViewController: View {
         
         reactor.state
             .map { $0.shouldNavigateToRoot }
+            .filter { $0 }
             .distinctUntilChanged()
             .bind(with: self, onNext: { owner, state in
                 owner.transition(HomeViewController(reactor: HomeReactor()), transitionStyle: .rootViewControllerChange)

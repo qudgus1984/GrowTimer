@@ -20,6 +20,9 @@ protocol SettingTimeDelegate {
 
 // MARK: - Reactor
 final class TimeSettingReactor: Reactor {
+    
+    var initialState: State = State()
+
     // 액션 정의
     enum Action {
         case selectTime(TimeSettingEnum)
@@ -28,7 +31,7 @@ final class TimeSettingReactor: Reactor {
     // 변이 정의
     enum Mutation {
         case showToast(String)
-        case navigateToRoot
+        case navigateToRoot(Bool)
     }
     
     // 상태 정의
@@ -38,7 +41,6 @@ final class TimeSettingReactor: Reactor {
         var timeSettingList: [String] = TimeSettingEnum.allCases.map(\.rawValue)
     }
     
-    var initialState: State = State()
     private let delegate: SettingTimeDelegate?
     
     init(delegate: SettingTimeDelegate?) {
@@ -55,7 +57,8 @@ final class TimeSettingReactor: Reactor {
             } else {
             UserDefaultManager.engagedTime = timeEnum.timeSettingValue
                 return .concat([
-                    .just(.navigateToRoot)
+                    .just(.navigateToRoot(true)),
+                    .just(.navigateToRoot(false)).delay(.milliseconds(100), scheduler: MainScheduler.instance)
                 ])
             }
         }
@@ -70,8 +73,8 @@ final class TimeSettingReactor: Reactor {
         case .showToast(let message):
             newState.showToast = message
             
-        case .navigateToRoot:
-            newState.shouldNavigateToRoot = true
+        case .navigateToRoot(let navigate):
+            newState.shouldNavigateToRoot = navigate
         }
         
         return newState

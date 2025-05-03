@@ -50,9 +50,11 @@ extension FinishPopupViewController: View {
     
     private func bindState(reactor: FinishPopupReactor) {
         reactor.state
-            .map(\.okButtonTapped)
+            .map(\.shouldNavigateToRoot)
+            .filter { $0 }
+            .distinctUntilChanged()
             .bind(with: self) { owner, _ in
-                owner.dismiss(animated: true)
+                owner.transition(HomeViewController(reactor: HomeReactor()), transitionStyle: .rootViewControllerChange)
             }
             .disposed(by: disposeBag)
         
