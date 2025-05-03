@@ -1,5 +1,5 @@
 //
-//  SettingViewController.swift
+//  FontSettingViewController.swift
 //  Present
 //
 //  Created by Den on 5/3/25.
@@ -9,14 +9,16 @@
 import UIKit
 
 import Utility
+import ThirdPartyLibrary
 import DesignSystem
 
 import RxSwift
+import RxCocoa
 import ReactorKit
 
-final class SettingViewController: BaseViewController {
+final class FontSettingViewController: BaseViewController {
     
-    private let mainView = SettingView()
+    private let mainView = FontSettingView()
     
     // MARK: View Lifecycle
     override func loadView() {
@@ -24,11 +26,11 @@ final class SettingViewController: BaseViewController {
     }
     
     // MARK: Initialize
-    init(reactor: SettingReactor) {
+    init(reactor: FontSettingReactor) {
         super.init()
         self.reactor = reactor
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
@@ -40,51 +42,49 @@ final class SettingViewController: BaseViewController {
     }
 }
 
-extension SettingViewController: UITableViewDelegate {
+extension FontSettingViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
 }
 
-
-extension SettingViewController: View {
-    func bind(reactor: SettingReactor) {
+extension FontSettingViewController: View {
+    func bind(reactor: FontSettingReactor) {
         bindAction(reactor: reactor)
         bindState(reactor: reactor)
     }
-    
-    private func bindAction(reactor: SettingReactor) {
+    private func bindAction(reactor: FontSettingReactor) {
+        // Action
         mainView.tableView.rx.itemSelected
             .map { Reactor.Action.cellTapped($0) }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
     }
     
-    private func bindState(reactor: SettingReactor) {
+    private func bindState(reactor: FontSettingReactor) {
+        // State
         reactor.state
-            .map(\.settingList)
-            .bind(to: mainView.tableView.rx.items(cellIdentifier: "TimeSettingTableViewCell", cellType: TimeSettingTableViewCell.self)) { indexPath, item, cell in
-                cell.configure(with: item)
+            .map { $0.showToast }
+            .compactMap { $0 }
+            .distinctUntilChanged()
+            .bind(with: self) { owner, toastText in
+                print(toastText)
             }
             .disposed(by: disposeBag)
         
         reactor.state
-            .map(\.shouldNavigateToTime)
+            .map { $0.shouldNavigateToRoot }
             .filter { $0 }
             .distinctUntilChanged()
-            .bind(with: self) { owner, _ in
-                // 설정 화면으로 이동하는 로직
-                owner.transition(TimeSettingViewController(reactor: TimeSettingReactor(delegate: nil)), transitionStyle: .push)
-            }
+            .bind(with: self, onNext: { owner, state in
+                owner.transition(HomeViewController(reactor: HomeReactor()), transitionStyle: .rootViewControllerChange)
+            })
             .disposed(by: disposeBag)
         
         reactor.state
-            .map(\.shouldNavigateToFont)
-            .filter { $0 }
-            .distinctUntilChanged()
-            .bind(with: self) { owner, _ in
-                // 설정 화면으로 이동하는 로직
-                owner.transition(FontSettingViewController(reactor: FontSettingReactor()), transitionStyle: .push)
+            .map(\.fontSettingList)
+            .bind(to: mainView.tableView.rx.items(cellIdentifier: "BaseDesignSettingTableViewCell", cellType: BaseDesignSettingTableViewCell.self)) { indexPath, item, cell in
+                cell.configure(with: item, indexPath: indexPath)
             }
             .disposed(by: disposeBag)
     }

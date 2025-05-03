@@ -8,7 +8,7 @@
 
 import UIKit
 
-public enum FontThema {
+public enum FontThema: String, CaseIterable {
     case UhBeeFont
     case GangwonFont
     case LeeSeoyunFont

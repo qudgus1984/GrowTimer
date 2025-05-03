@@ -11,7 +11,7 @@ import UIKit
 public final class FontRegistration {
     public static func registerFonts() {
         // 폰트 등록 로직
-        registerFont(withFilenameString: "강원교육모두 Bold.otf")
+        registerFont(withFilenameString: "GwangwonEduAll-Bold.otf")
         registerFont(withFilenameString: "SimKyungha.otf")
         registerFont(withFilenameString: "LeeSeoyun.otf")
         registerFont(withFilenameString: "UhBee BEOJJI Bold.ttf")
