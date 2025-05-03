@@ -18,7 +18,7 @@ let project = Project(
             name: "App",
             destinations: [.iPhone, .iPad],
             product: .app,
-            bundleId: "com.den.workchecklist",
+            bundleId: "com.den.growtimer",
             deploymentTargets: .iOS("16.0"),
             infoPlist: .extendingDefault(with: [
                 "UILaunchStoryboardName": "LaunchScreen",

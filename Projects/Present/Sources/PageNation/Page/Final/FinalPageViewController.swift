@@ -59,5 +59,12 @@ extension FinalPageViewController: View {
                 owner.mainview.configureFinalPageVC()
             }
             .disposed(by: disposeBag)
+        
+        reactor.state
+            .map(\.rootChangeHomeViewController)
+            .bind(with: self) { owner, _ in
+                owner.transition(TimeSettingViewController(reactor: TimeSettingReactor(delegate: nil)), transitionStyle: .rootViewControllerChange)
+            }
+            .disposed(by: disposeBag)
     }
 }

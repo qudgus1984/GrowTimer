@@ -21,7 +21,7 @@
 // swiftlint:disable identifier_name line_length type_body_length
 public enum DesignSystemFontFamily: Sendable {
   public enum GangwonEduAllOTF: Sendable {
-    public static let bold = DesignSystemFontConvertible(name: "GangwonEduAll-OTFBold", family: "GangwonEduAll OTF", path: "강원교육모두Bold.otf")
+    public static let bold = DesignSystemFontConvertible(name: "GangwonEduAll-OTFBold", family: "GangwonEduAll OTF", path: "강원교육모두Bold.otf")
     public static let all: [DesignSystemFontConvertible] = [bold]
   }
   public enum LeeSeoyun: Sendable {

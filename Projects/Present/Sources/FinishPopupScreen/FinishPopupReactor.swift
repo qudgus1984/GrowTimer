@@ -1,5 +1,5 @@
 //
-//  FinalPageReactor.swift
+//  FinishPopupReactor.swift
 //  Present
 //
 //  Created by Den on 4/30/25.
@@ -14,31 +14,35 @@ import ThirdPartyLibrary
 import ReactorKit
 import RxSwift
 
-final class FinalPageReactor: Reactor {
+final class FinishPopupReactor: Reactor {
     
     var initialState = State()
     
     enum Action {
         case viewDidLoadTrigger
-        case finishButtonTapped
+        case okButtonTapped
     }
     
     enum Mutation {
         case viewDidLoadTrigger(Void)
-        case firstStartCheck(Bool)
+        case navigateToRoot(Bool)
     }
     
     struct State {
         var viewDidLoadTrigger: Void = ()
-        var rootChangeHomeViewController: Void = ()
+        var shouldNavigateToRoot: Bool = false
+        var settingTime: Int = UserDefaultManager.engagedTime
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .viewDidLoadTrigger:
             return Observable.just(.viewDidLoadTrigger(()))
-        case .finishButtonTapped:
-            return Observable.just(.firstStartCheck(true))
+        case .okButtonTapped:
+            return .concat([
+                .just(.navigateToRoot(true)),
+                .just(.navigateToRoot(false)).delay(.milliseconds(100), scheduler: MainScheduler.instance)
+            ])
         }
     }
     
@@ -47,9 +51,10 @@ final class FinalPageReactor: Reactor {
         switch mutation {
         case .viewDidLoadTrigger(let event):
             state.viewDidLoadTrigger = event
-        case .firstStartCheck(let bool):
-            UserDefaultManager.start = bool
-            state.rootChangeHomeViewController = ()
+        case .navigateToRoot(let navigate):
+            UserDefaultManager.stopCount = 3
+            UserDefaultManager.timerRunning = false
+            state.shouldNavigateToRoot = navigate
         }
         return state
     }

@@ -15,7 +15,7 @@ public final class FontManager {
     
     private init() {}
     
-    private let fontSerial = UserDefaultManager.font
+    private var fontSerial = UserDefaultManager.font
     
     private lazy var currentFontThema = fontChoice(fontNum: fontSerial)
     
@@ -37,5 +37,20 @@ public final class FontManager {
         } else {
             return FontThema.UhBeeFont
         }
+    }
+    
+    private func fontNewSetting(fontThema: FontThema) {
+        self.font12 = fontThema.Font12
+        self.font16 = fontThema.Font16
+        self.font24 = fontThema.Font24
+        self.font36 = fontThema.Font36
+        self.font44 = fontThema.Font44
+    }
+    
+    public func fontUpdate(fontNum: Int) {
+        fontSerial = fontNum
+        UserDefaultManager.font = fontNum
+        currentFontThema = fontChoice(fontNum: fontNum)
+        fontNewSetting(fontThema: currentFontThema)
     }
 }

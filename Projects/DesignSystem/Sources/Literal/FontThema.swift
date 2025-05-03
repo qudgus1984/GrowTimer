@@ -8,13 +8,12 @@
 
 import UIKit
 
-public enum FontThema {
-    case UhBeeFont
-    case GangwonFont
-    case LeeSeoyunFont
-    case SimKyunghaFont
+public enum FontThema: String, CaseIterable {
+    case UhBeeFont = "UhBee 폰트 🦋"
+    case GangwonFont = "Gangwon 폰트 🌊"
+    case LeeSeoyunFont = "LeeSeoyun 폰트 ✨"
+    case SimKyunghaFont = "SimKyungha 폰트 🌃"
 
-    
     public var Font44: UIFont {
         switch self {
         case .UhBeeFont:

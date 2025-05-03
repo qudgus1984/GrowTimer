@@ -39,10 +39,26 @@ public extension UIImage {
     }
     
     static var seeds: UIImage {
-        UIImage(named: ImageNameSpace.seeds, in: .module, compatibleWith: nil)!
+        UIImage(named: ImageNameSpace.seeds, in: .module, compatibleWith: nil) ?? UIImage(systemName: "heart.fill")!
     }
     
     static var sprout: UIImage {
         UIImage(named: ImageNameSpace.sprout, in: .module, compatibleWith: nil)!
+    }
+    
+    static var calendar: UIImage {
+        UIImage(systemName: "calendar")!
+    }
+    
+    static var lightBulb: UIImage {
+        UIImage(systemName: "lightbulb")!
+    }
+    
+    static var setting: UIImage {
+        UIImage(systemName: "gearshape.fill")!
+    }
+    
+    static var clock: UIImage {
+        UIImage(systemName: "clock.fill")!
     }
 }
