@@ -63,7 +63,7 @@ final class BaseDesignSettingTableViewCell: BaseTVCell {
 }
 
 extension BaseDesignSettingTableViewCell {
-    func configure(with: String, indexPath: Int) {
+    func configureFont(with: String, indexPath: Int) {
         explainLabel.text = with
         
         switch indexPath {

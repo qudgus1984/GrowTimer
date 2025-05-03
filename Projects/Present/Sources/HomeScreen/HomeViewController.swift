@@ -33,9 +33,9 @@ final class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationBar()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
-            self.transition(FinishPopupViewController(reactor: FinishPopupReactor()), transitionStyle: .presentFullNavigation)
-        }
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+//            self.transition(FinishPopupViewController(reactor: FinishPopupReactor()), transitionStyle: .presentFullNavigation)
+//        }
     }
 }
 
@@ -71,7 +71,6 @@ extension HomeViewController: View {
                 let seconds = state.remainingTime % 60
                 return String(format: "%02d:%02d", minutes, seconds)
             }
-            .distinctUntilChanged()
             .bind(to: mainview.countTimeLabel.rx.text)
             .disposed(by: disposeBag)
         
@@ -112,7 +111,6 @@ extension HomeViewController: View {
         reactor.state
             .filter { $0.showToast }
             .map(\.toastMessage)
-            .distinctUntilChanged()
             .bind(with: self) { owner, message in
 //                owner.mainview.makeToast(message)
             }
@@ -129,7 +127,6 @@ extension HomeViewController: View {
         reactor.state
             .map(\.shouldNavigateToCalendar)
             .filter { $0 }
-            .distinctUntilChanged()
             .bind(with: self) { owner, _ in
                 // 캘린더 화면으로 이동하는 로직
                 print("calenderButtonTapped")
@@ -140,7 +137,6 @@ extension HomeViewController: View {
         reactor.state
             .map(\.shouldNavigateToSetting)
             .filter { $0 }
-            .distinctUntilChanged()
             .bind(with: self) { owner, _ in
                 // 설정 화면으로 이동하는 로직
                 owner.transition(SettingViewController(reactor: SettingReactor()), transitionStyle: .push)
@@ -162,7 +158,6 @@ extension HomeViewController: View {
         reactor.state
             .map(\.shouldNavigateToTimeLine)
             .filter { $0 }
-            .distinctUntilChanged()
             .bind(with: self) { owner, _ in
             }
             .disposed(by: disposeBag)

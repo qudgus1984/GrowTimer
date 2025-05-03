@@ -8,12 +8,12 @@
 
 import UIKit
 
-public enum Thema {
-    case SeSACThema
-    case PurpleThema
-    case PinkThema
-    case NightThema
-    case BeachThema
+public enum Thema: String, CaseIterable {
+    case SeSACThema = "숲 테마 🏕️"
+    case PurpleThema = "몽환적 솜사탕 테마 💜"
+    case PinkThema = "달콤한 복숭아 테마 🍑"
+    case NightThema = "감성적 밤하늘 테마 🌌"
+    case BeachThema = "시원한 바닷가 테마 🏖️"
     
     public var mainColor: UIColor {
         switch self {

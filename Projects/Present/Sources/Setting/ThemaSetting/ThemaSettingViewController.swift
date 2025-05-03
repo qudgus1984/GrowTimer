@@ -1,8 +1,8 @@
 //
-//  TimeSettingViewController.swift
+//  ThemaSettingViewController.swift
 //  Present
 //
-//  Created by Den on 4/30/25.
+//  Created by Den on 5/3/25.
 //  Copyright © 2025 Den. All rights reserved.
 //
 
@@ -16,12 +16,9 @@ import RxSwift
 import RxCocoa
 import ReactorKit
 
-
-// MARK: - View Controller
-final class TimeSettingViewController: BaseViewController {
+final class ThemaSettingViewController: BaseViewController {
     
-    // MARK: Properties
-    private let mainView = TimeSettingView()
+    private let mainView = ThemaSettingView()
     
     // MARK: View Lifecycle
     override func loadView() {
@@ -29,11 +26,11 @@ final class TimeSettingViewController: BaseViewController {
     }
     
     // MARK: Initialize
-    init(reactor: TimeSettingReactor) {
+    init(reactor: ThemaSettingReactor) {
         super.init()
         self.reactor = reactor
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
@@ -45,31 +42,26 @@ final class TimeSettingViewController: BaseViewController {
     }
 }
 
-// MARK: - TableView 설정
-extension TimeSettingViewController: UITableViewDelegate {
+extension ThemaSettingViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
 }
 
-extension TimeSettingViewController: View {
-    func bind(reactor: TimeSettingReactor) {
+extension ThemaSettingViewController: View {
+    func bind(reactor: ThemaSettingReactor) {
         bindAction(reactor: reactor)
         bindState(reactor: reactor)
     }
-    
-    private func bindAction(reactor: TimeSettingReactor) {
+    private func bindAction(reactor: ThemaSettingReactor) {
         // Action
         mainView.tableView.rx.itemSelected
-            .map { indexPath in
-                TimeSettingEnum.allCases[indexPath.row]
-            }
-            .map { Reactor.Action.selectTime($0) }
+            .map { Reactor.Action.cellTapped($0) }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
     }
     
-    private func bindState(reactor: TimeSettingReactor) {
+    private func bindState(reactor: ThemaSettingReactor) {
         // State
         reactor.state
             .map { $0.showToast }
@@ -88,9 +80,9 @@ extension TimeSettingViewController: View {
             .disposed(by: disposeBag)
         
         reactor.state
-            .map(\.timeSettingList)
-            .bind(to: mainView.tableView.rx.items(cellIdentifier: "TimeSettingTableViewCell", cellType: TimeSettingTableViewCell.self)) { indexPath, item, cell in
-                cell.configure(with: item)
+            .map(\.fontSettingList)
+            .bind(to: mainView.tableView.rx.items(cellIdentifier: "BaseDesignSettingTableViewCell", cellType: BaseDesignSettingTableViewCell.self)) { indexPath, item, cell in
+                cell.configureFont(with: item, indexPath: indexPath)
             }
             .disposed(by: disposeBag)
     }

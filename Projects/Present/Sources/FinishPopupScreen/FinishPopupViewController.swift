@@ -52,7 +52,6 @@ extension FinishPopupViewController: View {
         reactor.state
             .map(\.shouldNavigateToRoot)
             .filter { $0 }
-            .distinctUntilChanged()
             .bind(with: self) { owner, _ in
                 owner.transition(HomeViewController(reactor: HomeReactor()), transitionStyle: .rootViewControllerChange)
             }

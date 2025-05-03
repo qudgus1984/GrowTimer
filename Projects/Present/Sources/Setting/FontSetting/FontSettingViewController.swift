@@ -66,7 +66,6 @@ extension FontSettingViewController: View {
         reactor.state
             .map { $0.showToast }
             .compactMap { $0 }
-            .distinctUntilChanged()
             .bind(with: self) { owner, toastText in
                 print(toastText)
             }
@@ -75,7 +74,6 @@ extension FontSettingViewController: View {
         reactor.state
             .map { $0.shouldNavigateToRoot }
             .filter { $0 }
-            .distinctUntilChanged()
             .bind(with: self, onNext: { owner, state in
                 owner.transition(HomeViewController(reactor: HomeReactor()), transitionStyle: .rootViewControllerChange)
             })
@@ -84,7 +82,7 @@ extension FontSettingViewController: View {
         reactor.state
             .map(\.fontSettingList)
             .bind(to: mainView.tableView.rx.items(cellIdentifier: "BaseDesignSettingTableViewCell", cellType: BaseDesignSettingTableViewCell.self)) { indexPath, item, cell in
-                cell.configure(with: item, indexPath: indexPath)
+                cell.configureFont(with: item, indexPath: indexPath)
             }
             .disposed(by: disposeBag)
     }

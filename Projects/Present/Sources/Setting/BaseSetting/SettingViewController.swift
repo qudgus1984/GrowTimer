@@ -71,7 +71,6 @@ extension SettingViewController: View {
         reactor.state
             .map(\.shouldNavigateToTime)
             .filter { $0 }
-            .distinctUntilChanged()
             .bind(with: self) { owner, _ in
                 // 설정 화면으로 이동하는 로직
                 owner.transition(TimeSettingViewController(reactor: TimeSettingReactor(delegate: nil)), transitionStyle: .push)
@@ -81,10 +80,16 @@ extension SettingViewController: View {
         reactor.state
             .map(\.shouldNavigateToFont)
             .filter { $0 }
-            .distinctUntilChanged()
             .bind(with: self) { owner, _ in
-                // 설정 화면으로 이동하는 로직
                 owner.transition(FontSettingViewController(reactor: FontSettingReactor()), transitionStyle: .push)
+            }
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map(\.shouldNavigateToThema)
+            .filter { $0 }
+            .bind(with: self) { owner, _ in
+                owner.transition(ThemaSettingViewController(reactor: ThemaSettingReactor()), transitionStyle: .push)
             }
             .disposed(by: disposeBag)
     }
