@@ -79,4 +79,8 @@ extension BaseDesignSettingTableViewCell {
             explainLabel.font = FontThema.UhBeeFont.Font24
         }
     }
+    
+    func configureThema(with: String) {
+        explainLabel.text = with
+    }
 }

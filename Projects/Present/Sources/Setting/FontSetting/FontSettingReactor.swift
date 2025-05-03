@@ -46,6 +46,8 @@ final class FontSettingReactor: Reactor {
             if UserDefaultManager.timerRunning {
                 return .just(.showToast("타이머가 가는 동안은 시간을 재설정 할 수 없어요!"))
             } else {
+                print("click\(indexPath.row)")
+                FontManager.shared.fontUpdate(fontNum: indexPath.row)
                 return .concat([
                     .just(.navigateToRoot(true)),
                     .just(.navigateToRoot(false)).delay(.milliseconds(100), scheduler: MainScheduler.instance)

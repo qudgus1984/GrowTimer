@@ -15,7 +15,7 @@ public final class ThemaManager {
     
     private init() {}
     
-    private let themaSerial = UserDefaultManager.thema
+    private var themaSerial = UserDefaultManager.thema
     
     private lazy var currentThema = themaChoice(themaNum: themaSerial)
     
@@ -36,5 +36,19 @@ public final class ThemaManager {
         } else {
             return Thema.BeachThema
         }
+    }
+    
+    private func themaNewSetting(thema: Thema) {
+        self.mainColor = thema.mainColor
+        self.lightColor = thema.lightColor
+        self.progressColor = thema.progressColor
+        self.calendarChoiceColor = thema.calendarChoiceColor
+    }
+    
+    public func themaUpdate(themaNum: Int) {
+        themaSerial = themaNum
+        UserDefaultManager.thema = themaNum
+        currentThema = themaChoice(themaNum: themaNum)
+        themaNewSetting(thema: currentThema)
     }
 }

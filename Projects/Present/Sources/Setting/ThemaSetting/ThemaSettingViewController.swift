@@ -82,7 +82,7 @@ extension ThemaSettingViewController: View {
         reactor.state
             .map(\.fontSettingList)
             .bind(to: mainView.tableView.rx.items(cellIdentifier: "BaseDesignSettingTableViewCell", cellType: BaseDesignSettingTableViewCell.self)) { indexPath, item, cell in
-                cell.configureFont(with: item, indexPath: indexPath)
+                cell.configureThema(with: item)
             }
             .disposed(by: disposeBag)
     }
