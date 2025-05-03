@@ -143,7 +143,7 @@ extension HomeViewController: View {
             .distinctUntilChanged()
             .bind(with: self) { owner, _ in
                 // 설정 화면으로 이동하는 로직
-                print("calenderButtonTapped")
+                owner.transition(SettingViewController(reactor: SettingReactor()), transitionStyle: .push)
             }
             .disposed(by: disposeBag)
         

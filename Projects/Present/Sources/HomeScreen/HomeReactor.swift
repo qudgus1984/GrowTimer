@@ -41,10 +41,10 @@ final class HomeReactor: Reactor {
         case showToast(String)
         case stopChance(Int)
         
-        case navigateToCalendar
-        case navigateToSetting
+        case navigateToCalendar(Bool)
+        case navigateToSetting(Bool)
         case toggleBulb
-        case navigateToTimeLine
+        case navigateToTimeLine(Bool)
     }
     
     struct State {
@@ -144,16 +144,25 @@ final class HomeReactor: Reactor {
                 .just(.resetTimer)
             ])
         case .calendarButtonTapped:
-            return .just(.navigateToCalendar)
+            return .concat([
+                .just(.navigateToCalendar(true)),
+                .just(.navigateToCalendar(false)).delay(.milliseconds(100), scheduler: MainScheduler.instance)
+            ])
             
         case .settingButtonTapped:
-            return .just(.navigateToSetting)
+            return .concat([
+                .just(.navigateToSetting(true)),
+                .just(.navigateToSetting(false)).delay(.milliseconds(100), scheduler: MainScheduler.instance)
+            ])
             
         case .bulbButtonTapped:
             return .just(.toggleBulb)
             
         case .timeLineButtonTapped:
-            return .just(.navigateToTimeLine)
+            return .concat([
+                .just(.navigateToTimeLine(true)),
+                .just(.navigateToTimeLine(false)).delay(.milliseconds(100), scheduler: MainScheduler.instance)
+            ])
         }
     }
     
@@ -200,14 +209,13 @@ final class HomeReactor: Reactor {
             newState.toastMessage = message
         case .stopChance(let chance):
             newState.stopChances = chance
-        case .navigateToCalendar:
-            newState.shouldNavigateToCalendar = true
+        case .navigateToCalendar(let navigate):
+            newState.shouldNavigateToCalendar = navigate
             return newState
             
-        case .navigateToSetting:
-            newState.shouldNavigateToSetting = true
+        case .navigateToSetting(let navigate):
+            newState.shouldNavigateToSetting = navigate
             return newState
-            
         case .toggleBulb:
             newState.shouldToggleBulb.toggle()
             if newState.shouldToggleBulb {
@@ -217,8 +225,8 @@ final class HomeReactor: Reactor {
             }
             return newState
             
-        case .navigateToTimeLine:
-            newState.shouldNavigateToTimeLine = true
+        case .navigateToTimeLine(let navigate):
+            newState.shouldNavigateToTimeLine = navigate
             return newState
         }
         
