@@ -16,6 +16,7 @@ import SnapKit
 import ReactorKit
 import RxSwift
 import RxCocoa
+import GTToast
 
 final class HomeViewController: BaseViewController {
     
@@ -32,6 +33,7 @@ final class HomeViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ToastManager.shared.show("토스트 테스트")
         configureNavigationBar()
 //        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
 //            self.transition(FinishPopupViewController(reactor: FinishPopupReactor()), transitionStyle: .presentFullNavigation)
@@ -113,6 +115,7 @@ extension HomeViewController: View {
             .map(\.toastMessage)
             .bind(with: self) { owner, message in
 //                owner.mainview.makeToast(message)
+                ToastManager.shared.show(message)
             }
             .disposed(by: disposeBag)
             
