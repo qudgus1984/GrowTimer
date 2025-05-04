@@ -31,17 +31,11 @@ final class HomeViewController: BaseViewController {
         super.init()
         self.reactor = reactor
     }
-    
-    let useCase = CoreDataUseCase()
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationBar()
-        useCase.excuteCreateCoin(CoinEntity(id: UUID(), getCoin: 100, spendCoin: 0, status: 0, now: .now))
-        let coin = useCase.excuteGetCoin()
-        guard let num = coin.first?.getCoin else { return }
-        mainview.totalCoinLabel.text = "\(num)"
-        print(coin)
+
 //        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
 //            self.transition(FinishPopupViewController(reactor: FinishPopupReactor()), transitionStyle: .presentFullNavigation)
 //        }
@@ -171,6 +165,13 @@ extension HomeViewController: View {
                     ToastManager.shared.show(message)
                 }
             })
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map(\.totalCoin)
+            .bind(with: self) { owner, coin in
+                owner.mainview.totalCoinLabel.text = "\(coin)"
+            }
             .disposed(by: disposeBag)
     }
     

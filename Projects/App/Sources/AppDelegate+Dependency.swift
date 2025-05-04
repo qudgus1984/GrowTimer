@@ -21,5 +21,9 @@ extension AppDelegate {
         FontRegistration.registerFonts()
         DIContainer.register(CoreDataRepositoryImpl(userStorage: .userStorage, themaStorage: .themaStorage, fontStorage: .fontStorage, coinStorage: .coinStorage), type: CoreDataRepository.self)
         DIContainer.register(CoreDataUseCase(), type: CoreDataUseCaseInterface.self)
+        DIContainer.register(CoinRepositoryImpl(coinStorage: .coinStorage), type: CoinRepository.self)
+        DIContainer.register(CoinUseCase(), type: CoinUseCaseInterface.self)
+
+
     }
 }

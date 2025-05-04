@@ -62,10 +62,3 @@ protocol FontRepository {
     func firstStartFont(fontName: String, purchase: Bool)
     func fontBuy(id: UUID)
 }
-
-protocol CoinRepository {
-    func fetchCoinTable() -> [CoinEntity]
-    func addCoin(getCoin: Int, spendCoin: Int, status: Int)
-    func totalCoin() -> Int
-    func coinCalculator() -> Int
-}

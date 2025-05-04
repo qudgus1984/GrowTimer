@@ -10,11 +10,14 @@ import Foundation
 
 import Utility
 import ThirdPartyLibrary
+import Domain
 
 import ReactorKit
 import RxSwift
 
 final class HomeReactor: Reactor {
+    
+    @Injected private var coinUseCase: CoinUseCaseInterface
     
     var initialState = State()
     private var timer: Disposable? // Rx의 Disposable로 타이머 정의
@@ -46,6 +49,7 @@ final class HomeReactor: Reactor {
         case navigateToSetting(Bool)
         case toggleBulb
         case navigateToTimeLine(Bool)
+        case getTotalCoin(Int)
     }
     
     struct State {
@@ -65,6 +69,7 @@ final class HomeReactor: Reactor {
         var shouldToggleBulb: Bool = false
         var shouldNavigateToTimeLine: Bool = false
         var screenBrightness: CGFloat = UserDefaultManager.bright
+        var totalCoin = 0
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -72,7 +77,7 @@ final class HomeReactor: Reactor {
         case .viewDidLoadTrigger(let brightNess):
             UserDefaultManager.stopCount = 3
             UserDefaultManager.bright = brightNess
-            return .empty()
+            return Observable.just(.getTotalCoin(coinUseCase.excuteTotalCoin()))
             
         case .timerButtonTapped:
             if currentState.isTimerRunning {
@@ -233,6 +238,9 @@ final class HomeReactor: Reactor {
             return newState
         case .clearToastMessage:
             newState.toastMessage = nil
+        case .getTotalCoin(let coin):
+            newState.totalCoin = coin
+            return newState
         }
         
         return newState
