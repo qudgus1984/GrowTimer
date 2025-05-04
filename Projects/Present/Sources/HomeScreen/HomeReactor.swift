@@ -39,6 +39,7 @@ final class HomeReactor: Reactor {
         case resetTimer
         case finishTimer
         case showToast(String)
+        case clearToastMessage
         case stopChance(Int)
         
         case navigateToCalendar(Bool)
@@ -54,8 +55,7 @@ final class HomeReactor: Reactor {
         var buttonTitle: String = "시작"
         var stopChances: Int = UserDefaultManager.stopCount
         var firstStartButtonClicked: Bool = true
-        var showToast: Bool = false
-        var toastMessage: String = ""
+        var toastMessage: String?
         // 전체 시간을 초기화에 저장하여 progress 계산에 사용
         var totalTime: Int = UserDefaultManager.engagedTime
         
@@ -93,7 +93,11 @@ final class HomeReactor: Reactor {
                     ])
                 } else {
                     // 중지 기회가 없음 - 토스트 메시지
-                    return .just(.showToast("멈출 수 있는 기회를 다 써버렸어요 😣"))
+                    return .concat([
+                        .just(.showToast("멈출 수 있는 기회를 다 써버렸어요 😣")),
+                        .just(.clearToastMessage).delay(.seconds(3), scheduler: MainScheduler.instance)
+                    ])
+                    
                 }
             } else {
                 // 타이머 시작 로직
@@ -205,7 +209,6 @@ final class HomeReactor: Reactor {
             newState.remainingTime = newState.totalTime
             
         case .showToast(let message):
-            newState.showToast = true
             newState.toastMessage = message
         case .stopChance(let chance):
             newState.stopChances = chance
@@ -228,6 +231,8 @@ final class HomeReactor: Reactor {
         case .navigateToTimeLine(let navigate):
             newState.shouldNavigateToTimeLine = navigate
             return newState
+        case .clearToastMessage:
+            newState.toastMessage = nil
         }
         
         return newState

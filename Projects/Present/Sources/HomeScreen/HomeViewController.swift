@@ -107,17 +107,7 @@ extension HomeViewController: View {
             .map { "멈출 수 있는 기회는 \($0)번!" }
             .bind(to: mainview.stopCountLabel.rx.text)
             .disposed(by: disposeBag)
-        
-        // 토스트 메시지 바인딩
-        reactor.state
-            .filter { $0.showToast }
-            .map(\.toastMessage)
-            .bind(with: self) { owner, message in
-//                owner.mainview.makeToast(message)
-                ToastManager.shared.show(message)
-            }
-            .disposed(by: disposeBag)
-            
+                    
         // 타이머 완료 시 팝업 표시 바인딩
         reactor.state
             .filter { $0.remainingTime <= 0 && !$0.isTimerRunning }
@@ -162,6 +152,17 @@ extension HomeViewController: View {
             .filter { $0 }
             .bind(with: self) { owner, _ in
             }
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map(\.toastMessage)
+            .distinctUntilChanged()
+            .filter { $0 != nil }
+            .bind(with: self, onNext: { owner, message in
+                if let message = message {
+                    ToastManager.shared.show(message)
+                }
+            })
             .disposed(by: disposeBag)
     }
     
