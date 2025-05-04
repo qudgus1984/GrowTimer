@@ -31,6 +31,7 @@ let project = Project(
                 .package(product: "RxCocoa", type: .runtime),
                 .package(product: "RxSwift", type: .runtime),
                 .package(product: "SnapKit", type: .runtime),
+                .project(target: "GTToast", path: "../GTToast"),
             ]
         ),
         Target.target(

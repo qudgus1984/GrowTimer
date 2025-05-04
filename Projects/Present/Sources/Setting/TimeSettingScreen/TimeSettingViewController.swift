@@ -15,6 +15,7 @@ import DesignSystem
 import RxSwift
 import RxCocoa
 import ReactorKit
+import GTToast
 
 
 // MARK: - View Controller
@@ -72,11 +73,14 @@ extension TimeSettingViewController: View {
     private func bindState(reactor: TimeSettingReactor) {
         // State
         reactor.state
-            .map { $0.showToast }
-            .compactMap { $0 }
-            .bind(with: self) { owner, toastText in
-                print(toastText)
-            }
+            .map(\.toastMessage)
+            .distinctUntilChanged()
+            .filter { $0 != nil }
+            .bind(with: self, onNext: { owner, message in
+                if let message = message {
+                    ToastManager.shared.show(message)
+                }
+            })
             .disposed(by: disposeBag)
         
         reactor.state
