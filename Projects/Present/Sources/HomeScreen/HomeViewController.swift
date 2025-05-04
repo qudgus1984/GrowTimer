@@ -33,7 +33,6 @@ final class HomeViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ToastManager.shared.show("토스트 테스트")
         configureNavigationBar()
 //        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
 //            self.transition(FinishPopupViewController(reactor: FinishPopupReactor()), transitionStyle: .presentFullNavigation)
