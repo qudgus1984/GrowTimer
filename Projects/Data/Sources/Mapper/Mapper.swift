@@ -16,10 +16,10 @@ final class UserMapper {
             id: dto.id,
             startTime: dto.startTime,
             finishTime: dto.finishTime,
-            settingTime: dto.settingTime,
+            settingTime: Int(dto.settingTime),
             success: dto.success,
             concentrateMode: dto.concentrateMode,
-            stopButtonClicked: dto.stopButtonClicked
+            stopButtonClicked: Int(dto.stopButtonClicked)
         )
     }
 }

@@ -39,7 +39,7 @@ public final class CoreDataRepositoryImpl: CoreDataRepository {
     }
     
     public func addUser(settingTime: Int) {
-        let dto = UserDTO.create(in: userStorage.mainContext, settingTime: settingTime)
+        let dto = UserDTO.create(in: userStorage.mainContext, settingTime: Int32(settingTime))
         userStorage.save()
     }
     
@@ -193,7 +193,7 @@ public final class CoreDataRepositoryImpl: CoreDataRepository {
         
         let dtos = userStorage.fetch(UserDTO.self, predicate: predicate)
         let totalTime = dtos.reduce(0) { $0 + $1.settingTime }
-        return totalTime / 60
+        return Int(totalTime / 60)
     }
     
     public func monthCount(date: Date) -> Int {
