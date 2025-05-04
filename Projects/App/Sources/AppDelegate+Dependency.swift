@@ -12,10 +12,14 @@ import FeatureInterface
 import FeatureImplement
 import Utility
 import DesignSystem
+import Data
+import Domain
 
 extension AppDelegate {
     func registerDependencies() {
         DIContainer.register(FeatureProviderImplement(), type: FeatureProvider.self)
         FontRegistration.registerFonts()
+        DIContainer.register(CoreDataRepositoryImpl(userStorage: .userStorage, themaStorage: .themaStorage, fontStorage: .fontStorage, coinStorage: .coinStorage), type: CoreDataRepository.self)
+        DIContainer.register(CoreDataUseCase(), type: CoreDataUseCaseInterface.self)
     }
 }

@@ -19,7 +19,14 @@ let project = Project(
             deploymentTargets: .iOS("16.0"),
             infoPlist: .default,
             sources: ["Sources/**"],
-            resources: ["Resources/**"],
+            resources: [
+                "Resources/**",
+                // 명시적으로 CoreData 모델 추가
+                "CoinDTO.xcdatamodeld",
+                "FontDataModel.xcdatamodeld",
+                "ThemaDataModel.xcdatamodeld",
+                "UserDataModel.xcdatamodeld"
+            ],
             dependencies: [
                 .project(target: "Domain", path: "../Domain"),
                 .project(target: "Utility", path: "../Utility")

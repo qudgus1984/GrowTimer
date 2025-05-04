@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23788" systemVersion="24E263" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="UserDTO" representedClassName="Data.UserDTO" syncable="YES">
+        <attribute name="concentrateMode" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="finishTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="settingTime" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="startTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="stopButtonClicked" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="success" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+    </entity>
+</model>

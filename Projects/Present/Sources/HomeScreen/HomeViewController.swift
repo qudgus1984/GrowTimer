@@ -11,6 +11,7 @@ import UIKit
 import Utility
 import ThirdPartyLibrary
 import DesignSystem
+import Domain
 
 import SnapKit
 import ReactorKit
@@ -31,9 +32,16 @@ final class HomeViewController: BaseViewController {
         self.reactor = reactor
     }
     
+    let useCase = CoreDataUseCase()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationBar()
+        useCase.excuteCreateCoin(CoinEntity(id: UUID(), getCoin: 100, spendCoin: 0, status: 0, now: .now))
+        let coin = useCase.excuteGetCoin()
+        guard let num = coin.first?.getCoin else { return }
+        mainview.totalCoinLabel.text = "\(num)"
+        print(coin)
 //        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
 //            self.transition(FinishPopupViewController(reactor: FinishPopupReactor()), transitionStyle: .presentFullNavigation)
 //        }

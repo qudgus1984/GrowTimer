@@ -11,22 +11,25 @@ import Domain
 
 @objc(CoinDTO)
 public class CoinDTO: NSManagedObject {
-    @NSManaged public var getCoin: Int
-    @NSManaged public var spendCoin: Int
-    @NSManaged public var status: Int
+    @NSManaged public var getCoin: Int32  // Int 대신 Int32 사용
+    @NSManaged public var spendCoin: Int32
+    @NSManaged public var status: Int16  // Integer 16에 맞게 Int16으로 변경
     @NSManaged public var now: Date
     @NSManaged public var id: UUID
     
     @discardableResult
     static func create(in context: NSManagedObjectContext,
-                      getCoin: Int,
-                      spendCoin: Int,
-                      status: Int) -> CoinDTO {
-        let dto = CoinDTO(context: context)
+                      getCoin: Int32,
+                      spendCoin: Int32,
+                      status: Int16) -> CoinDTO {
+        guard let entity = NSEntityDescription.entity(forEntityName: "CoinDTO", in: context) else {
+            fatalError("CoinDTO 엔티티를 찾을 수 없습니다")
+        }
+        let dto = CoinDTO(entity: entity, insertInto: context)
         dto.id = UUID()
-        dto.getCoin = Int(getCoin)
-        dto.spendCoin = Int(spendCoin)
-        dto.status = Int(status)
+        dto.getCoin = getCoin
+        dto.spendCoin = spendCoin
+        dto.status = status
         dto.now = Date()
         return dto
     }
@@ -34,6 +37,6 @@ public class CoinDTO: NSManagedObject {
 
 extension CoinDTO {
     public var toDomain: CoinEntity {
-        return CoinEntity(id: id, getCoin: getCoin, spendCoin: spendCoin, status: status, now: now)
+        return CoinEntity(id: id, getCoin: Int(getCoin), spendCoin: Int(spendCoin), status: Int(status), now: now)
     }
 }
