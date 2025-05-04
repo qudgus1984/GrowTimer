@@ -76,7 +76,6 @@ public class CoinUseCase: CoinUseCaseInterface {
             return "콘크리트여 영원하라🧱"
         default:
             return "입력되지 않은 상태코드입니다."
-            
         }
     }
 }

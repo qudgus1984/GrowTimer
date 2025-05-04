@@ -33,22 +33,17 @@ public protocol CoreDataRepository {
     func todayFilter() -> [UserEntity]
     func dayFilter(date: Date) -> [UserEntity]
     func twoHourTimeFilter(date: Date) -> [UserEntity]
+    func yesterdayFilter() -> [UserEntity]
+    func todayTotalStudyTime() -> [UserEntity]
+    func dayTotalStudyTime(date: Date) -> [UserEntity]
+    
     func dayTotalTimeFilter(date: Date) -> Int
     func dayTotalTimeLineFilter(date: Date) -> Int
     func monthTotalTimeFilter(date: Date) -> Int
     func monthCount(date: Date) -> Int
     func successfulRate() -> Int
-    func yesterdayFilter() -> [UserEntity]
-    func todayTotalStudyTime() -> [UserEntity]
-    func dayTotalStudyTime(date: Date) -> [UserEntity]
 
-}
 
-protocol UserRepository {
-    func fetchUser() -> [UserEntity]
-    func addUser(settingTime: Int)
-    func updateUserState(id: UUID, success: Bool)
-    // User 관련 필터 메서드들...
 }
 
 protocol ThemaRepository {
