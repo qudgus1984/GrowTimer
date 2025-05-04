@@ -31,12 +31,14 @@ final class TimeSettingReactor: Reactor {
     // 변이 정의
     enum Mutation {
         case showToast(String)
+        case clearToastMessage
+
         case navigateToRoot(Bool)
     }
     
     // 상태 정의
     struct State {
-        var showToast: String?
+        var toastMessage: String?
         var shouldNavigateToRoot: Bool = false
         var timeSettingList: [String] = TimeSettingEnum.allCases.map(\.rawValue)
     }
@@ -53,7 +55,10 @@ final class TimeSettingReactor: Reactor {
         case .selectTime(let timeEnum):
             // 타이머 실행 중인지 확인
             if UserDefaultManager.timerRunning {
-                return .just(.showToast("타이머가 가는 동안은 시간을 재설정 할 수 없어요!"))
+                return .concat([
+                    .just(.showToast("타이머가 가는 동안은 시간을 재설정 할 수 없어요!")),
+                    .just(.clearToastMessage).delay(.seconds(3), scheduler: MainScheduler.instance)
+                ])
             } else {
             UserDefaultManager.engagedTime = timeEnum.timeSettingValue
                 return .concat([
@@ -71,10 +76,13 @@ final class TimeSettingReactor: Reactor {
         switch mutation {
             
         case .showToast(let message):
-            newState.showToast = message
-            
+            newState.toastMessage = message
+
         case .navigateToRoot(let navigate):
             newState.shouldNavigateToRoot = navigate
+            
+        case .clearToastMessage:
+            newState.toastMessage = nil
         }
         
         return newState
