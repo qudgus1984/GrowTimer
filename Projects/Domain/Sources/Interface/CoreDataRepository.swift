@@ -45,15 +45,3 @@ public protocol CoreDataRepository {
 
 
 }
-
-protocol ThemaRepository {
-    func fetchThemaTable() -> [ThemaEntity]
-    func firstStartThema(themaName: String, purchase: Bool)
-    func themaBuy(id: UUID)
-}
-
-protocol FontRepository {
-    func fetchFontTable() -> [FontEntity]
-    func firstStartFont(fontName: String, purchase: Bool)
-    func fontBuy(id: UUID)
-}
