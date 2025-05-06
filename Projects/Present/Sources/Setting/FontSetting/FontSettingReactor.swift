@@ -86,7 +86,7 @@ final class FontSettingReactor: Reactor {
             let fontTable = fontUseCase.excuteFetchFontTable()
             return .just(.fontTable(fontTable))
         case .okButtonTapped(let indexPath, let fontEntity):
-            coinUseCase.excuteCreateCoin(CoinEntity(id: UUID(), getCoin: 0, spendCoin: 300, status: 100 + indexPath.row, now: .now))
+            coinUseCase.excuteCreateCoin(CoinEntity(id: UUID(), getCoin: 0, spendCoin: 300, status: 500 + indexPath.row, now: .now))
             fontUseCase.excuteFontBuy(id: fontEntity.id)
             UserDefaultManager.font = indexPath.row
             FontManager.shared.fontUpdate(fontNum: indexPath.row)

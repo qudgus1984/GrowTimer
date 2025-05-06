@@ -69,7 +69,7 @@ extension ThemaSettingViewController: View {
         .bind(to: reactor.action)
         .disposed(by: disposeBag)
         
-        viewDidAppearEvent
+        viewDidLoadEvent
             .map { Reactor.Action.viewDidLoadTrigger }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)

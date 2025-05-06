@@ -20,7 +20,7 @@ public class CoinUseCase: CoinUseCaseInterface {
     }
     
     public func excuteCreateCoin(_ coin: CoinEntity) {
-        repository.addCoin(getCoin: coin.getCoin, spendCoin: coin.spendCoin, status: coin.spendCoin)
+        repository.addCoin(getCoin: coin.getCoin, spendCoin: coin.spendCoin, status: coin.status)
     }
     
     public func excuteTotalCoin() -> Int {
