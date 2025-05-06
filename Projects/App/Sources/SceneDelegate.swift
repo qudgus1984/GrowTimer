@@ -28,4 +28,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = window
         window.makeKeyAndVisible()
     }
+    
+    func sceneDidEnterBackground(_ scene: UIScene) {
+        if UserDefaultManager.timerRunning {
+
+            UserDefaultManager.timerRunning = false
+            guard let scene = (scene as? UIWindowScene) else { return }
+            window = UIWindow(windowScene: scene)
+            let navigationController = UINavigationController(rootViewController: featureProvider.createResetPopupScreen())
+            window?.rootViewController = navigationController
+            window?.makeKeyAndVisible()
+        }
+    }
 }

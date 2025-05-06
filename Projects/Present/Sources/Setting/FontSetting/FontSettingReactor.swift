@@ -67,7 +67,7 @@ final class FontSettingReactor: Reactor {
             } else {
                 if fontEntity.purchase {
                     FontManager.shared.fontUpdate(fontNum: indexPath.row)
-
+                    
                     return .concat([
                         .just(.navigateToRoot(true)),
                         .just(.navigateToRoot(false)).delay(.milliseconds(100), scheduler: MainScheduler.instance)
@@ -110,6 +110,7 @@ final class FontSettingReactor: Reactor {
         case .showAlert(let bool):
             newState.alertViewIsHidden = bool
         case .navigateToRoot(let navigate):
+            UserDefaultManager.stopCount = 3
             newState.shouldNavigateToRoot = navigate
         case .clearToastMessage:
             newState.toastMessage = nil

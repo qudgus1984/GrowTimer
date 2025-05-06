@@ -10,4 +10,6 @@ import UIKit
 
 public protocol FeatureProvider {
     func createLaunchScreen() -> UIViewController
+    
+    func createResetPopupScreen() -> UIViewController
 }
