@@ -60,6 +60,11 @@ extension ThemaSettingViewController: View {
             .map { Reactor.Action.cellTapped($0) }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
+        
+        viewDidAppearEvent
+            .map { Reactor.Action.viewDidLoadTrigger }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
     }
     
     private func bindState(reactor: ThemaSettingReactor) {
@@ -84,9 +89,9 @@ extension ThemaSettingViewController: View {
             .disposed(by: disposeBag)
         
         reactor.state
-            .map(\.fontSettingList)
+            .map(\.themaTable)
             .bind(to: mainView.tableView.rx.items(cellIdentifier: "BaseDesignSettingTableViewCell", cellType: BaseDesignSettingTableViewCell.self)) { indexPath, item, cell in
-                cell.configureThema(with: item)
+                cell.configureThema(with: item.themaName, purchase: item.purchase)
             }
             .disposed(by: disposeBag)
     }

@@ -9,6 +9,7 @@
 import UIKit
 
 import Utility
+import Domain
 import ThirdPartyLibrary
 import DesignSystem
 
@@ -55,11 +56,38 @@ extension FontSettingViewController: View {
         bindState(reactor: reactor)
     }
     private func bindAction(reactor: FontSettingReactor) {
+        let lastSelectedFontEntity =         Observable.zip(
+            mainView.tableView.rx.itemSelected,
+            mainView.tableView.rx.modelSelected(FontEntity.self)
+        )
         // Action
-        mainView.tableView.rx.itemSelected
-            .map { Reactor.Action.cellTapped($0) }
+        lastSelectedFontEntity
+        .map { indexPath, model in
+            return Reactor.Action.cellTappedWithModel(indexPath, model)
+        }
+        .bind(to: reactor.action)
+        .disposed(by: disposeBag)
+
+        
+        viewDidAppearEvent
+            .map { Reactor.Action.viewDidLoadTrigger }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
+        
+        mainView.alertView.okButton.rx.tap
+            .withLatestFrom(lastSelectedFontEntity)
+            .map { indexPath, model in
+                return Reactor.Action.okButtonTapped(indexPath, model)
+            }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        mainView.alertView.cancelButton
+            .rx.tap
+            .map { Reactor.Action.cancelButtonTapped }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
     }
     
     private func bindState(reactor: FontSettingReactor) {
@@ -76,6 +104,13 @@ extension FontSettingViewController: View {
             .disposed(by: disposeBag)
         
         reactor.state
+            .map(\.alertViewIsHidden)
+            .bind(with: self, onNext: { owner, bool in
+                owner.mainView.alertView.isHidden = !bool
+            })
+            .disposed(by: disposeBag)
+        
+        reactor.state
             .map { $0.shouldNavigateToRoot }
             .filter { $0 }
             .bind(with: self, onNext: { owner, state in
@@ -84,10 +119,11 @@ extension FontSettingViewController: View {
             .disposed(by: disposeBag)
         
         reactor.state
-            .map(\.fontSettingList)
+            .map(\.fontTable)
             .bind(to: mainView.tableView.rx.items(cellIdentifier: "BaseDesignSettingTableViewCell", cellType: BaseDesignSettingTableViewCell.self)) { indexPath, item, cell in
-                cell.configureFont(with: item, indexPath: indexPath)
+                cell.configureFont(with: item.fontName, indexPath: indexPath, purchase: item.purchase)
             }
             .disposed(by: disposeBag)
+        
     }
 }

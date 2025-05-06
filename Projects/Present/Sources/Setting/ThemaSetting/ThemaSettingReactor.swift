@@ -11,6 +11,7 @@ import Foundation
 import Utility
 import ThirdPartyLibrary
 import DesignSystem
+import Domain
 
 import ReactorKit
 import RxSwift
@@ -18,10 +19,15 @@ import RxSwift
 // MARK: - Reactor
 final class ThemaSettingReactor: Reactor {
     
+    @Injected private var coinUseCase: CoinUseCaseInterface
+    @Injected private var themaUseCase: ThemaUseCaseInterface
+    
     var initialState: State = State()
 
     // 액션 정의
     enum Action {
+        case viewDidLoadTrigger
+
         case cellTapped(IndexPath)
     }
     
@@ -29,6 +35,7 @@ final class ThemaSettingReactor: Reactor {
     enum Mutation {
         case showToast(String)
         case clearToastMessage
+        case themaTable([ThemaEntity])
         
         case navigateToRoot(Bool)
     }
@@ -38,6 +45,7 @@ final class ThemaSettingReactor: Reactor {
         var toastMessage: String?
         var shouldNavigateToRoot: Bool = false
         var fontSettingList: [String] = Thema.allCases.map(\.rawValue)
+        var themaTable: [ThemaEntity] = []
     }
     
     // Action -> Mutation
@@ -58,6 +66,9 @@ final class ThemaSettingReactor: Reactor {
                     .just(.navigateToRoot(false)).delay(.milliseconds(100), scheduler: MainScheduler.instance)
                 ])
             }
+        case .viewDidLoadTrigger:
+            let themaTable = themaUseCase.excuteFetchThemaTable()
+            return .just(.themaTable(themaTable))
         }
     }
     
@@ -75,6 +86,8 @@ final class ThemaSettingReactor: Reactor {
             
         case .clearToastMessage:
             newState.toastMessage = nil
+        case .themaTable(let themaTable):
+            newState.themaTable = themaTable
         }
         
         return newState

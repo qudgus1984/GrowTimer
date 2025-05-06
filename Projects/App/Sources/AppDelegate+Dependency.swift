@@ -25,5 +25,10 @@ extension AppDelegate {
         DIContainer.register(CoinUseCase(), type: CoinUseCaseInterface.self)
         DIContainer.register(UserRepositoryImpl(userStorage: .userStorage), type: UserRepository.self)
         DIContainer.register(UserUseCase(), type: UserUseCaseInterface.self)
+        DIContainer.register(FontRepositoryImpl(fontStorage: .fontStorage), type: FontRepository.self)
+        DIContainer.register(FontUseCase(), type: FontUseCaseInterface.self)
+        
+        DIContainer.register(ThemaRepositoryImpl(themaStorage: .themaStorage), type: ThemaRepository.self)
+        DIContainer.register(ThemaUseCase(), type: ThemaUseCaseInterface.self)
     }
 }

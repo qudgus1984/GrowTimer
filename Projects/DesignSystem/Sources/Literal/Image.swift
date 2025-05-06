@@ -61,4 +61,8 @@ public extension UIImage {
     static var clock: UIImage {
         UIImage(systemName: "clock.fill")!
     }
+    
+    static var lock: UIImage {
+        UIImage(systemName: "lock.fill")!
+    }
 }
