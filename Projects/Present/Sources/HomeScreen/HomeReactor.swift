@@ -18,6 +18,7 @@ import RxSwift
 final class HomeReactor: Reactor {
     
     @Injected private var coinUseCase: CoinUseCaseInterface
+    @Injected private var userUseCase: UserUseCaseInterface
     
     var initialState = State()
     private var timer: Disposable? // Rx의 Disposable로 타이머 정의
@@ -50,6 +51,8 @@ final class HomeReactor: Reactor {
         case toggleBulb
         case navigateToTimeLine(Bool)
         case getTotalCoin(Int)
+        
+        case userData([UserEntity])
     }
     
     struct State {
@@ -70,6 +73,8 @@ final class HomeReactor: Reactor {
         var shouldNavigateToTimeLine: Bool = false
         var screenBrightness: CGFloat = UserDefaultManager.bright
         var totalCoin = 0
+        
+        var todayStudyTime: Int = 0
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -77,7 +82,8 @@ final class HomeReactor: Reactor {
         case .viewDidLoadTrigger(let brightNess):
             UserDefaultManager.stopCount = 3
             UserDefaultManager.bright = brightNess
-            return Observable.just(.getTotalCoin(coinUseCase.excuteTotalCoin()))
+            let user = userUseCase.excuteFetchUser()
+            return .concat([.just(.getTotalCoin(coinUseCase.excuteTotalCoin())), .just(.userData(user))])
             
         case .timerButtonTapped:
             if currentState.isTimerRunning {
@@ -239,8 +245,24 @@ final class HomeReactor: Reactor {
         case .clearToastMessage:
             newState.toastMessage = nil
         case .getTotalCoin(let coin):
-            newState.totalCoin = coin
+            if coin == 0 {
+                coinUseCase.excuteCreateCoin(CoinEntity(id: UUID(), getCoin: 100, spendCoin: 0, status: 100, now: .now))
+                newState.totalCoin = 100
+            } else {
+                newState.totalCoin = coin
+            }
             return newState
+        case .userData(let useData):
+            if userUseCase.excuteTodayTotalStudyTime().isEmpty {
+                newState.todayStudyTime = 0
+            } else {
+                for i in 0...userUseCase.excuteTodayTotalStudyTime().count-1 {
+                    var totalStudyTime = 0
+                    totalStudyTime += userUseCase.excuteTodayTotalStudyTime()[i].settingTime
+                    newState.todayStudyTime = totalStudyTime
+                }
+                return newState
+            }
         }
         
         return newState

@@ -23,7 +23,7 @@ extension AppDelegate {
         DIContainer.register(CoreDataUseCase(), type: CoreDataUseCaseInterface.self)
         DIContainer.register(CoinRepositoryImpl(coinStorage: .coinStorage), type: CoinRepository.self)
         DIContainer.register(CoinUseCase(), type: CoinUseCaseInterface.self)
-
-
+        DIContainer.register(UserRepositoryImpl(userStorage: .userStorage), type: UserRepository.self)
+        DIContainer.register(UserUseCase(), type: UserUseCaseInterface.self)
     }
 }

@@ -173,6 +173,13 @@ extension HomeViewController: View {
                 owner.mainview.totalCoinLabel.text = "\(coin)"
             }
             .disposed(by: disposeBag)
+        
+        reactor.state
+            .map(\.todayStudyTime)
+            .bind(with: self) { owner, time in
+                owner.mainview.iconImageView.image = GrowImageManager.changedImage(time: time)
+            }
+            .disposed(by: disposeBag)
     }
     
     // 타이머 완료시 팝업 표시 메서드

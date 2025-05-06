@@ -12,7 +12,7 @@ public class GrowImageManager {
     
     private init() { }
     
-    static func ChangedImage(time: Int) -> UIImage {
+    public static func changedImage(time: Int) -> UIImage {
         switch time {
         case 0:
             return .seeds
