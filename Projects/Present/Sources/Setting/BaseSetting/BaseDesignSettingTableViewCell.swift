@@ -63,7 +63,7 @@ final class BaseDesignSettingTableViewCell: BaseTVCell {
 }
 
 extension BaseDesignSettingTableViewCell {
-    func configureFont(with: String, indexPath: Int) {
+    func configureFont(with: String, indexPath: Int, purchase: Bool) {
         explainLabel.text = with
         
         switch indexPath {
@@ -78,9 +78,24 @@ extension BaseDesignSettingTableViewCell {
         default:
             explainLabel.font = FontThema.UhBeeFont.Font24
         }
+        
+        if !purchase {
+            containView.backgroundColor = .systemGray
+            lockImageView.image = .lock
+        } else {
+            containView.backgroundColor = ThemaManager.shared.mainColor
+            lockImageView.image = nil
+        }
     }
     
-    func configureThema(with: String) {
+    func configureThema(with: String, purchase: Bool) {
         explainLabel.text = with
+        if !purchase {
+            containView.backgroundColor = .systemGray
+            lockImageView.image = .lock
+        } else {
+            containView.backgroundColor = ThemaManager.shared.mainColor
+            lockImageView.image = nil
+        }
     }
 }

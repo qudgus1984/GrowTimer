@@ -10,11 +10,18 @@ import Foundation
 
 import Utility
 import ThirdPartyLibrary
+import Domain
+import DesignSystem
 
 import ReactorKit
 import RxSwift
 
 final class HomeReactor: Reactor {
+    
+    @Injected private var coinUseCase: CoinUseCaseInterface
+    @Injected private var userUseCase: UserUseCaseInterface
+    @Injected private var fontUseCase: FontUseCaseInterface
+    @Injected private var themaUseCase: ThemaUseCaseInterface
     
     var initialState = State()
     private var timer: Disposable? // Rx의 Disposable로 타이머 정의
@@ -46,6 +53,9 @@ final class HomeReactor: Reactor {
         case navigateToSetting(Bool)
         case toggleBulb
         case navigateToTimeLine(Bool)
+        case getTotalCoin(Int)
+        
+        case userData([UserEntity])
     }
     
     struct State {
@@ -65,6 +75,9 @@ final class HomeReactor: Reactor {
         var shouldToggleBulb: Bool = false
         var shouldNavigateToTimeLine: Bool = false
         var screenBrightness: CGFloat = UserDefaultManager.bright
+        var totalCoin = 0
+        
+        var todayStudyTime: Int = 0
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -72,7 +85,23 @@ final class HomeReactor: Reactor {
         case .viewDidLoadTrigger(let brightNess):
             UserDefaultManager.stopCount = 3
             UserDefaultManager.bright = brightNess
-            return .empty()
+            let user = userUseCase.excuteFetchUser()
+            
+            if fontUseCase.excuteFetchFontTable().isEmpty {
+                fontUseCase.excuteFirstStartFont(fontName: FontThema.UhBeeFont.rawValue, purcase: true)
+                fontUseCase.excuteFirstStartFont(fontName: FontThema.GangwonFont.rawValue, purcase: false)
+                fontUseCase.excuteFirstStartFont(fontName: FontThema.LeeSeoyunFont.rawValue, purcase: false)
+                fontUseCase.excuteFirstStartFont(fontName: FontThema.SimKyunghaFont.rawValue, purcase: false)
+            }
+            
+            if themaUseCase.excuteFetchThemaTable().isEmpty {
+                themaUseCase.excuteFirstStartThema(themaName: Thema.SeSACThema.rawValue, purcase: true)
+                themaUseCase.excuteFirstStartThema(themaName: Thema.PurpleThema.rawValue, purcase: false)
+                themaUseCase.excuteFirstStartThema(themaName: Thema.PinkThema.rawValue, purcase: false)
+                themaUseCase.excuteFirstStartThema(themaName: Thema.NightThema.rawValue, purcase: false)
+                themaUseCase.excuteFirstStartThema(themaName: Thema.BeachThema.rawValue, purcase: false)
+            }
+            return .concat([.just(.getTotalCoin(coinUseCase.excuteTotalCoin())), .just(.userData(user))])
             
         case .timerButtonTapped:
             if currentState.isTimerRunning {
@@ -148,6 +177,7 @@ final class HomeReactor: Reactor {
                 .just(.resetTimer)
             ])
         case .calendarButtonTapped:
+            coinUseCase.excuteCreateCoin(CoinEntity(id: UUID(), getCoin: 300, spendCoin: 0, status: 100, now: .now))
             return .concat([
                 .just(.navigateToCalendar(true)),
                 .just(.navigateToCalendar(false)).delay(.milliseconds(100), scheduler: MainScheduler.instance)
@@ -213,6 +243,7 @@ final class HomeReactor: Reactor {
         case .stopChance(let chance):
             newState.stopChances = chance
         case .navigateToCalendar(let navigate):
+            newState.totalCoin = coinUseCase.excuteTotalCoin()
             newState.shouldNavigateToCalendar = navigate
             return newState
             
@@ -233,6 +264,25 @@ final class HomeReactor: Reactor {
             return newState
         case .clearToastMessage:
             newState.toastMessage = nil
+        case .getTotalCoin(let coin):
+            if coin == 0 {
+                coinUseCase.excuteCreateCoin(CoinEntity(id: UUID(), getCoin: 100, spendCoin: 0, status: 100, now: .now))
+                newState.totalCoin = 100
+            } else {
+                newState.totalCoin = coin
+            }
+            return newState
+        case .userData(let useData):
+            if userUseCase.excuteTodayTotalStudyTime().isEmpty {
+                newState.todayStudyTime = 0
+            } else {
+                for i in 0...userUseCase.excuteTodayTotalStudyTime().count-1 {
+                    var totalStudyTime = 0
+                    totalStudyTime += userUseCase.excuteTodayTotalStudyTime()[i].settingTime
+                    newState.todayStudyTime = totalStudyTime
+                }
+                return newState
+            }
         }
         
         return newState

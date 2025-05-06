@@ -11,6 +11,7 @@ import UIKit
 import Utility
 import ThirdPartyLibrary
 import DesignSystem
+import Domain
 
 import SnapKit
 import ReactorKit
@@ -30,10 +31,11 @@ final class HomeViewController: BaseViewController {
         super.init()
         self.reactor = reactor
     }
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationBar()
+
 //        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
 //            self.transition(FinishPopupViewController(reactor: FinishPopupReactor()), transitionStyle: .presentFullNavigation)
 //        }
@@ -163,6 +165,20 @@ extension HomeViewController: View {
                     ToastManager.shared.show(message)
                 }
             })
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map(\.totalCoin)
+            .bind(with: self) { owner, coin in
+                owner.mainview.totalCoinLabel.text = "\(coin)"
+            }
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map(\.todayStudyTime)
+            .bind(with: self) { owner, time in
+                owner.mainview.iconImageView.image = GrowImageManager.changedImage(time: time)
+            }
             .disposed(by: disposeBag)
     }
     

@@ -34,4 +34,23 @@ open class BaseViewController: UIViewController {
     open func configureUI() { }
     open func configureLayout() { }
     
+    open func showAlert(
+        title: String?,
+        message: String? = nil,
+        completion: (() -> Void)? = nil
+    ) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        
+        let cancelAction = UIAlertAction(title: "취소", style: UIAlertAction.Style.cancel)
+        
+        let okAction = UIAlertAction(title: "확인", style: .destructive ) { _ in
+            completion?()
+        }
+        
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true)
+    }
 }
+
