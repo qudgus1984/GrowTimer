@@ -153,6 +153,7 @@ extension HomeViewController: View {
             .map(\.shouldNavigateToTimeLine)
             .filter { $0 }
             .bind(with: self) { owner, _ in
+                owner.transition(TimeLineViewController(reactor: TimeLineReactor()), transitionStyle: .push)
             }
             .disposed(by: disposeBag)
         

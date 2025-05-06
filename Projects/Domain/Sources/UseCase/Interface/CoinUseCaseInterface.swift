@@ -12,4 +12,5 @@ public protocol CoinUseCaseInterface {
     func excuteGetCoin() -> [CoinEntity]
     func excuteCreateCoin(_ coin: CoinEntity)
     func excuteTotalCoin() -> Int
+    func excuteStatusExplain(status: Int) -> String
 }
