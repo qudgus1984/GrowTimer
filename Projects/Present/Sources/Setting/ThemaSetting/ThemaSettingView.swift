@@ -22,8 +22,19 @@ final class ThemaSettingView: BaseView {
         return view
     }()
     
+    let alertView: AlertView = {
+        let view = AlertView(title: "테마를 구매하시겠습니까?", subtitle: "테마 가격은 1000코인 입니다.", okButtonTitle: "확인", cancelButtonTitle: "취소")
+        view.basePopupView.backgroundColor = ThemaManager.shared.calendarChoiceColor
+        view.titleLabel.font = FontManager.shared.font16
+        view.subtitleLabel.font = FontManager.shared.font12
+        view.okButtonLabel.font = FontManager.shared.font16
+        view.cancelButtonLabel.font = FontManager.shared.font16
+        view.isHidden = true
+        return view
+    }()
+    
     override func configureUI() {
-        [tableView].forEach {
+        [tableView, alertView].forEach {
             addSubview($0)
         }
     }
@@ -32,6 +43,14 @@ final class ThemaSettingView: BaseView {
  
         tableView.snp.makeConstraints { make in
             make.edges.equalTo(0)
+        }
+        
+        alertView.snp.makeConstraints { make in
+            make.leading.equalTo(safeAreaLayoutGuide).inset(16)
+            make.trailing.equalTo(safeAreaLayoutGuide).inset(16)
+            make.height.equalTo(166)
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
         }
     }
 }

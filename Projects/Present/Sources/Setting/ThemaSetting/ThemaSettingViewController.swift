@@ -11,6 +11,7 @@ import UIKit
 import Utility
 import ThirdPartyLibrary
 import DesignSystem
+import Domain
 
 import RxSwift
 import RxCocoa
@@ -55,14 +56,35 @@ extension ThemaSettingViewController: View {
         bindState(reactor: reactor)
     }
     private func bindAction(reactor: ThemaSettingReactor) {
+        
+        let lastSelectedFontEntity = Observable.zip(
+            mainView.tableView.rx.itemSelected,
+            mainView.tableView.rx.modelSelected(ThemaEntity.self)
+        )
         // Action
-        mainView.tableView.rx.itemSelected
-            .map { Reactor.Action.cellTapped($0) }
-            .bind(to: reactor.action)
-            .disposed(by: disposeBag)
+        lastSelectedFontEntity
+        .map { indexPath, model in
+            return Reactor.Action.cellTappedWithModel(indexPath, model)
+        }
+        .bind(to: reactor.action)
+        .disposed(by: disposeBag)
         
         viewDidAppearEvent
             .map { Reactor.Action.viewDidLoadTrigger }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        mainView.alertView.okButton.rx.tap
+            .withLatestFrom(lastSelectedFontEntity)
+            .map { indexPath, model in
+                return Reactor.Action.okButtonTapped(indexPath, model)
+            }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+        
+        mainView.alertView.cancelButton
+            .rx.tap
+            .map { Reactor.Action.cancelButtonTapped }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
     }
@@ -85,6 +107,13 @@ extension ThemaSettingViewController: View {
             .filter { $0 }
             .bind(with: self, onNext: { owner, state in
                 owner.transition(HomeViewController(reactor: HomeReactor()), transitionStyle: .rootViewControllerChange)
+            })
+            .disposed(by: disposeBag)
+        
+        reactor.state
+            .map(\.alertViewIsHidden)
+            .bind(with: self, onNext: { owner, bool in
+                owner.mainView.alertView.isHidden = !bool
             })
             .disposed(by: disposeBag)
         
