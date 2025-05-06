@@ -9,6 +9,7 @@
 import UIKit
 
 import FeatureInterface
+
 import Present
 
 public final class FeatureProviderImplement: FeatureProvider {
@@ -17,5 +18,9 @@ public final class FeatureProviderImplement: FeatureProvider {
 
     public func createLaunchScreen() -> UIViewController {
         return LaunchScreenViewController()
+    }
+    
+    public func createResetPopupScreen() -> UIViewController {
+        return ResetPopupViewController(reactor: ResetPopupReactor())
     }
 }

@@ -112,8 +112,8 @@ final class ThemaSettingReactor: Reactor {
             newState.toastMessage = message
 
         case .navigateToRoot(let navigate):
+            UserDefaultManager.stopCount = 3
             newState.shouldNavigateToRoot = navigate
-            
         case .clearToastMessage:
             newState.toastMessage = nil
         case .themaTable(let themaTable):

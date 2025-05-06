@@ -79,6 +79,7 @@ final class TimeSettingReactor: Reactor {
             newState.toastMessage = message
 
         case .navigateToRoot(let navigate):
+            UserDefaultManager.stopCount = 3
             newState.shouldNavigateToRoot = navigate
             
         case .clearToastMessage:
