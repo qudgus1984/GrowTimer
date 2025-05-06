@@ -3,6 +3,7 @@
     <entity name="UserDTO" representedClassName="Data.UserDTO" syncable="YES">
         <attribute name="concentrateMode" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="finishTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="settingTime" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="startTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="stopButtonClicked" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
