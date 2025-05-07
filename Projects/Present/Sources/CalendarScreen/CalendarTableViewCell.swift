@@ -49,3 +49,19 @@ final class CalendarTableViewCell: BaseTVCell {
         }
     }
 }
+
+extension CalendarTableViewCell {
+    func configure(firstIndexText: String, secondIndexText: String, thirdIndexText: String, index: IndexPath) {
+        
+        switch index.row {
+        case 0:
+            explainLabel.text = firstIndexText
+        case 1:
+            explainLabel.text = secondIndexText
+        case 2:
+            explainLabel.text = thirdIndexText
+        default:
+            break
+        }
+    }
+}

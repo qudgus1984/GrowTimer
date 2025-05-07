@@ -76,12 +76,15 @@ extension CalendarViewController: View {
         
         // 테이블뷰 데이터 변경 시 리로드
         reactor.state
-            .map { ($0.dailyTotalTime, $0.yesterdayTotalTime, $0.monthlySuccessCount) }
+            .map { ($0.firstIndexText, $0.secondIndexText, $0.thirdIndexText) }
             .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] _ in
-                self?.mainView.tableView.reloadData()
+            .bind(with: self, onNext: { owner, data in
+                print(data)
+                owner.mainView.tableView.reloadData()
             })
             .disposed(by: disposeBag)
+        
+
     }
 }
 
@@ -96,44 +99,8 @@ extension CalendarViewController: UITableViewDataSource, UITableViewDelegate {
             return UITableViewCell()
         }
         
-        let totalTime = reactor.currentState.dailyTotalTime
-        let yesterdayTotalTime = reactor.currentState.yesterdayTotalTime
-        let monthlyCount = reactor.currentState.monthlySuccessCount
-        
-        let hour = totalTime / 60
-        let minutes = totalTime % 60
-        
-        switch indexPath.row {
-        case 0:
-            if hour == 0 {
-                cell.explainLabel.text = "오늘 \(minutes)분 만큼 성장하셨네요"
-            } else {
-                cell.explainLabel.text = "오늘 \(hour)시간 \(minutes)분 만큼 성장하셨네요"
-            }
-            
-        case 1:
-            if yesterdayTotalTime == 0 {
-                cell.explainLabel.text = "어제는 성장하지 않으셨군요!!"
-            } else {
-                let removeNum = totalTime - yesterdayTotalTime
-                let removeHour = abs(removeNum) / 60
-                let removeMinutes = abs(removeNum) % 60
-                
-                if removeNum < 0 {
-                    cell.explainLabel.text = "어제보다 \(removeHour)시간 \(removeMinutes)분 덜 했어요 😭"
-                } else if removeNum > 0 {
-                    cell.explainLabel.text = "어제보다 \(removeHour)시간 \(removeMinutes)분 더 나아갔어요!"
-                } else {
-                    cell.explainLabel.text = "한결같은 당신의 꾸준함을 응원합니다 :D"
-                }
-            }
-            
-        case 2:
-            cell.explainLabel.text = "이번 달에는 \(monthlyCount)번 성공하셨어요 👍🏻"
-            
-        default:
-            break
-        }
+        cell.configure(firstIndexText: reactor.currentState.firstIndexText, secondIndexText: reactor.currentState.secondIndexText, thirdIndexText: reactor.currentState.thirdIndexText, index: indexPath)
+
         
         return cell
     }
@@ -211,62 +178,13 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
     func maximumDate(for calendar: FSCalendar) -> Date {
         return Date()
     }
+    
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        guard let reactor = self.reactor as? CalendarReactor else { return }
+
+        Observable.just(date)
+            .map { _ in Reactor.Action.selectDate(date) }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
+    }
 }
-//final class CalendarViewController: BaseViewController {
-//    
-//    private let mainView = CalendarView()
-//    
-//    override func loadView() {
-//        view = mainView
-//    }
-//    
-//    init(reactor: CalendarReactor) {
-//        super.init()
-//        self.reactor = reactor
-//    }
-//    
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        setCalendar()
-//    }
-//    
-//    func setCalendar() {
-//        mainView.calendarView.dataSource = self
-//        mainView.calendarView.delegate = self
-//    }
-//}
-//
-//extension CalendarViewController: View {
-//    func bind(reactor: CalendarReactor) {
-//        bindAction(reactor: reactor)
-//        bindState(reactor: reactor)
-//    }
-//    
-//    func bindAction(reactor: CalendarReactor) {
-//        viewDidLoadEvent
-//        .map { Reactor.Action.viewDidLoad }
-//        .bind(to: reactor.action)
-//        .disposed(by: disposeBag)
-//    
-//    // 날짜 선택 시 Action 전달
-//        mainView.calendarView.rx.didSelect
-//        .map { Reactor.Action.selectDate($0) }
-//        .bind(to: reactor.action)
-//        .disposed(by: disposeBag)
-//    }
-//    
-//    func bindState(reactor: CalendarReactor) {
-//        
-//    }
-//}
-//
-//extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
-//    
-//    func calendar(_ calendar: FSCalendar, imageFor date: Date) -> UIImage? {
-//        guard let reactor = self.reactor else { return nil }
-//        
-//        return nil
-//        
-//    }
-//}
-//

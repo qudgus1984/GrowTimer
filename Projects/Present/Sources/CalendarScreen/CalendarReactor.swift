@@ -15,53 +15,6 @@ import Domain
 import ReactorKit
 import RxSwift
 
-//final class CalendarReactor: Reactor {
-//    
-//    @Injected private var userUseCase: UserUseCaseInterface
-//
-//    var initialState = State()
-//    
-//    enum Action {
-//        case viewDidLoad
-//        case fetchCalendarData
-//        case selectDate(Date)
-//    }
-//    
-//    enum Mutation {
-//        case setUserTasks([UserEntity])
-//        case setSelectedDate(Date)
-//        case setDailyTasks([UserEntity])
-//        case setMonthlySuccessCount(Int)
-//        case setDailyTotalTime(Int)
-//        case setYesterdayTotalTime(Int)
-//    }
-//    
-//    struct State {
-//        var userTasks: [UserEntity] = []
-//        var selectedDate: Date = Date()
-//        var dailyTasks: [UserEntity] = []
-//        var monthlySuccessCount: Int = 0
-//        var dailyTotalTime: Int = 0
-//        var yesterdayTotalTime: Int = 0
-//    }
-//    
-//    func mutate(action: Action) -> Observable<Mutation> {
-//        switch action {
-//        case .viewDidLoad:
-//            
-//        case .fetchCalendarData:
-//            
-//        case .selectDate(let date):
-//            
-//        }
-//    }
-//    
-//    func reduce(state: State, mutation: Mutation) -> State {
-//        var newState = state
-//        return newState
-//    }
-//}
-
 final class CalendarReactor: Reactor {
     
     @Injected private var userUseCase: UserUseCaseInterface
@@ -81,6 +34,9 @@ final class CalendarReactor: Reactor {
         case setMonthlySuccessCount(Int)
         case setDailyTotalTime(Int)
         case setYesterdayTotalTime(Int)
+        case firstIndexData(String)
+        case secondIndexData(String)
+        case thirdIndexData(String)
     }
     
     struct State {
@@ -90,23 +46,28 @@ final class CalendarReactor: Reactor {
         var monthlySuccessCount: Int = 0
         var dailyTotalTime: Int = 0
         var yesterdayTotalTime: Int = 0
+        var firstIndexText: String = ""
+        var secondIndexText: String = ""
+        var thirdIndexText: String = ""
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .viewDidLoad:
             return Observable.concat([
-                Observable.just(Mutation.setSelectedDate(Date())),
-                fetchCalendarData()
+                
+                fetchCalendarData(),
+                fetchSelectedData(for: Date())
             ])
             
         case .fetchCalendarData:
             return fetchCalendarData()
             
         case .selectDate(let date):
+
             return Observable.concat([
                 Observable.just(Mutation.setSelectedDate(date)),
-                fetchDailyData(for: date)
+                fetchSelectedData(for: date)
             ])
         }
     }
@@ -116,28 +77,69 @@ final class CalendarReactor: Reactor {
         return Observable.just(Mutation.setUserTasks(tasks))
     }
     
-    private func fetchDailyData(for date: Date) -> Observable<Mutation> {
-        let dailyTasks = userUseCase.excuteSpecificDateFilter(date: date)
-        let dailyTasksMutation = Observable.just(Mutation.setDailyTasks(dailyTasks))
+    private let koreanCalendar: Calendar = {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = TimeZone(identifier: "Asia/Seoul")!
+        return calendar
+    }()
+
+    // 이제 위에서 선언한 koreanCalendar를 사용하는 함수
+    private func normalizeToKoreanMidnight(date: Date) -> Date {
+        let components = koreanCalendar.dateComponents([.year, .month, .day], from: date)
+        return koreanCalendar.date(from: components)!
+    }
+    
+    private func fetchSelectedData(for date: Date) -> Observable<Mutation> {
         
-        let dailyTotalTime = userUseCase.excuteDayTotalTimeFilter(date: date)
-        let totalTimeMutation = Observable.just(Mutation.setDailyTotalTime(dailyTotalTime))
+        let krDate = normalizeToKoreanMidnight(date: date)
+        let nowKrDate = normalizeToKoreanMidnight(date: Date())
         
-        // 어제 데이터 (하루 전 날짜)
-        let yesterdayDate = Calendar.current.date(byAdding: .day, value: -1, to: date) ?? Date()
-        let yesterdayTotalTime = userUseCase.excuteDayTotalTimeFilter(date: yesterdayDate)
-        let yesterdayTimeMutation = Observable.just(Mutation.setYesterdayTotalTime(yesterdayTotalTime))
-        
-        // 해당 달의 성공 횟수
-        let monthlyCount = userUseCase.monthCount(date: date)
-        let monthlyCountMutation = Observable.just(Mutation.setMonthlySuccessCount(monthlyCount))
-        
-        return Observable.concat([
-            dailyTasksMutation,
-            totalTimeMutation,
-            yesterdayTimeMutation,
-            monthlyCountMutation
-        ])
+        print("@@@@",krDate, nowKrDate)
+        if userUseCase.excuteSpecificDateFilter(date: krDate).isEmpty {
+            let hour = userUseCase.excuteDayTotalTimeFilter(date: nowKrDate) / 60
+            let minutes = userUseCase.excuteDayTotalTimeFilter(date: nowKrDate) % 60
+            
+            var firstIndexData = ""
+            if hour == 0 {
+                firstIndexData = "오늘 \(minutes) 분 만큼 성장하셨네요"
+            } else {
+                firstIndexData = "오늘 \(hour)시간 \(minutes)분 만큼 성장하셨네요"
+            }
+            
+            let secondIndexData = "어제는 성장하지 않았습니다!"
+            let thirdIndexData = "이번달에는 \(userUseCase.monthCount(date: nowKrDate))번 성공하셨습니다 👍🏻"
+            return Observable.concat(
+                Observable.just(.firstIndexData(firstIndexData)),
+                Observable.just(.secondIndexData(secondIndexData)),
+                Observable.just(.thirdIndexData(thirdIndexData))
+            )
+        } else {
+            let hour = userUseCase.excuteDayTotalTimeFilter(date: nowKrDate) / 60
+            let minutes = userUseCase.excuteDayTotalTimeFilter(date: nowKrDate) % 60
+            
+            let removeNum = userUseCase.excuteDayTotalTimeFilter(date: nowKrDate) - userUseCase.excuteDayTotalTimeFilter(date: nowKrDate - 86400)
+            let removehour = removeNum / 60
+            let removeminutes = removeNum % 60
+            
+            print(removeNum, removehour, removeminutes)
+            let firstIndexData = "오늘 \(hour)시간 \(minutes)분 만큼 성장하셨네요"
+            
+            var secondIndexData = ""
+            if removeNum < 0 {
+                secondIndexData = "어제보다 \(-removehour)시간 \(-removeminutes)분 덜 했어요 😭"
+            } else if removeNum > 0 {
+                secondIndexData = "어제보다 \(removehour)시간 \(removeminutes)분 더 나아갔어요!"
+            } else {
+                secondIndexData = "한결같은 당신의 꾸준함을 응원합니다 :D"
+            }
+            let thirdIndexData = "이번 달에는 \(userUseCase.monthCount(date: nowKrDate))번 성공하셨어요 👍🏻"
+
+            return Observable.concat(
+                Observable.just(.firstIndexData(firstIndexData)),
+                Observable.just(.secondIndexData(secondIndexData)),
+                Observable.just(.thirdIndexData(thirdIndexData))
+            )
+        }
     }
     
     func reduce(state: State, mutation: Mutation) -> State {
@@ -161,8 +163,13 @@ final class CalendarReactor: Reactor {
             
         case .setYesterdayTotalTime(let time):
             newState.yesterdayTotalTime = time
+        case .firstIndexData(let text):
+            newState.firstIndexText = text
+        case .secondIndexData(let text):
+            newState.secondIndexText = text
+        case .thirdIndexData(let text):
+            newState.thirdIndexText = text
         }
-        
         return newState
     }
 }
