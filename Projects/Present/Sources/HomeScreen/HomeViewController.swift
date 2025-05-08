@@ -124,6 +124,7 @@ extension HomeViewController: View {
             .bind(with: self) { owner, _ in
                 // 캘린더 화면으로 이동하는 로직
                 print("calenderButtonTapped")
+                owner.transition(CalendarViewController(reactor: CalendarReactor()), transitionStyle: .push)
             }
             .disposed(by: disposeBag)
         

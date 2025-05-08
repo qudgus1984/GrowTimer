@@ -13,8 +13,8 @@ let project = Project(
     packages: [
         .remote(url: "https://github.com/ReactorKit/ReactorKit.git", requirement: .upToNextMajor(from: "3.2.0")),
         .remote(url: "https://github.com/ReactiveX/RxSwift.git", requirement: .upToNextMajor(from: "6.9.0")),
-        .remote(url: "https://github.com/SnapKit/SnapKit.git", requirement: .upToNextMajor(from: "5.7.1"))
-
+        .remote(url: "https://github.com/SnapKit/SnapKit.git", requirement: .upToNextMajor(from: "5.7.1")),
+        .remote(url: "https://github.com/WenchaoD/FSCalendar.git", requirement: .upToNextMajor(from: "2.8.4"))
     ],
     targets: [
         Target.target(
@@ -32,6 +32,7 @@ let project = Project(
                 .package(product: "RxSwift", type: .runtime),
                 .package(product: "SnapKit", type: .runtime),
                 .project(target: "GTToast", path: "../GTToast"),
+                .package(product: "FSCalendar", type: .runtime),
             ]
         ),
         Target.target(

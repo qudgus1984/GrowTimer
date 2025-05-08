@@ -86,6 +86,12 @@ final class HomeReactor: Reactor {
             UserDefaultManager.stopCount = 3
             UserDefaultManager.bright = brightNess
             let user = userUseCase.excuteFetchUser()
+            for _ in 0...3 {
+                print(UserDefaultManager.engagedTime)
+                userUseCase.excuteAddUser(settingTime: UserDefaultManager.engagedTime)
+                guard let lastUserId = userUseCase.excuteTodayFilter().last?.id else { continue }
+                userUseCase.excuteUpdateUserState(id: lastUserId, success: true)
+            }
             
             if fontUseCase.excuteFetchFontTable().isEmpty {
                 fontUseCase.excuteFirstStartFont(fontName: FontThema.UhBeeFont.rawValue, purcase: true)

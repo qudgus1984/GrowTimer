@@ -24,6 +24,13 @@ public class UserDTO: NSManagedObject {
     @discardableResult
     static func create(in context: NSManagedObjectContext,
                       settingTime: Int32) -> UserDTO {
+        
+        let entity = NSEntityDescription.entity(forEntityName: "UserDTO", in: context)
+        
+        guard let entity = entity else {
+            fatalError("Failed to find entity description for UserDTO")
+        }
+        
         let dto = UserDTO(context: context)
         dto.id = UUID()
         dto.startTime = Date()
@@ -31,6 +38,9 @@ public class UserDTO: NSManagedObject {
         dto.concentrateMode = false
         dto.settingTime = settingTime
         dto.stopButtonClicked = 0
+        
+        print("Created UserDTO with settingTime: \(settingTime), id: \(dto.id)")
+
         return dto
     }
 }
