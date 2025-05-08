@@ -40,6 +40,8 @@ final class CalendarTableViewCell: BaseTVCell {
     }
     
     override func configureLayout() {
+        self.backgroundColor = ThemaManager.shared.lightColor
+        
         containView.snp.makeConstraints { make in
             make.edges.equalTo(safeAreaLayoutGuide).inset(4)
         }

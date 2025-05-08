@@ -32,15 +32,24 @@ final class CalendarViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setCalendar()
-        
+        configureNavigation()
         // 테이블뷰 설정
         mainView.tableView.dataSource = self
         mainView.tableView.delegate = self
     }
     
-    func setCalendar() {
+    private func setCalendar() {
         mainView.calendarView.dataSource = self
         mainView.calendarView.delegate = self
+    }
+    
+    private func configureNavigation() {
+        let appearence = UINavigationBarAppearance()
+        appearence.backgroundColor = ThemaManager.shared.lightColor
+        appearence.shadowColor = .clear
+
+        navigationItem.standardAppearance = appearence
+        navigationItem.scrollEdgeAppearance = appearence
     }
 }
 
