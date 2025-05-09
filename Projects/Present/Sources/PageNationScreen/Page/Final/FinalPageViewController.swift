@@ -62,8 +62,14 @@ extension FinalPageViewController: View {
         
         reactor.state
             .map(\.rootChangeHomeViewController)
+            .filter { $0 }
             .bind(with: self) { owner, _ in
-                owner.transition(TimeSettingViewController(reactor: TimeSettingReactor(delegate: nil)), transitionStyle: .rootViewControllerChange)
+                if UserDefaultManager.engagedTime == 0 {
+                    owner.transition(TimeSettingViewController(reactor: TimeSettingReactor(delegate: nil)), transitionStyle: .rootViewControllerChange)
+
+                } else {
+                    owner.transition(HomeViewController(reactor: HomeReactor()), transitionStyle: .rootViewControllerChange)
+                }
             }
             .disposed(by: disposeBag)
     }

@@ -86,12 +86,6 @@ final class HomeReactor: Reactor {
             UserDefaultManager.stopCount = 3
             UserDefaultManager.bright = brightNess
             let user = userUseCase.excuteFetchUser()
-            for _ in 0...3 {
-                print(UserDefaultManager.engagedTime)
-                userUseCase.excuteAddUser(settingTime: UserDefaultManager.engagedTime)
-                guard let lastUserId = userUseCase.excuteTodayFilter().last?.id else { continue }
-                userUseCase.excuteUpdateUserState(id: lastUserId, success: true)
-            }
             
             if fontUseCase.excuteFetchFontTable().isEmpty {
                 fontUseCase.excuteFirstStartFont(fontName: FontThema.UhBeeFont.rawValue, purcase: true)
@@ -138,6 +132,7 @@ final class HomeReactor: Reactor {
                 // 타이머 시작 로직
                 if currentState.firstStartButtonClicked {
                     // 필요한 경우 저장소 로직 추가
+                    userUseCase.excuteAddUser(settingTime: UserDefaultManager.engagedTime)
                 }
                 
                 UserDefaultManager.timerRunning = true
@@ -183,7 +178,6 @@ final class HomeReactor: Reactor {
                 .just(.resetTimer)
             ])
         case .calendarButtonTapped:
-            coinUseCase.excuteCreateCoin(CoinEntity(id: UUID(), getCoin: 300, spendCoin: 0, status: 100, now: .now))
             return .concat([
                 .just(.navigateToCalendar(true)),
                 .just(.navigateToCalendar(false)).delay(.milliseconds(100), scheduler: MainScheduler.instance)

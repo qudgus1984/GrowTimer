@@ -25,7 +25,17 @@ public class LaunchScreenViewController: BaseViewController {
         navigationItem.scrollEdgeAppearance = appearence
         UserDefaultManager.timerRunning = false
         UserDefaultManager.bright = UIScreen.main.brightness
-        self.transition(PageNationViewController(), transitionStyle: .rootViewControllerChange)
         
+        if UserDefaultManager.start {
+            if UserDefaultManager.engagedTime == 0 {
+                self.transition(TimeSettingViewController(reactor: TimeSettingReactor(delegate: nil)), transitionStyle: .rootViewControllerChange)
+
+            } else {
+                self.transition(HomeViewController(reactor: HomeReactor()), transitionStyle: .rootViewControllerChange)
+            }
+        } else {
+            self.transition(PageNationViewController(), transitionStyle: .rootViewControllerChange)
+            
+        }
     }
 }

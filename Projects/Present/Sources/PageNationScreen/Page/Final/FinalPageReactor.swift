@@ -25,12 +25,12 @@ final class FinalPageReactor: Reactor {
     
     enum Mutation {
         case viewDidLoadTrigger(Void)
-        case firstStartCheck(Bool)
+        case navigateToHome(Bool)
     }
     
     struct State {
         var viewDidLoadTrigger: Void = ()
-        var rootChangeHomeViewController: Void = ()
+        var rootChangeHomeViewController: Bool = false
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -38,7 +38,10 @@ final class FinalPageReactor: Reactor {
         case .viewDidLoadTrigger:
             return Observable.just(.viewDidLoadTrigger(()))
         case .finishButtonTapped:
-            return Observable.just(.firstStartCheck(true))
+            return .concat([
+                .just(.navigateToHome(true)),
+                .just(.navigateToHome(false)).delay(.milliseconds(100), scheduler: MainScheduler.instance)
+            ])
         }
     }
     
@@ -47,9 +50,9 @@ final class FinalPageReactor: Reactor {
         switch mutation {
         case .viewDidLoadTrigger(let event):
             state.viewDidLoadTrigger = event
-        case .firstStartCheck(let bool):
-            UserDefaultManager.start = bool
-            state.rootChangeHomeViewController = ()
+        case .navigateToHome(let bool):
+            UserDefaultManager.start = true
+            state.rootChangeHomeViewController = bool
         }
         return state
     }

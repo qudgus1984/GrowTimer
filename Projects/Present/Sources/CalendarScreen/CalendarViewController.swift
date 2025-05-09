@@ -133,7 +133,7 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
         if tasks.isEmpty {
             return nil
         } else {
-            let totalStudyTime = tasks.reduce(0) { $0 + $1.settingTime }
+            let totalStudyTime = tasks.filter { $0.success }.reduce(0) { $0 + $1.settingTime }
             
             switch totalStudyTime/3600 {
             case 0:
@@ -160,7 +160,7 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
         if tasks.isEmpty {
             return nil
         } else {
-            let totalStudyTime = tasks.reduce(0) { $0 + $1.settingTime }
+            let totalStudyTime = tasks.filter { $0.success }.reduce(0) { $0 + $1.settingTime }
             return dateChangedIcon(time: totalStudyTime)
         }
     }

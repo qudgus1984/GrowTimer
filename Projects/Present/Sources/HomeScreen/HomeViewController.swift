@@ -34,11 +34,8 @@ final class HomeViewController: BaseViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        UIApplication.shared.isIdleTimerDisabled = true
         configureNavigationBar()
-
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
-//            self.transition(FinishPopupViewController(reactor: FinishPopupReactor()), transitionStyle: .presentFullNavigation)
-//        }
     }
 }
 
