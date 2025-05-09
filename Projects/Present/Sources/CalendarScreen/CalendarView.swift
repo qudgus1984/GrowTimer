@@ -20,7 +20,7 @@ final class CalendarView: BaseView {
     lazy var tableView: UITableView = {
         let view = UITableView(frame: .zero, style: .insetGrouped)
         view.backgroundColor = ThemaManager.shared.lightColor
-        view.register(CalendarTableViewCell.self, forCellReuseIdentifier: "CalendarTableViewCell")
+        view.register(CalendarTableViewCell.self, forCellReuseIdentifier: CalendarTableViewCell.reuseIdentifier)
         return view
     }()
     

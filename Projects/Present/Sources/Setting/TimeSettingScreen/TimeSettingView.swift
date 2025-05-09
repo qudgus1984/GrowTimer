@@ -18,7 +18,7 @@ final class TimeSettingView: BaseView {
     lazy var tableView: UITableView = {
         let view = UITableView(frame: .zero, style: .insetGrouped)
         view.backgroundColor = ThemaManager.shared.lightColor
-        view.register(TimeSettingTableViewCell.self, forCellReuseIdentifier: "TimeSettingTableViewCell")
+        view.register(TimeSettingTableViewCell.self, forCellReuseIdentifier: TimeSettingTableViewCell.reuseIdentifier)
         return view
     }()
     

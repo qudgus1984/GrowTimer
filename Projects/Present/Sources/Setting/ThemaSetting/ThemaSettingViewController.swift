@@ -119,7 +119,7 @@ extension ThemaSettingViewController: View {
         
         reactor.state
             .map(\.themaTable)
-            .bind(to: mainView.tableView.rx.items(cellIdentifier: "BaseDesignSettingTableViewCell", cellType: BaseDesignSettingTableViewCell.self)) { indexPath, item, cell in
+            .bind(to: mainView.tableView.rx.items(cellIdentifier: BaseDesignSettingTableViewCell.reuseIdentifier, cellType: BaseDesignSettingTableViewCell.self)) { indexPath, item, cell in
                 cell.configureThema(with: item.themaName, purchase: item.purchase)
             }
             .disposed(by: disposeBag)

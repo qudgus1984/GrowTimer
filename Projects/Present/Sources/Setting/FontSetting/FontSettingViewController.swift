@@ -120,7 +120,7 @@ extension FontSettingViewController: View {
         
         reactor.state
             .map(\.fontTable)
-            .bind(to: mainView.tableView.rx.items(cellIdentifier: "BaseDesignSettingTableViewCell", cellType: BaseDesignSettingTableViewCell.self)) { indexPath, item, cell in
+            .bind(to: mainView.tableView.rx.items(cellIdentifier: BaseDesignSettingTableViewCell.reuseIdentifier, cellType: BaseDesignSettingTableViewCell.self)) { indexPath, item, cell in
                 cell.configureFont(with: item.fontName, indexPath: indexPath, purchase: item.purchase)
             }
             .disposed(by: disposeBag)

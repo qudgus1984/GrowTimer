@@ -58,7 +58,7 @@ extension TimeLineViewController: View {
     private func bindState(reactor: TimeLineReactor) {
         reactor.state
             .map(\.timeLine)
-            .bind(to: mainView.tableView.rx.items(cellIdentifier: "TimeLineTableViewCell", cellType: TimeLineTableViewCell.self)) { indexPath, item, cell in
+            .bind(to: mainView.tableView.rx.items(cellIdentifier: TimeLineTableViewCell.reuseIdentifier, cellType: TimeLineTableViewCell.self)) { indexPath, item, cell in
                 cell.configureTimeLine(item: item)
             }
             .disposed(by: disposeBag)

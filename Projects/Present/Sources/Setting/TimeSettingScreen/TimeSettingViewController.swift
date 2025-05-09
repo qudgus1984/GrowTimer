@@ -93,7 +93,7 @@ extension TimeSettingViewController: View {
         
         reactor.state
             .map(\.timeSettingList)
-            .bind(to: mainView.tableView.rx.items(cellIdentifier: "TimeSettingTableViewCell", cellType: TimeSettingTableViewCell.self)) { indexPath, item, cell in
+            .bind(to: mainView.tableView.rx.items(cellIdentifier: TimeSettingTableViewCell.reuseIdentifier, cellType: TimeSettingTableViewCell.self)) { indexPath, item, cell in
                 cell.configure(with: item)
             }
             .disposed(by: disposeBag)

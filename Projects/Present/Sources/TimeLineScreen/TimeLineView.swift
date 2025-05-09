@@ -18,7 +18,7 @@ final class TimeLineView: BaseView {
     lazy var tableView: UITableView = {
         let view = UITableView(frame: .zero, style: .insetGrouped)
         view.backgroundColor = ThemaManager.shared.lightColor
-        view.register(TimeLineTableViewCell.self, forCellReuseIdentifier: "TimeLineTableViewCell")
+        view.register(TimeLineTableViewCell.self, forCellReuseIdentifier: TimeLineTableViewCell.reuseIdentifier)
         return view
     }()
     

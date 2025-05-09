@@ -18,7 +18,7 @@ final class FontSettingView: BaseView {
     lazy var tableView: UITableView = {
         let view = UITableView(frame: .zero, style: .insetGrouped)
         view.backgroundColor = ThemaManager.shared.lightColor
-        view.register(BaseDesignSettingTableViewCell.self, forCellReuseIdentifier: "BaseDesignSettingTableViewCell")
+        view.register(BaseDesignSettingTableViewCell.self, forCellReuseIdentifier: BaseDesignSettingTableViewCell.reuseIdentifier)
         return view
     }()
     
