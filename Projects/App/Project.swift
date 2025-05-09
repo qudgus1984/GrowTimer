@@ -18,7 +18,7 @@ let project = Project(
             name: "App",
             destinations: [.iPhone, .iPad],
             product: .app,
-            bundleId: "com.den.growtimer",
+            bundleId: "com.den.growtimerv2",
             deploymentTargets: .iOS("16.0"),
             infoPlist: .extendingDefault(with: [
                 "UILaunchStoryboardName": "LaunchScreen",
@@ -49,6 +49,7 @@ let project = Project(
             settings: .settings(
                 base: [
                     "PRODUCT_NAME": "GrowTimer",
+                    "DEVELOPMENT_TEAM": "qudgus1984@naver.com", // 여기에 개발 팀 ID를 입력합니다
                     "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "RELEASE",
                     // 모든 빌드 구성에 공통으로 적용되는 설정
                 ],
