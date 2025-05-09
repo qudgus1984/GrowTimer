@@ -34,11 +34,9 @@ final class HomeViewController: BaseViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        UIApplication.shared.isIdleTimerDisabled = true
         configureNavigationBar()
 
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
-//            self.transition(FinishPopupViewController(reactor: FinishPopupReactor()), transitionStyle: .presentFullNavigation)
-//        }
     }
 }
 
@@ -112,14 +110,17 @@ extension HomeViewController: View {
                     
         // 타이머 완료 시 팝업 표시 바인딩
         reactor.state
-            .filter { $0.remainingTime <= 0 && !$0.isTimerRunning }
+            .map(\.shouldNavigateToFinishPopup)
+            .distinctUntilChanged()
+            .filter { $0 }
             .bind(with: self) { owner, _ in
-                owner.finishPopupVCAppear()
+                owner.transition(FinishPopupViewController(reactor: FinishPopupReactor()), transitionStyle: .presentFullNavigation)
             }
             .disposed(by: disposeBag)
         
         reactor.state
             .map(\.shouldNavigateToCalendar)
+            .distinctUntilChanged()
             .filter { $0 }
             .bind(with: self) { owner, _ in
                 // 캘린더 화면으로 이동하는 로직
@@ -131,6 +132,7 @@ extension HomeViewController: View {
         // 설정 화면 이동
         reactor.state
             .map(\.shouldNavigateToSetting)
+            .distinctUntilChanged()
             .filter { $0 }
             .bind(with: self) { owner, _ in
                 // 설정 화면으로 이동하는 로직
@@ -152,6 +154,7 @@ extension HomeViewController: View {
         // 타임라인 화면 이동
         reactor.state
             .map(\.shouldNavigateToTimeLine)
+            .distinctUntilChanged()
             .filter { $0 }
             .bind(with: self) { owner, _ in
                 owner.transition(TimeLineViewController(reactor: TimeLineReactor()), transitionStyle: .push)
@@ -178,18 +181,11 @@ extension HomeViewController: View {
         
         reactor.state
             .map(\.todayStudyTime)
+            .distinctUntilChanged()
             .bind(with: self) { owner, time in
                 owner.mainview.iconImageView.image = GrowImageManager.changedImage(time: time)
             }
             .disposed(by: disposeBag)
-    }
-    
-    // 타이머 완료시 팝업 표시 메서드
-    func finishPopupVCAppear() {
-        // 팝업 표시 로직 구현
-        // 예시:
-        // let finishPopupVC = FinishPopupViewController()
-        // present(finishPopupVC, animated: true)
     }
 }
 

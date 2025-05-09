@@ -10,11 +10,15 @@ import Foundation
 
 import Utility
 import ThirdPartyLibrary
+import Domain
 
 import ReactorKit
 import RxSwift
 
 final class FinishPopupReactor: Reactor {
+    
+    @Injected private var coinUseCase: CoinUseCaseInterface
+    @Injected private var userUseCase: UserUseCaseInterface
     
     var initialState = State()
     
@@ -51,6 +55,10 @@ final class FinishPopupReactor: Reactor {
         switch mutation {
         case .viewDidLoadTrigger(let event):
             state.viewDidLoadTrigger = event
+            guard let lastUserId = userUseCase.excuteFetchUser().last?.id else { return state }
+            userUseCase.excuteUpdateUserState(id: lastUserId, success: true)
+            coinUseCase.excuteCreateCoin(CoinEntity(id: UUID(), getCoin: coinUseCase.excuteAddCoin(spendTime: UserDefaultManager.engagedTime), spendCoin: 0, status: 101, now: .now))
+            
         case .navigateToRoot(let navigate):
             UserDefaultManager.stopCount = 3
             UserDefaultManager.timerRunning = false
