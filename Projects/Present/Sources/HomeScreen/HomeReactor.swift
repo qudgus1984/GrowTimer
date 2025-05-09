@@ -53,6 +53,8 @@ final class HomeReactor: Reactor {
         case navigateToSetting(Bool)
         case toggleBulb
         case navigateToTimeLine(Bool)
+        case navigateToFinishPopup(Bool)
+
         case getTotalCoin(Int)
         
         case userData([UserEntity])
@@ -74,6 +76,8 @@ final class HomeReactor: Reactor {
         var shouldNavigateToSetting: Bool = false
         var shouldToggleBulb: Bool = false
         var shouldNavigateToTimeLine: Bool = false
+        var shouldNavigateToFinishPopup: Bool = false
+
         var screenBrightness: CGFloat = UserDefaultManager.bright
         var totalCoin = 0
         
@@ -142,6 +146,7 @@ final class HomeReactor: Reactor {
                 
                 // 타이머 로직 수정 - Action을 직접 전달
                 timer = Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
+//                timer = Observable<Int>.interval(.milliseconds(10), scheduler: MainScheduler.instance)
                     .subscribe(onNext: { [weak self] _ in
                         guard let self = self else { return }
                         
@@ -162,10 +167,19 @@ final class HomeReactor: Reactor {
             let newRemainingTime = currentState.remainingTime - 1
             let progress = Float(newRemainingTime) / Float(currentState.totalTime)
             
-            return .concat([
-                .just(.updateRemainingTime(newRemainingTime)),
-                .just(.updateProgress(1.0 - progress))
-            ])
+            if newRemainingTime <= 0 {
+                return .concat([
+                    .just(.updateRemainingTime(newRemainingTime)),
+                    .just(.updateProgress(1.0 - progress)),
+                    .just(.navigateToFinishPopup(true)),
+                    .just(.navigateToFinishPopup(false)).delay(.milliseconds(100), scheduler: MainScheduler.instance)
+                ])
+            } else {
+                return .concat([
+                    .just(.updateRemainingTime(newRemainingTime)),
+                    .just(.updateProgress(1.0 - progress))
+                ])
+            }
             
         case .timerCompleted:
             timer?.dispose()
@@ -210,12 +224,16 @@ final class HomeReactor: Reactor {
         case .updateRemainingTime(let time):
             newState.remainingTime = time
             
+            print(time)
             // 시간이 0이면 타이머 완료 처리
             if time <= 0 {
                 newState.buttonTitle = "완료"
                 newState.isTimerRunning = false
                 newState.firstStartButtonClicked = true
                 
+                timer?.dispose()
+                timer = nil
+                UserDefaultManager.timerRunning = false
                 // 기본값으로 재설정
                 newState.remainingTime = newState.totalTime
             }
@@ -283,6 +301,8 @@ final class HomeReactor: Reactor {
                 }
                 return newState
             }
+        case .navigateToFinishPopup(let navigate):
+            newState.shouldNavigateToFinishPopup = navigate
         }
         
         return newState
