@@ -44,8 +44,6 @@ let project = Project(
                 .project(target: "Utility", path: "../Utility"),
                 .project(target: "FeatureInterface", path: "../FeatureInterface"),
                 .project(target: "FeatureImplement", path: "../FeatureImplement"),
-                .project(target: "ThirdPartyLibrary", path: "../ThirdPartyLibrary"),
-
             ],
 //            settings: .settings(
 //                base: [
