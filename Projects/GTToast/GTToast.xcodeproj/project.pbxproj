@@ -1,0 +1,541 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2F2D19CE599A252F4346351B /* GTToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D265F3CE1A69A64AA8461A1 /* GTToastView.swift */; };
+		4DA783E469D0BE8E5F7C74C1 /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 1472F945F0C693D7014E8D8D /* .gitkeep */; };
+		5BAD009B0A394199726E86FE /* GTToastModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EE20CE99B3063E89B4B319 /* GTToastModule.swift */; };
+		7E1C0BD5F809831EF09497B2 /* GTToastManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B72D0F518834AEA79F8C14 /* GTToastManager.swift */; };
+		8D209BE88D266AD9D48A0C2C /* TuistBundle+GTToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251DC635BB93A0B54C33782A /* TuistBundle+GTToast.swift */; };
+		9FF1B657FF84526E2365E9C1 /* GTToast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF05768A69ABF97E431CFF7E /* GTToast.framework */; };
+		D1A457D3A32A655D6C41FEFA /* GTToastPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E278DCF2E8E6CDD1B5E62516 /* GTToastPosition.swift */; };
+		EEE0B6A122A5F4F22065E792 /* GTToastStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48DF177F22D4D67D41FDFB3 /* GTToastStyle.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		42080A920542E9CBBA214DFD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE751A7FCFEE2A27AFB913F1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 17A9F341A63ED6353AFBB943;
+			remoteInfo = GTToast;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		88868DEF3067F165BBB1F229 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9066B481CB8E998EF8F7C675 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0814201AAF5C1241C5C906C9 /* GTToastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GTToastTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1472F945F0C693D7014E8D8D /* .gitkeep */ = {isa = PBXFileReference; path = .gitkeep; sourceTree = "<group>"; };
+		1D265F3CE1A69A64AA8461A1 /* GTToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GTToastView.swift; sourceTree = "<group>"; };
+		20B72D0F518834AEA79F8C14 /* GTToastManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GTToastManager.swift; sourceTree = "<group>"; };
+		251DC635BB93A0B54C33782A /* TuistBundle+GTToast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistBundle+GTToast.swift"; sourceTree = "<group>"; };
+		41EE20CE99B3063E89B4B319 /* GTToastModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GTToastModule.swift; sourceTree = "<group>"; };
+		7A6798F877ACD1F1A099469D /* GTToastTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GTToastTests-Info.plist"; sourceTree = "<group>"; };
+		BB92EBEF004E26A867FF5A17 /* GTToast-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GTToast-Info.plist"; sourceTree = "<group>"; };
+		C48DF177F22D4D67D41FDFB3 /* GTToastStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GTToastStyle.swift; sourceTree = "<group>"; };
+		E278DCF2E8E6CDD1B5E62516 /* GTToastPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GTToastPosition.swift; sourceTree = "<group>"; };
+		FF05768A69ABF97E431CFF7E /* GTToast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GTToast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0FD31E0B7D5B613D59E37521 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9FF1B657FF84526E2365E9C1 /* GTToast.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		486278A9B228651CAF328AFD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1C1F8E93F152A44EC5C94A7B /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				251DC635BB93A0B54C33782A /* TuistBundle+GTToast.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		3E6F51FB67DEDE70409D2EEE = {
+			isa = PBXGroup;
+			children = (
+				AE1AA5DC1BC7018024A4F799 /* Project */,
+				D2C66B37780BB5C9D500289D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8D4C559189A67F141684D48D /* InfoPlists */ = {
+			isa = PBXGroup;
+			children = (
+				BB92EBEF004E26A867FF5A17 /* GTToast-Info.plist */,
+				7A6798F877ACD1F1A099469D /* GTToastTests-Info.plist */,
+			);
+			path = InfoPlists;
+			sourceTree = "<group>";
+		};
+		AE1AA5DC1BC7018024A4F799 /* Project */ = {
+			isa = PBXGroup;
+			children = (
+				E35CE871A679765032AE84FD /* Derived */,
+				E87108127725E529CF19FEE1 /* Resources */,
+				D772E20E7CC5D4CA0190F57C /* Sources */,
+			);
+			name = Project;
+			sourceTree = "<group>";
+		};
+		D2C66B37780BB5C9D500289D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FF05768A69ABF97E431CFF7E /* GTToast.framework */,
+				0814201AAF5C1241C5C906C9 /* GTToastTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D772E20E7CC5D4CA0190F57C /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				20B72D0F518834AEA79F8C14 /* GTToastManager.swift */,
+				41EE20CE99B3063E89B4B319 /* GTToastModule.swift */,
+				E278DCF2E8E6CDD1B5E62516 /* GTToastPosition.swift */,
+				C48DF177F22D4D67D41FDFB3 /* GTToastStyle.swift */,
+				1D265F3CE1A69A64AA8461A1 /* GTToastView.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		E35CE871A679765032AE84FD /* Derived */ = {
+			isa = PBXGroup;
+			children = (
+				8D4C559189A67F141684D48D /* InfoPlists */,
+				1C1F8E93F152A44EC5C94A7B /* Sources */,
+			);
+			path = Derived;
+			sourceTree = "<group>";
+		};
+		E87108127725E529CF19FEE1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1472F945F0C693D7014E8D8D /* .gitkeep */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		17A9F341A63ED6353AFBB943 /* GTToast */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 05837985F4ECECEB7BDBC26F /* Build configuration list for PBXNativeTarget "GTToast" */;
+			buildPhases = (
+				3A5B68F8E18AAFE4ABC010E8 /* Sources */,
+				B6550CA1272B8625BEFF7410 /* Resources */,
+				486278A9B228651CAF328AFD /* Frameworks */,
+				88868DEF3067F165BBB1F229 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GTToast;
+			packageProductDependencies = (
+			);
+			productName = GTToast;
+			productReference = FF05768A69ABF97E431CFF7E /* GTToast.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		55AF4E330E367EB2388E21C5 /* GTToastTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2104A13B349AA98CD55350A6 /* Build configuration list for PBXNativeTarget "GTToastTests" */;
+			buildPhases = (
+				A27148B0D8DFCB66BDC9F709 /* Resources */,
+				0FD31E0B7D5B613D59E37521 /* Frameworks */,
+				9066B481CB8E998EF8F7C675 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B0A55B93560D5E0AF5A4984E /* PBXTargetDependency */,
+			);
+			name = GTToastTests;
+			packageProductDependencies = (
+			);
+			productName = GTToastTests;
+			productReference = 0814201AAF5C1241C5C906C9 /* GTToastTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CE751A7FCFEE2A27AFB913F1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				ORGANIZATIONNAME = Den;
+			};
+			buildConfigurationList = C9E6C554F80BC8D40E2310B4 /* Build configuration list for PBXProject "GTToast" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 3E6F51FB67DEDE70409D2EEE;
+			productRefGroup = D2C66B37780BB5C9D500289D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				17A9F341A63ED6353AFBB943 /* GTToast */,
+				55AF4E330E367EB2388E21C5 /* GTToastTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A27148B0D8DFCB66BDC9F709 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B6550CA1272B8625BEFF7410 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4DA783E469D0BE8E5F7C74C1 /* .gitkeep in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3A5B68F8E18AAFE4ABC010E8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D209BE88D266AD9D48A0C2C /* TuistBundle+GTToast.swift in Sources */,
+				7E1C0BD5F809831EF09497B2 /* GTToastManager.swift in Sources */,
+				5BAD009B0A394199726E86FE /* GTToastModule.swift in Sources */,
+				D1A457D3A32A655D6C41FEFA /* GTToastPosition.swift in Sources */,
+				EEE0B6A122A5F4F22065E792 /* GTToastStyle.swift in Sources */,
+				2F2D19CE599A252F4346351B /* GTToastView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B0A55B93560D5E0AF5A4984E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GTToast;
+			target = 17A9F341A63ED6353AFBB943 /* GTToast */;
+			targetProxy = 42080A920542E9CBBA214DFD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		260E094E2A52640D5DB2DD0C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = "Derived/InfoPlists/GTToastTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.den.growtimer.toast.tests;
+				PRODUCT_NAME = GTToastTests;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		8755F8BF44898A9C318ABD1C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = "Derived/InfoPlists/GTToastTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.den.growtimer.toast.tests;
+				PRODUCT_NAME = GTToastTests;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+					"$(inherited)",
+					DEBUG,
+				);
+				SWIFT_COMPILATION_MODE = singlefile;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8D796FE934061CE17FFE2C26 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		94A9E44BB9E4A786FA7DF4D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Derived/InfoPlists/GTToast-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.den.growtimer.gttoast;
+				PRODUCT_NAME = GTToast;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		D1AE9E6378FF9817AF57DC5D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D29F85943A0BE8EEE0AE6F99 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Derived/InfoPlists/GTToast-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.den.growtimer.gttoast;
+				PRODUCT_NAME = GTToast;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+					"$(inherited)",
+					DEBUG,
+				);
+				SWIFT_COMPILATION_MODE = singlefile;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		05837985F4ECECEB7BDBC26F /* Build configuration list for PBXNativeTarget "GTToast" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D29F85943A0BE8EEE0AE6F99 /* Debug */,
+				94A9E44BB9E4A786FA7DF4D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2104A13B349AA98CD55350A6 /* Build configuration list for PBXNativeTarget "GTToastTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8755F8BF44898A9C318ABD1C /* Debug */,
+				260E094E2A52640D5DB2DD0C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C9E6C554F80BC8D40E2310B4 /* Build configuration list for PBXProject "GTToast" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8D796FE934061CE17FFE2C26 /* Debug */,
+				D1AE9E6378FF9817AF57DC5D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CE751A7FCFEE2A27AFB913F1 /* Project object */;
+}

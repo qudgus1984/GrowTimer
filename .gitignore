@@ -1,5 +1,4 @@
 # Xcode
-*.xcodeproj
 xcuserdata/
 DerivedData/
 
@@ -25,3 +24,5 @@ Pods/
 *.ipa
 *.dSYM.zip
 *.dSYM
+*.xcodeproj/project.xcworkspace/xcuserdata/
+*.xcworkspace/xcuserdata/
