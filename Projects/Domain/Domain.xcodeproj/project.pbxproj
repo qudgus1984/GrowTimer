@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 70;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -32,9 +32,11 @@
 		939A4260372042209B8C538E /* CoreDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1E4F0113E7916C228D32BC /* CoreDataRepository.swift */; };
 		A1759085F01150B7980C2E5C /* DateUseCaseInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFC3508DEC41E202F24FBB3 /* DateUseCaseInterface.swift */; };
 		A1BE754C99BEDE0E03E786FD /* DateRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F39D79B0C532046C24CE73 /* DateRepository.swift */; };
+		AF43977962471D9211A196B1 /* MockCoinRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B36BF01DD027DDFECDF39E4 /* MockCoinRepository.swift */; };
 		B44CBB4092F3BCDFC3CDC1AD /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27630240B9C3BFEC227EAD2 /* UserRepository.swift */; };
 		B46F2E35DD469021D7F4EA2A /* CoinUseCaseInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098AA90F34F2F78FDA847B20 /* CoinUseCaseInterface.swift */; };
 		B765768150585AD63EBEC98E /* FontUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BC4B5CDDB3751C9110B499 /* FontUseCase.swift */; };
+		D3A8D7783CA3640EDC785EFB /* MockUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190487309B42AE6BE1282561 /* MockUserRepository.swift */; };
 		EA587A92A5855CD22A768352 /* Domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD49F277B86481D3D105FAC8 /* Domain.framework */; };
 		F09BB18E8CF383DA4C2B2636 /* ThemaRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F469E387CE616A8D21B0BE01 /* ThemaRepository.swift */; };
 /* End PBXBuildFile section */
@@ -75,16 +77,18 @@
 /* Begin PBXFileReference section */
 		098AA90F34F2F78FDA847B20 /* CoinUseCaseInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinUseCaseInterface.swift; sourceTree = "<group>"; };
 		14BC4B5CDDB3751C9110B499 /* FontUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontUseCase.swift; sourceTree = "<group>"; };
+		190487309B42AE6BE1282561 /* MockUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserRepository.swift; sourceTree = "<group>"; };
 		261679B89057804E12EBBCC2 /* UserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUseCase.swift; sourceTree = "<group>"; };
 		2AF25862EC818F67474944B8 /* DateUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUseCase.swift; sourceTree = "<group>"; };
 		2F2831DAE4A3A6EFEDCFFB97 /* DomainTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DomainTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		333EE8DA4F29DEB15659E492 /* UserEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEntity.swift; sourceTree = "<group>"; };
-		562B929B2256601DBE65A816 /* .gitkeep */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
+		562B929B2256601DBE65A816 /* .gitkeep */ = {isa = PBXFileReference; path = .gitkeep; sourceTree = "<group>"; };
 		62AEB976E6A4FAB9508D4025 /* FontUseCaseInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontUseCaseInterface.swift; sourceTree = "<group>"; };
 		64739F172FBEE9C3D29D010A /* CoinUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinUseCaseTests.swift; sourceTree = "<group>"; };
 		6E496D3D7A27B2A8D680DF98 /* FontRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontRepository.swift; sourceTree = "<group>"; };
 		75CE88A21049076913ABA3B1 /* DomainTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "DomainTests-Info.plist"; sourceTree = "<group>"; };
 		7A1E4F0113E7916C228D32BC /* CoreDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataRepository.swift; sourceTree = "<group>"; };
+		7B36BF01DD027DDFECDF39E4 /* MockCoinRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCoinRepository.swift; sourceTree = "<group>"; };
 		82C91165998D6144D2362B31 /* TuistBundle+Domain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistBundle+Domain.swift"; sourceTree = "<group>"; };
 		8667F7C4D8306B150F0A5D08 /* UserUseCaseInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUseCaseInterface.swift; sourceTree = "<group>"; };
 		932FA417FDEE31616E026958 /* ThemaUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemaUseCase.swift; sourceTree = "<group>"; };
@@ -107,10 +111,6 @@
 		FC1DB9B616F444C0CB7E47D1 /* CoreDataUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataUseCase.swift; sourceTree = "<group>"; };
 		FD49F277B86481D3D105FAC8 /* Domain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Domain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		B76806272DCE41DE00AE5162 /* Mock */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Mock; sourceTree = "<group>"; };
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		2069052369677C3E97D5C897 /* Frameworks */ = {
@@ -139,6 +139,15 @@
 				CC43643D59447F4E2114ABCF /* Sources */,
 			);
 			path = Derived;
+			sourceTree = "<group>";
+		};
+		0DCCB23A6DD52B82BF0C1546 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				7B36BF01DD027DDFECDF39E4 /* MockCoinRepository.swift */,
+				190487309B42AE6BE1282561 /* MockUserRepository.swift */,
+			);
+			path = Mock;
 			sourceTree = "<group>";
 		};
 		11B3611D1728B87E7C917C63 /* Entity */ = {
@@ -257,12 +266,12 @@
 		E32049111A836C4BF668010B /* Interface */ = {
 			isa = PBXGroup;
 			children = (
-				B76806272DCE41DE00AE5162 /* Mock */,
+				0DCCB23A6DD52B82BF0C1546 /* Mock */,
+				CB12806351BE28D14D2C4943 /* CoinRepository.swift */,
 				7A1E4F0113E7916C228D32BC /* CoreDataRepository.swift */,
 				F5F39D79B0C532046C24CE73 /* DateRepository.swift */,
 				6E496D3D7A27B2A8D680DF98 /* FontRepository.swift */,
 				F469E387CE616A8D21B0BE01 /* ThemaRepository.swift */,
-				CB12806351BE28D14D2C4943 /* CoinRepository.swift */,
 				F27630240B9C3BFEC227EAD2 /* UserRepository.swift */,
 			);
 			path = Interface;
@@ -304,9 +313,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				B76806272DCE41DE00AE5162 /* Mock */,
 			);
 			name = Domain;
 			packageProductDependencies = (
@@ -378,6 +384,8 @@
 				939A4260372042209B8C538E /* CoreDataRepository.swift in Sources */,
 				A1BE754C99BEDE0E03E786FD /* DateRepository.swift in Sources */,
 				797A53D20C8D91000B6EC26F /* FontRepository.swift in Sources */,
+				AF43977962471D9211A196B1 /* MockCoinRepository.swift in Sources */,
+				D3A8D7783CA3640EDC785EFB /* MockUserRepository.swift in Sources */,
 				F09BB18E8CF383DA4C2B2636 /* ThemaRepository.swift in Sources */,
 				B44CBB4092F3BCDFC3CDC1AD /* UserRepository.swift in Sources */,
 				1ED5C2814FC2F539F3F61B83 /* CoinUseCase.swift in Sources */,
@@ -432,7 +440,10 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+					"$(inherited)",
+					DEBUG,
+				);
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -633,7 +644,10 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+					"$(inherited)",
+					DEBUG,
+				);
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
