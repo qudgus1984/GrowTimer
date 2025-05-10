@@ -16,7 +16,7 @@ let project = Project(
     targets: [
         Target.target(
             name: "App",
-            destinations: [.iPhone, .iPad],
+            destinations: [.iPhone],
             product: .app,
             bundleId: "com.den.growtimerv2",
             deploymentTargets: .iOS("16.0"),
