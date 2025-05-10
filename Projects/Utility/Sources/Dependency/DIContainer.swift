@@ -23,3 +23,20 @@ public enum DIContainer {
         return value
     }
 }
+
+extension DIContainer {
+    public static var originalStorage: [String: Any] = [:]
+    
+    public static func setupForTesting() {
+        // 원본 저장소 백업
+        originalStorage = storage
+        // 테스트용 빈 저장소로 초기화
+        storage = [:]
+    }
+    
+    public static func tearDownTesting() {
+        // 원본 저장소 복원
+        storage = originalStorage
+        originalStorage = [:]
+    }
+}
