@@ -1,0 +1,616 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		01277A0E7DE74F434A71F27F /* WorkCheckListManagementDomain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0CB3D24B7F9F354B002B086 /* WorkCheckListManagementDomain.framework */; };
+		05AF592F87337797D83173BF /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 96D4428394B86995F7DE3985 /* ComposableArchitecture */; };
+		44E9CD25FD737129F67B1EDA /* AppFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33DB8DB73D43E5B6818FA96B /* AppFeature.swift */; };
+		48C1D5A1BD73CAB550E850BB /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B061E798C6D0ED264310D6F /* MainView.swift */; };
+		4D2E9A34F8F986189264A95F /* WorkCheckListManagementDomain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F0CB3D24B7F9F354B002B086 /* WorkCheckListManagementDomain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		50A1B8945F05D984FD238492 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E96766B5A28ADFEE63E8F4E9 /* LaunchScreen.storyboard */; };
+		52309E2EC09153D2B901B452 /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = CE8DBD64BC6361015529AC64 /* .gitkeep */; };
+		5C72F1D0F41F8AAC2DA53DA7 /* WorkCheckListManagementUtils.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D22C6763F3E3B88C5C6393E6 /* WorkCheckListManagementUtils.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		61B7628FBCA2781F5FE87A69 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335A6F5B6E35CF419FE4B400 /* AppDelegate.swift */; };
+		67803CE6D582CED78EC76D3A /* WorkCheckListManagementData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B7493613DC0CB1B788A9560 /* WorkCheckListManagementData.framework */; };
+		9E4740B56FD7607F87E1164F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C75C646C9D1F1668F3EECAA /* SceneDelegate.swift */; };
+		A22695FCC48FD8D0BD9F4EFF /* WorkCheckListManagementData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5B7493613DC0CB1B788A9560 /* WorkCheckListManagementData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B14176F0A1A431AD51A95D8D /* CasePaths in Frameworks */ = {isa = PBXBuildFile; productRef = DA49FEECDFA871AD86695580 /* CasePaths */; };
+		D4A73A18D4C1D576B75656DD /* WorkCheckListManagementUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D22C6763F3E3B88C5C6393E6 /* WorkCheckListManagementUtils.framework */; };
+		E1B9C306BA4B2C4D7D70519F /* WorkCheckListManagementPresent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE54B98A209167763EBAA3BC /* WorkCheckListManagementPresent.framework */; };
+		F0A9B1B56F406360D3245983 /* WorkCheckListManagementPresent.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DE54B98A209167763EBAA3BC /* WorkCheckListManagementPresent.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FB43C41B7563C48527317E55 /* TuistBundle+WorkCheckListManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2D73BB6695A0BB7DA278A5 /* TuistBundle+WorkCheckListManagement.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BBA75D474843070848D027F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29D90EFCBAEC4211175E11EC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 159BED187534824C3672DEE5;
+			remoteInfo = WorkCheckListManagement;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		52E14672806583E31083CEF4 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A22695FCC48FD8D0BD9F4EFF /* WorkCheckListManagementData.framework in Embed Frameworks */,
+				4D2E9A34F8F986189264A95F /* WorkCheckListManagementDomain.framework in Embed Frameworks */,
+				F0A9B1B56F406360D3245983 /* WorkCheckListManagementPresent.framework in Embed Frameworks */,
+				5C72F1D0F41F8AAC2DA53DA7 /* WorkCheckListManagementUtils.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B2A0B134077D8E5CBA1CA989 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0767BD1BA511BA93B34DF964 /* WorkCheckListManagement-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "WorkCheckListManagement-Info.plist"; sourceTree = "<group>"; };
+		078511A30E8947AB1804EE30 /* WorkCheckListManagement.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkCheckListManagement.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C75C646C9D1F1668F3EECAA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		335A6F5B6E35CF419FE4B400 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		33DB8DB73D43E5B6818FA96B /* AppFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFeature.swift; sourceTree = "<group>"; };
+		4B061E798C6D0ED264310D6F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		5B7493613DC0CB1B788A9560 /* WorkCheckListManagementData.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WorkCheckListManagementData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		63D783FBD2A9E122DB69FC09 /* WorkCheckListManagementTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "WorkCheckListManagementTests-Info.plist"; sourceTree = "<group>"; };
+		CE8DBD64BC6361015529AC64 /* .gitkeep */ = {isa = PBXFileReference; path = .gitkeep; sourceTree = "<group>"; };
+		D22C6763F3E3B88C5C6393E6 /* WorkCheckListManagementUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WorkCheckListManagementUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4515716CC81DE9128D55398 /* WorkCheckListManagementTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WorkCheckListManagementTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE54B98A209167763EBAA3BC /* WorkCheckListManagementPresent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WorkCheckListManagementPresent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E96766B5A28ADFEE63E8F4E9 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F0CB3D24B7F9F354B002B086 /* WorkCheckListManagementDomain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WorkCheckListManagementDomain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA2D73BB6695A0BB7DA278A5 /* TuistBundle+WorkCheckListManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistBundle+WorkCheckListManagement.swift"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		205101DEE30CFCB69E7CE4BB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DA306348A28DE63AD8531887 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				67803CE6D582CED78EC76D3A /* WorkCheckListManagementData.framework in Frameworks */,
+				01277A0E7DE74F434A71F27F /* WorkCheckListManagementDomain.framework in Frameworks */,
+				E1B9C306BA4B2C4D7D70519F /* WorkCheckListManagementPresent.framework in Frameworks */,
+				D4A73A18D4C1D576B75656DD /* WorkCheckListManagementUtils.framework in Frameworks */,
+				05AF592F87337797D83173BF /* ComposableArchitecture in Frameworks */,
+				B14176F0A1A431AD51A95D8D /* CasePaths in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		17CE50E0BBE1941A0BD606D7 /* Derived */ = {
+			isa = PBXGroup;
+			children = (
+				3D7B488B8526448E434C3E07 /* InfoPlists */,
+				971940433E03B0A74D709578 /* Sources */,
+			);
+			path = Derived;
+			sourceTree = "<group>";
+		};
+		21159ED0D7073279A5FDD384 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4B061E798C6D0ED264310D6F /* MainView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2A3D129D28358ED9D1EC2D4B = {
+			isa = PBXGroup;
+			children = (
+				BF8486D48EB973E6936737BB /* Project */,
+				A3F5F864C2DF006E34AB4FF3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3D7B488B8526448E434C3E07 /* InfoPlists */ = {
+			isa = PBXGroup;
+			children = (
+				0767BD1BA511BA93B34DF964 /* WorkCheckListManagement-Info.plist */,
+				63D783FBD2A9E122DB69FC09 /* WorkCheckListManagementTests-Info.plist */,
+			);
+			path = InfoPlists;
+			sourceTree = "<group>";
+		};
+		971940433E03B0A74D709578 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				FA2D73BB6695A0BB7DA278A5 /* TuistBundle+WorkCheckListManagement.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		A3F5F864C2DF006E34AB4FF3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				078511A30E8947AB1804EE30 /* WorkCheckListManagement.app */,
+				5B7493613DC0CB1B788A9560 /* WorkCheckListManagementData.framework */,
+				F0CB3D24B7F9F354B002B086 /* WorkCheckListManagementDomain.framework */,
+				DE54B98A209167763EBAA3BC /* WorkCheckListManagementPresent.framework */,
+				D4515716CC81DE9128D55398 /* WorkCheckListManagementTests.xctest */,
+				D22C6763F3E3B88C5C6393E6 /* WorkCheckListManagementUtils.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BF8486D48EB973E6936737BB /* Project */ = {
+			isa = PBXGroup;
+			children = (
+				17CE50E0BBE1941A0BD606D7 /* Derived */,
+				DF4A6DA498C01192E314C585 /* Resources */,
+				EED8C6B44234CCB384AD8A96 /* Sources */,
+			);
+			name = Project;
+			sourceTree = "<group>";
+		};
+		D444DB0D3285C2793B670312 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				33DB8DB73D43E5B6818FA96B /* AppFeature.swift */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		DF4A6DA498C01192E314C585 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CE8DBD64BC6361015529AC64 /* .gitkeep */,
+				E96766B5A28ADFEE63E8F4E9 /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		EED8C6B44234CCB384AD8A96 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				D444DB0D3285C2793B670312 /* Features */,
+				21159ED0D7073279A5FDD384 /* Views */,
+				335A6F5B6E35CF419FE4B400 /* AppDelegate.swift */,
+				2C75C646C9D1F1668F3EECAA /* SceneDelegate.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		159BED187534824C3672DEE5 /* WorkCheckListManagement */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 802C891FF198929079DCC880 /* Build configuration list for PBXNativeTarget "WorkCheckListManagement" */;
+			buildPhases = (
+				9A9DEF9E9EB5C99671EE0E4A /* Sources */,
+				B8EF0C034F8EC46FB1AE25C2 /* Resources */,
+				DA306348A28DE63AD8531887 /* Frameworks */,
+				52E14672806583E31083CEF4 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WorkCheckListManagement;
+			packageProductDependencies = (
+				96D4428394B86995F7DE3985 /* ComposableArchitecture */,
+				DA49FEECDFA871AD86695580 /* CasePaths */,
+			);
+			productName = WorkCheckListManagement;
+			productReference = 078511A30E8947AB1804EE30 /* WorkCheckListManagement.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E5499DC8789A2EE4DB8A8529 /* WorkCheckListManagementTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D0F643B270E84ACBCACFB7E7 /* Build configuration list for PBXNativeTarget "WorkCheckListManagementTests" */;
+			buildPhases = (
+				ABED77A810CDC1AD2FB61272 /* Resources */,
+				205101DEE30CFCB69E7CE4BB /* Frameworks */,
+				B2A0B134077D8E5CBA1CA989 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0E6A78027E9B7B0F1214728A /* PBXTargetDependency */,
+			);
+			name = WorkCheckListManagementTests;
+			packageProductDependencies = (
+			);
+			productName = WorkCheckListManagementTests;
+			productReference = D4515716CC81DE9128D55398 /* WorkCheckListManagementTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29D90EFCBAEC4211175E11EC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				ORGANIZATIONNAME = Den;
+				TargetAttributes = {
+					E5499DC8789A2EE4DB8A8529 = {
+						TestTargetID = 159BED187534824C3672DEE5;
+					};
+				};
+			};
+			buildConfigurationList = 3E0ABA27B64F8B2055A2E04A /* Build configuration list for PBXProject "WorkCheckListManagement" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 2A3D129D28358ED9D1EC2D4B;
+			packageReferences = (
+				497EBA11C0943B502AB8C0BB /* XCRemoteSwiftPackageReference "swift-case-paths" */,
+				D3552DA5E214107262EEB25C /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+			);
+			productRefGroup = A3F5F864C2DF006E34AB4FF3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				159BED187534824C3672DEE5 /* WorkCheckListManagement */,
+				E5499DC8789A2EE4DB8A8529 /* WorkCheckListManagementTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		ABED77A810CDC1AD2FB61272 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B8EF0C034F8EC46FB1AE25C2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52309E2EC09153D2B901B452 /* .gitkeep in Resources */,
+				50A1B8945F05D984FD238492 /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9A9DEF9E9EB5C99671EE0E4A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FB43C41B7563C48527317E55 /* TuistBundle+WorkCheckListManagement.swift in Sources */,
+				61B7628FBCA2781F5FE87A69 /* AppDelegate.swift in Sources */,
+				44E9CD25FD737129F67B1EDA /* AppFeature.swift in Sources */,
+				9E4740B56FD7607F87E1164F /* SceneDelegate.swift in Sources */,
+				48C1D5A1BD73CAB550E850BB /* MainView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0E6A78027E9B7B0F1214728A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = WorkCheckListManagement;
+			target = 159BED187534824C3672DEE5 /* WorkCheckListManagement */;
+			targetProxy = BBA75D474843070848D027F1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1970D48630E60983937AD48C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Derived/InfoPlists/WorkCheckListManagement-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.den.workchecklist;
+				PRODUCT_NAME = WorkCheckListManagement;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+					"$(inherited)",
+					DEBUG,
+				);
+				SWIFT_COMPILATION_MODE = singlefile;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		270D96B779650111863414F5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Derived/InfoPlists/WorkCheckListManagement-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.den.workchecklist;
+				PRODUCT_NAME = WorkCheckListManagement;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		77B45162647514062D2EA540 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B873442AD786B56162035668 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = "Derived/InfoPlists/WorkCheckListManagementTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.den.workchecklist.tests;
+				PRODUCT_NAME = WorkCheckListManagementTests;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+					"$(inherited)",
+					DEBUG,
+				);
+				SWIFT_COMPILATION_MODE = singlefile;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WorkCheckListManagement.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WorkCheckListManagement";
+				TEST_TARGET_NAME = WorkCheckListManagement;
+			};
+			name = Debug;
+		};
+		CC74F47379CF5C5AD9BE8678 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = "Derived/InfoPlists/WorkCheckListManagementTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.den.workchecklist.tests;
+				PRODUCT_NAME = WorkCheckListManagementTests;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WorkCheckListManagement.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WorkCheckListManagement";
+				TEST_TARGET_NAME = WorkCheckListManagement;
+			};
+			name = Release;
+		};
+		D74D54D52825256C015779AB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3E0ABA27B64F8B2055A2E04A /* Build configuration list for PBXProject "WorkCheckListManagement" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D74D54D52825256C015779AB /* Debug */,
+				77B45162647514062D2EA540 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		802C891FF198929079DCC880 /* Build configuration list for PBXNativeTarget "WorkCheckListManagement" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1970D48630E60983937AD48C /* Debug */,
+				270D96B779650111863414F5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D0F643B270E84ACBCACFB7E7 /* Build configuration list for PBXNativeTarget "WorkCheckListManagementTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B873442AD786B56162035668 /* Debug */,
+				CC74F47379CF5C5AD9BE8678 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		497EBA11C0943B502AB8C0BB /* XCRemoteSwiftPackageReference "swift-case-paths" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-case-paths.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.7.0;
+			};
+		};
+		D3552DA5E214107262EEB25C /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.19.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		96D4428394B86995F7DE3985 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ComposableArchitecture;
+		};
+		DA49FEECDFA871AD86695580 /* CasePaths */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CasePaths;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 29D90EFCBAEC4211175E11EC /* Project object */;
+}
