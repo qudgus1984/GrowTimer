@@ -23,6 +23,7 @@ class CoinUseCaseTests: XCTestCase {
         DIContainer.setupForTesting()
         
         mockRepository = MockCoinRepository()
+        
         DIContainer.register(mockRepository, type: CoinRepository.self)
         
         sut = CoinUseCase()
