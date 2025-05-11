@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -36,6 +36,7 @@
 		B44CBB4092F3BCDFC3CDC1AD /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27630240B9C3BFEC227EAD2 /* UserRepository.swift */; };
 		B46F2E35DD469021D7F4EA2A /* CoinUseCaseInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098AA90F34F2F78FDA847B20 /* CoinUseCaseInterface.swift */; };
 		B765768150585AD63EBEC98E /* FontUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BC4B5CDDB3751C9110B499 /* FontUseCase.swift */; };
+		B768062F2DCF1F9B00AE5162 /* UserUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B768062E2DCF1F9B00AE5162 /* UserUseCaseTests.swift */; };
 		D3A8D7783CA3640EDC785EFB /* MockUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190487309B42AE6BE1282561 /* MockUserRepository.swift */; };
 		EA587A92A5855CD22A768352 /* Domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD49F277B86481D3D105FAC8 /* Domain.framework */; };
 		F09BB18E8CF383DA4C2B2636 /* ThemaRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F469E387CE616A8D21B0BE01 /* ThemaRepository.swift */; };
@@ -82,7 +83,7 @@
 		2AF25862EC818F67474944B8 /* DateUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUseCase.swift; sourceTree = "<group>"; };
 		2F2831DAE4A3A6EFEDCFFB97 /* DomainTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DomainTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		333EE8DA4F29DEB15659E492 /* UserEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEntity.swift; sourceTree = "<group>"; };
-		562B929B2256601DBE65A816 /* .gitkeep */ = {isa = PBXFileReference; path = .gitkeep; sourceTree = "<group>"; };
+		562B929B2256601DBE65A816 /* .gitkeep */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		62AEB976E6A4FAB9508D4025 /* FontUseCaseInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontUseCaseInterface.swift; sourceTree = "<group>"; };
 		64739F172FBEE9C3D29D010A /* CoinUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinUseCaseTests.swift; sourceTree = "<group>"; };
 		6E496D3D7A27B2A8D680DF98 /* FontRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontRepository.swift; sourceTree = "<group>"; };
@@ -95,6 +96,7 @@
 		9A65F778451473B61822ED53 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		A6F9CB4F0586E62D97C457DA /* CoreDataUseCaseInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataUseCaseInterface.swift; sourceTree = "<group>"; };
 		A7F5EC9D308EA8389F76F8C0 /* FontEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontEntity.swift; sourceTree = "<group>"; };
+		B768062E2DCF1F9B00AE5162 /* UserUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUseCaseTests.swift; sourceTree = "<group>"; };
 		BD15A37E85BAE3A36B2CE72C /* Domain-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Domain-Info.plist"; sourceTree = "<group>"; };
 		C2CE0DF0B42094AFE1E61630 /* Utility.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Utility.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB12806351BE28D14D2C4943 /* CoinRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinRepository.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				64739F172FBEE9C3D29D010A /* CoinUseCaseTests.swift */,
+				B768062E2DCF1F9B00AE5162 /* UserUseCaseTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -407,6 +410,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B768062F2DCF1F9B00AE5162 /* UserUseCaseTests.swift in Sources */,
 				71177A4B7C9DC41D8ABA37FE /* CoinUseCaseTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -440,10 +444,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
-					"$(inherited)",
-					DEBUG,
-				);
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -644,10 +645,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
-					"$(inherited)",
-					DEBUG,
-				);
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
