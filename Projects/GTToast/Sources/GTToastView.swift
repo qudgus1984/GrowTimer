@@ -22,7 +22,7 @@ internal final class GTToastView: UIView {
     }()
     
     /// Toast 스타일
-    private let style: GTToastStyle
+    let style: GTToastStyle
     
     // MARK: - Initialization
     

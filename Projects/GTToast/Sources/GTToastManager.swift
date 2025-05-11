@@ -9,7 +9,6 @@
 // ToastManager.swift
 import UIKit
 
-/// Toast 메시지를 관리하고 표시하는 싱글톤 매니저
 public final class ToastManager {
     
     // MARK: - Singleton
@@ -22,17 +21,17 @@ public final class ToastManager {
     
     // MARK: - Properties
     
-    /// 현재 표시 중인 Toast 뷰
-    private var currentToast: GTToastView?
-    
-    /// 대기 중인 Toast 메시지 큐
-    private var queue: [(message: String, duration: TimeInterval, style: GTToastStyle)] = []
+    /// 현재 표시 중인 Toast 뷰들
+    private var activeToasts: [GTToastView] = []
     
     /// 기본 표시 지속 시간
     public var defaultDuration: TimeInterval = 2.0
     
     /// 기본 스타일
     public var defaultStyle = GTToastStyle()
+    
+    /// Toast 간 수직 간격
+    private let toastSpacing: CGFloat = 8
     
     // MARK: - Public Methods
     
@@ -45,20 +44,16 @@ public final class ToastManager {
         let duration = duration ?? defaultDuration
         let style = style ?? defaultStyle
         
-        // 이미 표시 중인 Toast가 있는 경우 큐에 추가
-        if currentToast != nil {
-            queue.append((message: message, duration: duration, style: style))
-            return
-        }
-        
-        // Toast 표시
+        // 새로운 Toast 즉시 표시
         showToast(message: message, duration: duration, style: style)
     }
     
     /// 모든 Toast 메시지 제거
     public func dismissAll() {
-        hideCurrentToast()
-        queue.removeAll()
+        for toast in activeToasts {
+            toast.removeFromSuperview()
+        }
+        activeToasts.removeAll()
     }
     
     // MARK: - Private Methods
@@ -75,7 +70,6 @@ public final class ToastManager {
         
         // Toast 뷰 생성
         let toastView = GTToastView(message: message, style: style)
-        currentToast = toastView
         
         // 크기 및 위치 계산
         let toastSize = toastView.sizeThatFits()
@@ -89,12 +83,43 @@ public final class ToastManager {
         case .top:
             initialY = -toastSize.height
             finalY = window.safeAreaInsets.top + 16
+            
+            // 이미 표시 중인 Toast가 있는 경우 아래로 위치 조정
+            if !activeToasts.isEmpty {
+                let topToasts = activeToasts.filter {
+                    if case .top = $0.style.position { return true }
+                    return false
+                }
+                
+                if let lastToast = topToasts.last {
+                    finalY = lastToast.frame.maxY + toastSpacing
+                }
+            }
+            
         case .center:
             initialY = window.bounds.height
             finalY = (window.bounds.height - toastSize.height) / 2
+            
+            // 중앙에 표시되는 Toast는 겹치지 않도록 약간씩 위치 조정
+            let centerOffset: CGFloat = CGFloat(activeToasts.count % 3) * 20
+            finalY += centerOffset - 20
+            
         case .bottom:
             initialY = window.bounds.height
             finalY = window.bounds.height - window.safeAreaInsets.bottom - toastSize.height - 16
+            
+            // 이미 표시 중인 Toast가 있는 경우 위로 위치 조정
+            if !activeToasts.isEmpty {
+                let bottomToasts = activeToasts.filter {
+                    if case .bottom = $0.style.position { return true }
+                    return false
+                }
+                
+                for toast in bottomToasts {
+                    toast.frame.origin.y -= (toastSize.height + toastSpacing)
+                }
+            }
+            
         case .custom(let yPosition):
             initialY = -toastSize.height
             finalY = yPosition
@@ -105,6 +130,9 @@ public final class ToastManager {
             y: initialY
         )
         
+        // 활성 Toast 배열에 추가
+        activeToasts.append(toastView)
+        
         // 윈도우에 추가
         window.addSubview(toastView)
         
@@ -112,50 +140,16 @@ public final class ToastManager {
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
             toastView.frame.origin.y = finalY
         }, completion: { _ in
-            // 지정된
             // 지정된 지속 시간 후 사라지도록 설정
             UIView.animate(withDuration: 0.3, delay: duration, options: .curveEaseIn, animations: {
-                toastView.frame.origin.y = initialY
                 toastView.alpha = 0
             }, completion: { _ in
-                self.hideCurrentToast()
-                
-                // 큐에 다음 Toast가 있는 경우 표시
-                if let next = self.queue.first {
-                    self.queue.removeFirst()
-                    self.showToast(message: next.message, duration: next.duration, style: next.style)
+                // Toast 제거
+                if let index = self.activeToasts.firstIndex(where: { $0 === toastView }) {
+                    self.activeToasts.remove(at: index)
                 }
+                toastView.removeFromSuperview()
             })
         })
     }
-    
-    /// 현재 표시 중인 Toast 제거
-    private func hideCurrentToast() {
-        currentToast?.removeFromSuperview()
-        currentToast = nil
-    }
 }
-
-// 사용 예시:
-/*
-// 기본 스타일로 표시
-self.showToast("기본 Toast 메시지")
-
-// 커스텀 스타일로 표시
-let customStyle = ToastStyle(
-    backgroundColor: UIColor.systemBlue.withAlphaComponent(0.9),
-    textColor: .white,
-    font: .boldSystemFont(ofSize: 16),
-    cornerRadius: 12,
-    position: .top
-)
-self.showToast("커스텀 Toast 메시지", duration: 3.0, style: customStyle)
-
-// 매니저를 직접 사용
-ToastManager.shared.show("매니저를 통한 Toast 메시지")
-
-// 기본 스타일 변경
-ToastManager.shared.defaultStyle.backgroundColor = UIColor.systemGreen.withAlphaComponent(0.8)
-ToastManager.shared.defaultStyle.position = .center
-ToastManager.shared.defaultDuration = 1.5
-*/
