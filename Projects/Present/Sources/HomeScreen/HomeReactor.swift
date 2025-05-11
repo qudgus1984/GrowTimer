@@ -91,6 +91,9 @@ final class HomeReactor: Reactor {
             UserDefaultManager.bright = brightNess
             let user = userUseCase.excuteFetchUser()
             
+            //CoinTest용
+//            coinUseCase.excuteCreateCoin(CoinEntity(id: UUID(), getCoin: 10000, spendCoin: 0, status: 1000, now: .now))
+            
             if fontUseCase.excuteFetchFontTable().isEmpty {
                 fontUseCase.excuteFirstStartFont(fontName: FontThema.UhBeeFont.rawValue, purcase: true)
                 fontUseCase.excuteFirstStartFont(fontName: FontThema.GangwonFont.rawValue, purcase: false)

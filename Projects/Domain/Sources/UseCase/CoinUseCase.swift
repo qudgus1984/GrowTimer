@@ -67,13 +67,7 @@ public class CoinUseCase: CoinUseCaseInterface {
         case 503:
             return "Simkyungha 폰트🌃를 구입하셨습니다."
         case 1000:
-            return "SeSAC 화이팅🌱"
-        case 1001:
-            return "쿠폰 코드를 입력하셨습니다."
-        case 1002:
-            return "♥️"
-        case 1003:
-            return "콘크리트여 영원하라🧱"
+            return "개발자용 코인 테스트"
         default:
             return "입력되지 않은 상태코드입니다."
         }
