@@ -23,15 +23,15 @@ final class SettingReactor: Reactor {
     }
     
     enum Mutation {
-        case navigateToTime(Bool)
-        case navigateToThema(Bool)
-        case navigateToFont(Bool)
+        case navigateToTime
+        case navigateToThema
+        case navigateToFont
     }
     
     struct State {
-        var shouldNavigateToTime: Bool = false
-        var shouldNavigateToThema: Bool = false
-        var shouldNavigateToFont: Bool = false
+        @Pulse var shouldNavigateToTime: Void?
+        @Pulse var shouldNavigateToThema: Void?
+        @Pulse var shouldNavigateToFont: Void?
         var settingList = ["집중 시간 설정", "테마 변경/구매", "폰트 변경/구매"]
     }
     
@@ -41,20 +41,12 @@ final class SettingReactor: Reactor {
         case .cellTapped(let indexPath):
             switch indexPath.row {
             case 0:
-                return .concat([
-                    .just(.navigateToTime(true)),
-                    .just(.navigateToTime(false)).delay(.milliseconds(100), scheduler: MainScheduler.instance)
-                ])
+                return .just(.navigateToTime)
             case 1:
-                return .concat([
-                    .just(.navigateToThema(true)),
-                    .just(.navigateToThema(false)).delay(.milliseconds(100), scheduler: MainScheduler.instance)
-                ])
+                return .just(.navigateToThema)
+
             case 2:
-                return .concat([
-                    .just(.navigateToFont(true)),
-                    .just(.navigateToFont(false)).delay(.milliseconds(100), scheduler: MainScheduler.instance)
-                ])
+                return .just(.navigateToFont)
             default:
                 return .empty()
             }
@@ -65,14 +57,14 @@ final class SettingReactor: Reactor {
         var state = state
         
         switch mutation {
-        case .navigateToTime(let navigate):
-            state.shouldNavigateToTime = navigate
+        case .navigateToTime:
+            state.shouldNavigateToTime = ()
             return state
-        case .navigateToFont(let navigate):
-            state.shouldNavigateToFont = navigate
+        case .navigateToFont:
+            state.shouldNavigateToFont = ()
             return state
-        case .navigateToThema(let navigate):
-            state.shouldNavigateToThema = navigate
+        case .navigateToThema:
+            state.shouldNavigateToThema = ()
             return state
         }
     }
