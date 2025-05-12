@@ -68,26 +68,23 @@ extension SettingViewController: View {
             }
             .disposed(by: disposeBag)
         
-        reactor.state
-            .map(\.shouldNavigateToTime)
-            .filter { $0 }
+        reactor.pulse(\.$shouldNavigateToTime)
+            .observe(on: MainScheduler.instance)
             .bind(with: self) { owner, _ in
-                // 설정 화면으로 이동하는 로직
                 owner.transition(TimeSettingViewController(reactor: TimeSettingReactor(delegate: nil)), transitionStyle: .push)
             }
             .disposed(by: disposeBag)
         
-        reactor.state
-            .map(\.shouldNavigateToFont)
-            .filter { $0 }
+        reactor.pulse(\.$shouldNavigateToFont)
+            .observe(on: MainScheduler.instance)
             .bind(with: self) { owner, _ in
                 owner.transition(FontSettingViewController(reactor: FontSettingReactor()), transitionStyle: .push)
             }
             .disposed(by: disposeBag)
+
         
-        reactor.state
-            .map(\.shouldNavigateToThema)
-            .filter { $0 }
+        reactor.pulse(\.$shouldNavigateToThema)
+            .observe(on: MainScheduler.instance)
             .bind(with: self) { owner, _ in
                 owner.transition(ThemaSettingViewController(reactor: ThemaSettingReactor()), transitionStyle: .push)
             }
