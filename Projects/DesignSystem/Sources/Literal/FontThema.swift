@@ -17,67 +17,65 @@ public enum FontThema: String, CaseIterable {
     public var Font44: UIFont {
         switch self {
         case .UhBeeFont:
-            return GT.Font.UhBeeFont44!
+            return GT.Font.UhBeeFont44 ?? UIFont.systemFont(ofSize: 44)
         case .GangwonFont:
-            return GT.Font.GangwonFont44!
+            return GT.Font.GangwonFont44 ?? UIFont.systemFont(ofSize: 44)
         case .LeeSeoyunFont:
-            return GT.Font.LeeSeoyunFont44!
+            return GT.Font.LeeSeoyunFont44 ?? UIFont.systemFont(ofSize: 44)
         case .SimKyunghaFont:
-            return GT.Font.SimKyunghaFont44!
-        
+            return GT.Font.SimKyunghaFont44 ?? UIFont.systemFont(ofSize: 44)
         }
     }
     
     public var Font36: UIFont {
         switch self {
         case .UhBeeFont:
-            return GT.Font.UhBeeFont36!
+            return GT.Font.UhBeeFont36 ?? UIFont.systemFont(ofSize: 36)
         case .GangwonFont:
-            return GT.Font.GangwonFont36!
+            return GT.Font.GangwonFont36 ?? UIFont.systemFont(ofSize: 36)
         case .LeeSeoyunFont:
-            return GT.Font.LeeSeoyunFont36!
+            return GT.Font.LeeSeoyunFont36 ?? UIFont.systemFont(ofSize: 36)
         case .SimKyunghaFont:
-            return GT.Font.SimKyunghaFont36!
+            return GT.Font.SimKyunghaFont36 ?? UIFont.systemFont(ofSize: 36)
         }
     }
     
     public var Font24: UIFont {
         switch self {
         case .UhBeeFont:
-            return GT.Font.UhBeeFont24!
+            return GT.Font.UhBeeFont24 ?? UIFont.systemFont(ofSize: 24)
         case .GangwonFont:
-            return GT.Font.GangwonFont24!
+            return GT.Font.GangwonFont24 ?? UIFont.systemFont(ofSize: 24)
         case .LeeSeoyunFont:
-            return GT.Font.LeeSeoyunFont24!
+            return GT.Font.LeeSeoyunFont24 ?? UIFont.systemFont(ofSize: 24)
         case .SimKyunghaFont:
-            return GT.Font.SimKyunghaFont24!
+            return GT.Font.SimKyunghaFont24 ?? UIFont.systemFont(ofSize: 24)
         }
     }
     
     public var Font16: UIFont {
         switch self {
         case .UhBeeFont:
-            return GT.Font.UhBeeFont16!
+            return GT.Font.UhBeeFont16 ?? UIFont.systemFont(ofSize: 16)
         case .GangwonFont:
-            return GT.Font.GangwonFont16!
+            return GT.Font.GangwonFont16 ?? UIFont.systemFont(ofSize: 16)
         case .LeeSeoyunFont:
-            return GT.Font.LeeSeoyunFont16!
+            return GT.Font.LeeSeoyunFont16 ?? UIFont.systemFont(ofSize: 16)
         case .SimKyunghaFont:
-            return GT.Font.SimKyunghaFont16!
+            return GT.Font.SimKyunghaFont16 ?? UIFont.systemFont(ofSize: 16)
         }
     }
     
     public var Font12: UIFont {
         switch self {
         case .UhBeeFont:
-            return GT.Font.UhBeeFont12!
+            return GT.Font.UhBeeFont12 ?? UIFont.systemFont(ofSize: 12)
         case .GangwonFont:
-            return GT.Font.GangwonFont12!
+            return GT.Font.GangwonFont12 ?? UIFont.systemFont(ofSize: 12)
         case .LeeSeoyunFont:
-            return GT.Font.LeeSeoyunFont12!
+            return GT.Font.LeeSeoyunFont12 ?? UIFont.systemFont(ofSize: 12)
         case .SimKyunghaFont:
-            return GT.Font.SimKyunghaFont12!
+            return GT.Font.SimKyunghaFont12 ?? UIFont.systemFont(ofSize: 12)
         }
     }
 }
-
