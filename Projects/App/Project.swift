@@ -46,26 +46,8 @@ let project = Project(
                 .project(target: "FeatureInterface", path: "../FeatureInterface"),
                 .project(target: "FeatureImplement", path: "../FeatureImplement"),
                 .project(target: "ThirdPartyLibrary", path: "../ThirdPartyLibrary"),
+                .project(target: "DesignSystem", path: "../DesignSystem"),
             ],
-//            settings: .settings(
-//                base: [
-//                    "PRODUCT_NAME": "GrowTimer",
-//                    "DEVELOPMENT_TEAM": "qudgus1984@naver.com",
-//                    "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "RELEASE",
-//                    // 모든 빌드 구성에 공통으로 적용되는 설정
-//                ],
-//                debug: [
-//                    "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "$(inherited) DEBUG",
-//                    "SWIFT_OPTIMIZATION_LEVEL": "-Onone",
-//                    "OTHER_SWIFT_FLAGS": "$(inherited) -D DEBUG",
-//                    // 추가 디버그 전용 설정
-//                ],
-//                release: [
-//                    "SWIFT_OPTIMIZATION_LEVEL": "-O",
-//                    // 추가 릴리즈 전용 설정
-//                ],
-//                defaultSettings: .recommended
-//            )
         ),
         Target.target(
             name: "AppTests",
