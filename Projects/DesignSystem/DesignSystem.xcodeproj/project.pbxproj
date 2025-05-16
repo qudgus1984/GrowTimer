@@ -24,11 +24,11 @@
 		B3BBA9715BF3E265E75A9478 /* GwangwonEduAll-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 68B74AC1729750413760672D /* GwangwonEduAll-Bold.otf */; };
 		B4015A93CC86F54C3B97724F /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A04E264DF1B680FEC62E0BE /* BaseCollectionViewCell.swift */; };
 		B59633EB81C20431E23874D5 /* DesignSystemModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8244D617982D8224603BE09 /* DesignSystemModule.swift */; };
-		C0855C0A2DC860A01F7361E3 /* UhBee BEOJJI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 03AFC0925A704856AE3D6D55 /* UhBee BEOJJI.ttf */; };
+		C0855C0A2DC860A01F7361E3 /* UhBeeBEOJJI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 03AFC0925A704856AE3D6D55 /* UhBeeBEOJJI.ttf */; };
 		C438E92FA9121880084AE9AA /* DesignSystem.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69B7BBEAD5472C7195924AC8 /* DesignSystem.framework */; };
 		C80901BAEB8E2B031C9611F9 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D56B25C75A1E3190DBFF05 /* BaseView.swift */; };
 		CBBC99B35B12602ED84B9B9A /* CircularProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0E6BE5B9FD961D44303FCC /* CircularProgress.swift */; };
-		EB90794A4A1811BF8C86DDB4 /* UhBee BEOJJI Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 49E2F3705E4D74E6FE0DD156 /* UhBee BEOJJI Bold.ttf */; };
+		EB90794A4A1811BF8C86DDB4 /* UhBeeBEOJJIBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 49E2F3705E4D74E6FE0DD156 /* UhBeeBEOJJIBold.ttf */; };
 		EEEE053BBE631ED0FB64BDFB /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662412BC116B0F0F76D8C6A9 /* Font.swift */; };
 		F3C9FD2B222B73DF293868D2 /* FontRegistration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A851E38823A8D5C7A621A351 /* FontRegistration.swift */; };
 		F6018B5F7748E322214C52D6 /* TuistBundle+DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4AD9735556ECA8C8008FEC /* TuistBundle+DesignSystem.swift */; };
@@ -69,14 +69,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		03AFC0925A704856AE3D6D55 /* UhBee BEOJJI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UhBee BEOJJI.ttf"; sourceTree = "<group>"; };
+		03AFC0925A704856AE3D6D55 /* UhBeeBEOJJI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = UhBeeBEOJJI.ttf; sourceTree = "<group>"; };
 		095B9A99B05C71119D941B09 /* .gitkeep */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		0EEDE689080917EDEDAB3B45 /* SimKyungha.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimKyungha.otf; sourceTree = "<group>"; };
 		11519A6162870140692B04E6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1489E7809DA4DADA471C2CDC /* TuistFonts+DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistFonts+DesignSystem.swift"; sourceTree = "<group>"; };
 		1CA9E89FEB58ADE454BF0BC5 /* ThirdPartyLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ThirdPartyLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		469F4B641DBB710B1B90BAD8 /* DesignSystemTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "DesignSystemTests-Info.plist"; sourceTree = "<group>"; };
-		49E2F3705E4D74E6FE0DD156 /* UhBee BEOJJI Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "UhBee BEOJJI Bold.ttf"; sourceTree = "<group>"; };
+		49E2F3705E4D74E6FE0DD156 /* UhBeeBEOJJIBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = UhBeeBEOJJIBold.ttf; sourceTree = "<group>"; };
 		518272FB82D2FA3AE57FF3B6 /* LeeSeoyun.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = LeeSeoyun.otf; sourceTree = "<group>"; };
 		662412BC116B0F0F76D8C6A9 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		68B74AC1729750413760672D /* GwangwonEduAll-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GwangwonEduAll-Bold.otf"; sourceTree = "<group>"; };
@@ -148,8 +148,8 @@
 		0F57F47C2D6FFD75C761BE24 /* UhBeeFont */ = {
 			isa = PBXGroup;
 			children = (
-				49E2F3705E4D74E6FE0DD156 /* UhBee BEOJJI Bold.ttf */,
-				03AFC0925A704856AE3D6D55 /* UhBee BEOJJI.ttf */,
+				49E2F3705E4D74E6FE0DD156 /* UhBeeBEOJJIBold.ttf */,
+				03AFC0925A704856AE3D6D55 /* UhBeeBEOJJI.ttf */,
 			);
 			path = UhBeeFont;
 			sourceTree = "<group>";
@@ -380,8 +380,8 @@
 				B3BBA9715BF3E265E75A9478 /* GwangwonEduAll-Bold.otf in Resources */,
 				1EE4164BE4341D7B4A0FE8E6 /* SimKyungha.otf in Resources */,
 				047BD44AE88ED528EB57034B /* LeeSeoyun.otf in Resources */,
-				EB90794A4A1811BF8C86DDB4 /* UhBee BEOJJI Bold.ttf in Resources */,
-				C0855C0A2DC860A01F7361E3 /* UhBee BEOJJI.ttf in Resources */,
+				EB90794A4A1811BF8C86DDB4 /* UhBeeBEOJJIBold.ttf in Resources */,
+				C0855C0A2DC860A01F7361E3 /* UhBeeBEOJJI.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
